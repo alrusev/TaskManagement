@@ -23,8 +23,8 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     @Override
     public void updateRating(int newRating) {
         if (this.rating != newRating) {
-            //addToHistory(new HistoryEntry());
-            this.rating = newRating;
+            addToHistory(new HistoryEntryImpl(String.format("Rating updated from %s to %s.", this.rating, newRating)));
+            setRating(newRating);
         }
     }
 }

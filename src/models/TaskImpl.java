@@ -77,8 +77,8 @@ public abstract class TaskImpl implements Task {
 
     protected void changeStatus(TaskStatus newStatus) {
         if (this.status != newStatus) {
+            addToHistory(new HistoryEntryImpl(String.format("Status changed from %s to %s.", this.status, newStatus)));
             setStatus(newStatus);
-            //addToHistory(new HistoryEntry("Status changed to " + newStatus));
         }
     }
 
@@ -91,7 +91,7 @@ public abstract class TaskImpl implements Task {
     public void addComment(Comment comment) {
         if (comment != null) {
             comments.add(comment);
-            //addToHistory(new HistoryEntryImpl());
+            addToHistory(new HistoryEntryImpl("Comment added: " + comment.getContent()));
         }
     }
 

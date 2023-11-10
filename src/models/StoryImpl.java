@@ -30,8 +30,8 @@ public class StoryImpl extends TaskImpl implements Story {
     @Override
     public void updatePriority(Priority newPriority) {
         if (newPriority != null && !newPriority.equals(this.priority)) {
-            //addToHistory(new HistoryEntry());
-            this.priority = newPriority;
+            addToHistory(new HistoryEntryImpl(String.format("Priority updated from %s to %s.", this.priority, newPriority)));
+            setPriority(newPriority);
         }
     }
 
@@ -47,8 +47,8 @@ public class StoryImpl extends TaskImpl implements Story {
     @Override
     public void updateSize(Size newSize) {
         if (newSize != null && !newSize.equals(this.size)) {
-            //addToHistory(new HistoryEntry());
-            this.size = newSize;
+            addToHistory(new HistoryEntryImpl("Size changed to " + size));
+            setSize(newSize);
         }
     }
 
@@ -64,13 +64,13 @@ public class StoryImpl extends TaskImpl implements Story {
     public void assignTo(Person person) {
         if (person != null) {
             setAssignee(person);
-            //addToHistory(new HistoryEntry("Bug assigned to " + person.getName()));
+            addToHistory(new HistoryEntryImpl("Bug assigned to " + person.getName()));
         }
     }
 
     @Override
     public void unassign() {
-        //addToHistory(new HistoryEntry("Bug unassigned from " + (getAssignee() != null ? getAssignee().getName() : "None")));
+        addToHistory(new HistoryEntryImpl("Bug unassigned from " + (getAssignee() != null ? getAssignee().getName() : "None")));
         setAssignee(null);
     }
 }

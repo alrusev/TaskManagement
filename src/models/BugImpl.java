@@ -30,7 +30,7 @@ public class BugImpl extends TaskImpl implements Bug {
     @Override
     public void updatePriority(Priority newPriority) {
         if (newPriority != null && !newPriority.equals(this.priority)) {
-            //addToHistory(new HistoryEntry());
+            addToHistory(new HistoryEntryImpl(String.format("Priority updated from %s to %s.", this.priority, newPriority)));
             this.priority = newPriority;
         }
     }
@@ -59,8 +59,8 @@ public class BugImpl extends TaskImpl implements Bug {
 
     public void updateSeverity(Severity newSeverity) {
         if (newSeverity != null && !newSeverity.equals(this.severity)) {
-            //addToHistory(new HistoryEntry());
-            this.severity = newSeverity;
+            addToHistory(new HistoryEntryImpl(String.format("Severity updated from %s to %s", this.severity, newSeverity)));
+            setSeverity(newSeverity);
         }
     }
 
@@ -75,26 +75,26 @@ public class BugImpl extends TaskImpl implements Bug {
     public void assignTo(Person person) {
         if (person != null) {
             setAssignee(person);
-            //addToHistory(new HistoryEntry("Bug assigned to " + person.getName()));
+            addToHistory(new HistoryEntryImpl("Bug assigned to " + person.getName()));
         }
     }
 
     public void unassign() {
-        //addToHistory(new HistoryEntry("Bug unassigned from " + (getAssignee() != null ? getAssignee().getName() : "None")));
+        addToHistory(new HistoryEntryImpl("Bug unassigned from " + (getAssignee() != null ? getAssignee().getName() : "None")));
         setAssignee(null);
     }
 
     public void markAsDone() {
         if (getStatus() != TaskStatus.DONE) {
             changeStatus(TaskStatus.DONE);
-            //addToHistory(new HistoryEntry("Bug marked as done."));
+            addToHistory(new HistoryEntryImpl("Bug marked as done."));
         }
     }
 
     public void reopenBug() {
         if (getStatus() == TaskStatus.DONE) {
             changeStatus(TaskStatus.ACTIVE);
-            //addToHistory(new HistoryEntry("Bug reopened and marked as active."));
+            addToHistory(new HistoryEntryImpl("Bug reopened and marked as active."));
         }
     }
 }

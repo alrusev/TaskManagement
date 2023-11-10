@@ -1,6 +1,56 @@
 package models;
 
+import models.contracts.Board;
+import models.contracts.Person;
 import models.contracts.Team;
+import utils.ValidationHelpers;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TeamImpl implements Team {
+    private static final int NAME_MIN_LENGTH = 5;
+    private static final int NAME_MAX_LENGTH = 15;
+    private static final String NAME_ERROR_MESSAGE =
+            String.format("Name must be between %d and %d symbols", NAME_MIN_LENGTH, NAME_MAX_LENGTH);
+    private static final String NO_SUCH_MEMBER = "There is no such member in this team";
+    private String name;
+    private List<Person> members;
+    private List<Board> boards;
+
+    public TeamImpl(String name, List<Person> members, List<Board> boards) {
+        setName(name);
+        this.members = members;
+        this.boards = boards;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public List<Person> getMembers() {
+        return new ArrayList<>(members);
+    }
+
+    public List<Board> getBoards() {
+        return new ArrayList<>(boards);
+    }
+
+    private void setName(String name) {
+        ValidationHelpers.validateIntRange(name.length(), NAME_MIN_LENGTH, NAME_MAX_LENGTH, NAME_ERROR_MESSAGE);
+        this.name = name;
+    }
+
+    public void addPersonToMembers(Person person) {
+        members.add(person);
+    }
+
+    public void removePersonFromMembers(Person person) {
+        if (!members.contains(person))
+            throw new IllegalArgumentException(NO_SUCH_MEMBER);
+        members.remove(person);
+    }
+
 }

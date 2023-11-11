@@ -28,7 +28,7 @@ public class CommandFactoryImpl implements CommandFactory {
             case CHANGESTORYCOMMAND:
                 return new ChangeStoryCommand();
             case CREATEBOARDCOMMAND:
-                return new CreateBoardCommand();
+                return new CreateBoardCommand(repository);
             case CREATEBUGINBOARDCOMMAND:
                 return new CreateBugInBoardCommand();
             case CREATEFEEDBACKINBOARDCOMMAND:
@@ -36,9 +36,9 @@ public class CommandFactoryImpl implements CommandFactory {
             case CREATESTORYINBOARDCOMMAND:
                 return new CreateStoryInBoardCommand();
             case CREATEPERSONCOMMAND:
-                return new CreatePersonCommand();
+                return new CreatePersonCommand(repository);
             case CREATETEAMCOMMAND:
-                return new CreateTeamCommand();
+                return new CreateTeamCommand(repository);
             case SHOWALLPEOPLECOMMAND:
                 return new ShowAllPeopleCommand();
             case SHOWALLTEAMBOARDSCOMMAND:

@@ -33,7 +33,7 @@ public class CreatePersonCommand implements Command {
     }
 
     private boolean isNameUnique(String name) {
-        for (Person person : repository.getAllPeople()) {
+        for (Person person : repository.getPeople()) {
             if (person.getName().equals(name)) {
                 return false; // Name is not unique
             }

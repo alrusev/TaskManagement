@@ -20,7 +20,7 @@ public interface Repository {
                           Size size, TaskStatus status, Person assignee);
         Feedback createFeedback(int id, String title, String description, TaskStatus status);
         Comment createComment(String author, String content);
-        Team createTeam(String name, List<Person> members, List<Board> boards);
+        Team createTeam(String name);
         Person createPerson(String name);
         Board createBoard(String name);
 }

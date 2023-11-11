@@ -26,7 +26,7 @@ public class CreateTeamCommand implements Command {
         List<Board> boards = new ArrayList<>();
 
         if (isNameUnique(teamName)) {
-            repository.createTeam(teamName, members, boards);
+            repository.createTeam(teamName);
             return String.format("Team with name '%s' created successfully.", teamName);
         } else {
             return "Team name is not unique. Please choose a different Team name.";
@@ -34,7 +34,7 @@ public class CreateTeamCommand implements Command {
     }
 
     private boolean isNameUnique(String teamName) {
-        for (Team team : repository.getAllTeams()) {
+        for (Team team : repository.getTeams()) {
             if (team.getName().equals(teamName)) {
                 return false; // Name is not unique
             }

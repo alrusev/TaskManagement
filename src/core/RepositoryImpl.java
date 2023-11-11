@@ -83,8 +83,8 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public Team createTeam(String name, List<Person> members, List<Board> boards) {
-        Team team = new TeamImpl(name,members,boards);
+    public Team createTeam(String name) {
+        Team team = new TeamImpl(name);
         teams.add(team);
         return team;
     }
@@ -108,7 +108,7 @@ public class RepositoryImpl implements Repository {
                 return tasks.get(i);
             }
         }
-        throw new IllegalArgumentException(String.format("No identifiable with ID %d", id));
+        throw new IllegalArgumentException(String.format("No task with ID %d", id));
     }
 
 

@@ -17,7 +17,6 @@ public abstract class TaskImpl implements Task {
     private static final int TITLE_MIN_LENGTH = 10;
     private static final int TITLE_MAX_LENGTH = 100;
     private static final String TITLE_ERROR_MESSAGE = "Title must be between 10 and 100 symbols long.";
-
     private static final int DESC_MIN_LENGTH = 10;
     private static final int DESC_MAX_LENGTH = 500;
     private static final String DESC_ERROR_MESSAGE = "Description must be between 10 and 500 symbols long.";

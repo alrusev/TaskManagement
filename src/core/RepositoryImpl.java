@@ -1,6 +1,7 @@
 package core;
 
 import core.contracts.Repository;
+import exceptions.NoSuchElementFoundException;
 import models.*;
 import models.contracts.*;
 import models.enums.Priority;
@@ -12,19 +13,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RepositoryImpl implements Repository {
-    private List<Team> teams;
-    private List<Board> boards;
-    private List<Person> people;
-    private List<Task> tasks;
-    private List<Comment> comments;
-    private static int nextId = 0;
+    public static final String NO_SUCH_BOARD_FOUND = "No Such Board Found ";
+    private List<Team> teams = new ArrayList<>();
+    private List<Board> boards = new ArrayList<>();
+    private List<Person> people = new ArrayList<>();
+    private List<Task> tasks = new ArrayList<>();
+    private List<Comment> comments = new ArrayList<>();
+    private static int nextId;
 
-    public RepositoryImpl(List<Team> teams, List<Board> boards, List<Person> people, List<Task> tasks, List<Comment> comments) {
-        this.teams = new ArrayList<>(teams);
-        this.boards = new ArrayList<>(boards);
-        this.people = new ArrayList<>(people);
-        this.tasks = new ArrayList<>(tasks);
-        this.comments = new ArrayList<>(comments);
+    public RepositoryImpl() {
+        nextId = 0;
     }
 
     @Override
@@ -53,7 +51,7 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public Bug createBug(int id, String title, String description, Priority priority,
+    public Bug createBug(String title, String description, Priority priority,
                          Severity severity, TaskStatus status, Person assignee, List<String> stepsToReproduce) {
         Bug bug = new BugImpl(++nextId,title,description,priority,severity,status,assignee,stepsToReproduce);
         tasks.add(bug);
@@ -61,7 +59,7 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public Story createStory(int id, String title, String description, Priority priority,
+    public Story createStory(String title, String description, Priority priority,
                              Size size, TaskStatus status, Person assignee) {
         Story story = new StoryImpl(++nextId,title,description,priority,size,status,assignee);
         tasks.add(story);
@@ -69,7 +67,7 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public Feedback createFeedback(int id, String title, String description, TaskStatus status) {
+    public Feedback createFeedback(String title, String description, TaskStatus status) {
         Feedback feedback = new FeedbackImpl(++nextId,title,description,status);
         tasks.add(feedback);
         return feedback;
@@ -109,6 +107,14 @@ public class RepositoryImpl implements Repository {
             }
         }
         throw new IllegalArgumentException(String.format("No task with ID %d", id));
+    }
+    @Override
+    public Board findBoardByName(String name){
+        for (Board board:getBoards()) {
+            if (board.getName().equals(name))
+                return board;
+        }
+        throw new NoSuchElementFoundException(NO_SUCH_BOARD_FOUND);
     }
 
 

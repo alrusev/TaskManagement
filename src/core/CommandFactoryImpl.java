@@ -17,10 +17,13 @@ public class CommandFactoryImpl implements CommandFactory {
         switch (commandType) {
             case ADDCOMMENTCOMMAND:
                 return new AddCommentCommand();
+                //Aleks
             case ADDPERSONTOTEAMCOMMAND:
                 return new AddPersonToTeamCommand();
+                //Simeon
             case ASSIGNTASKCOMMAND:
                 return new AssignTaskCommand();
+                //Danail
             case CHANGEBUGCOMMAND:
                 return new ChangeBugCommand();
             case CHANGEFEEDBACKCOMMAND:
@@ -32,7 +35,7 @@ public class CommandFactoryImpl implements CommandFactory {
             case CREATEBUGINBOARDCOMMAND:
                 return new CreateBugInBoardCommand();
             case CREATEFEEDBACKINBOARDCOMMAND:
-                return new CreateFeedbackInBoardCommand();
+                return new CreateFeedbackInBoardCommand(repository);
             case CREATESTORYINBOARDCOMMAND:
                 return new CreateStoryInBoardCommand();
             case CREATEPERSONCOMMAND:

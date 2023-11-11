@@ -15,11 +15,11 @@ public class EngineImpl implements Engine {
     private final CommandFactory commandFactory;
     private final Repository repository;
 
-    public EngineImpl(CommandFactory commandFactory, Repository repository) {
-        this.commandFactory = commandFactory;
-        this.repository = repository;
+    public EngineImpl() {
+        this.commandFactory = new CommandFactoryImpl();
+        this.repository = new RepositoryImpl();
     }
-    private void run(){
+    public void run(){
         Scanner scanner = new Scanner(System.in);
         while (true) {
             try {

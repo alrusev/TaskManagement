@@ -13,12 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class TaskImpl implements Task {
-    private int id;
-    private String title;
-    private String description;
-    private TaskStatus status;
-    private List<Comment> comments;
-    private List<HistoryEntry> historyEntries;
 
     private static final int TITLE_MIN_LENGTH = 10;
     private static final int TITLE_MAX_LENGTH = 100;
@@ -27,6 +21,13 @@ public abstract class TaskImpl implements Task {
     private static final int DESC_MIN_LENGTH = 10;
     private static final int DESC_MAX_LENGTH = 500;
     private static final String DESC_ERROR_MESSAGE = "Description must be between 10 and 500 symbols long.";
+    private int id;
+    private String title;
+    private String description;
+    private TaskStatus status;
+    private List<Comment> comments;
+    private List<HistoryEntry> historyEntries;
+
 
     public TaskImpl(int id, String title,String description, TaskStatus status) {
         setId(id);

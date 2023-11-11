@@ -18,9 +18,9 @@ public class BoardImpl implements Board {
     private List<HistoryEntry> activityHistory;
     private String name;
 
-    public BoardImpl(List<Task> tasks, List<HistoryEntry> activityHistory, String name) {
-        this.tasks = new ArrayList<>(tasks);
-        this.activityHistory = new ArrayList<>(activityHistory);
+    public BoardImpl(String name) {
+        this.tasks = new ArrayList<>();
+        this.activityHistory = new ArrayList<>();
         setName(name);
     }
 

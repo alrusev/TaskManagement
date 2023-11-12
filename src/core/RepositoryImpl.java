@@ -111,5 +111,32 @@ public class RepositoryImpl implements Repository {
         throw new IllegalArgumentException(String.format("No task with ID %d", id));
     }
 
+    public Bug getBugById(int bugId) {
+        for (Task task : tasks) {
+            if (task instanceof Bug && task.getId() == bugId) {
+                return (Bug) task;
+            }
+        }
+        throw new IllegalArgumentException(String.format("No Bug with ID '%d' found.", bugId));
+    }
 
+    @Override
+    public Story getStoryById(int storyId) {
+        for (Task task : tasks) {
+            if (task instanceof Story && task.getId() == storyId) {
+                return (Story) task;
+            }
+        }
+        throw new IllegalArgumentException(String.format("No Story with ID '%d' found.", storyId));
+    }
+
+    @Override
+    public Feedback getFeedbackById(int feedbackId) {
+        for (Task task:tasks) {
+            if (task instanceof Feedback && task.getId() == feedbackId){
+                return (Feedback) task;
+            }
+        }
+        throw new IllegalArgumentException(String.format("No Feedback with ID '%d' found.", feedbackId));
+    }
 }

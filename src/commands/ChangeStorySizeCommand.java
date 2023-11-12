@@ -3,6 +3,7 @@ package commands;
 import commands.contracts.Command;
 import core.contracts.Repository;
 import models.contracts.Story;
+import models.contracts.Task;
 import models.enums.Size;
 
 import java.util.List;
@@ -25,7 +26,8 @@ public class ChangeStorySizeCommand implements Command {
         Size newSize = Size.valueOf(parameters.get(NEW_SIZE_INDEX));
 
         //Retrieve the Story from the repository
-        Story story = repository.getStoryById(storyId);
+        Task task = repository.findTaskById(repository.getTasks(), storyId);
+        Story story = (Story) task;
 
         //Update the priority
         story.updateSize(newSize);

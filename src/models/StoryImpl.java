@@ -53,13 +53,6 @@ public class StoryImpl extends TaskImpl implements Story {
         }
     }
 
-    @Override
-    public void updateStatus(TaskStatus newStatus) {
-        if (newStatus != null && !newStatus.equals(this.getStatus())){
-            addToHistory(new HistoryEntryImpl("Story status changed to " + getStatus()));
-            changeStatus(getStatus());
-        }
-    }
 
     public Person getAssignee() {
         return assignee;
@@ -82,4 +75,12 @@ public class StoryImpl extends TaskImpl implements Story {
         addToHistory(new HistoryEntryImpl("Bug unassigned from " + (getAssignee() != null ? getAssignee().getName() : "None")));
         setAssignee(null);
     }
+
+//    @Override
+//    public void updateStatus(TaskStatus newStatus) {
+//        if (newStatus != null && !newStatus.equals(this.getStatus())){
+//            addToHistory(new HistoryEntryImpl("Story status changed to " + getStatus()));
+//            changeStatus(getStatus());
+//        }
+//    }
 }

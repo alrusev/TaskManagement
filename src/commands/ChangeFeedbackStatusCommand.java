@@ -2,7 +2,9 @@ package commands;
 
 import commands.contracts.Command;
 import core.contracts.Repository;
+import models.TaskImpl;
 import models.contracts.Feedback;
+import models.contracts.Task;
 import models.enums.TaskStatus;
 
 import java.util.List;
@@ -26,11 +28,12 @@ public class ChangeFeedbackStatusCommand implements Command {
         TaskStatus newStatus = TaskStatus.valueOf(parameters.get(NEW_STATUS_INDEX));
 
         //Retrieve the Feedback from the repository
-        Feedback feedback = repository.getFeedbackById(feedbackId);
+        Task task = repository.findTaskById(repository.getTasks(), feedbackId);
 
         //Update the status
-        feedback.updateStatus(newStatus);
+        task.changeStatus(newStatus);
 
-        return String.format("Feedback status for feedback with ID '%d' updated successfully. New status: %s", feedbackId, newStatus);
+        return String.format("Feedback status for feedback with ID '%d' updated successfully. New status: %s",
+                feedbackId, newStatus);
     }
 }

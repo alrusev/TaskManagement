@@ -76,7 +76,8 @@ public abstract class TaskImpl implements Task {
         this.status = status;
     }
 
-    protected void changeStatus(TaskStatus newStatus) {
+    @Override
+    public void changeStatus(TaskStatus newStatus) {
         if (this.status != newStatus) {
             addToHistory(new HistoryEntryImpl(String.format("Status changed from %s to %s.", this.status, newStatus)));
             setStatus(newStatus);

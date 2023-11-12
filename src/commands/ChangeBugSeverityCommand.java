@@ -3,6 +3,7 @@ package commands;
 import commands.contracts.Command;
 import core.contracts.Repository;
 import models.contracts.Bug;
+import models.contracts.Task;
 import models.enums.Severity;
 
 import java.util.List;
@@ -25,7 +26,8 @@ public class ChangeBugSeverityCommand implements Command {
         Severity newSeverity = Severity.valueOf(parameters.get(NEW_SEVERITY_INDEX));
 
         // Retrieve the Bug from the repository
-        Bug bug = repository.getBugById(bugId);
+        Task task = repository.findTaskById(repository.getTasks(), bugId);
+        Bug bug = (Bug) task;
 
         // Update the severity
         bug.updateSeverity(newSeverity);

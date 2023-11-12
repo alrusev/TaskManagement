@@ -3,6 +3,7 @@ package commands;
 import commands.contracts.Command;
 import core.contracts.Repository;
 import models.contracts.Story;
+import models.contracts.Task;
 import models.enums.Priority;
 
 import java.util.List;
@@ -26,7 +27,8 @@ public class ChangeStoryPriorityCommand implements Command {
         Priority newPriority = Priority.valueOf(parameters.get(NEW_PRIORITY_INDEX));
 
         //Retrieve the Story from the repository
-        Story story = repository.getStoryById(storyId);
+        Task task = repository.findTaskById(repository.getTasks(), storyId);
+        Story story = (Story) task;
 
         //Update the priority
         story.updatePriority(newPriority);

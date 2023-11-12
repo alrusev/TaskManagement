@@ -33,10 +33,12 @@ public interface Repository {
 
     Board createBoard(String name);
 
-    Bug getBugById(int bugId);
+    Task findTaskById (List<Task> tasks, int id);
 
-    Story getStoryById(int storyId);
-    Feedback getFeedbackById(int feedbackId);
+//    Bug getBugById(int bugId);
+//
+//    Story getStoryById(int storyId);
+//    Feedback getFeedbackById(int feedbackId);
 
 }
 

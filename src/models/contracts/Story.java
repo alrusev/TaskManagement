@@ -11,5 +11,5 @@ public interface Story extends Task {
     Priority getPriority();
     void updatePriority(Priority newPriority);
     void updateSize(Size newSize);
-    void updateStatus (TaskStatus newStatus);
+//    void updateStatus (TaskStatus newStatus);
 }

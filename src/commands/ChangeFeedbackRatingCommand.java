@@ -3,6 +3,7 @@ package commands;
 import commands.contracts.Command;
 import core.contracts.Repository;
 import models.contracts.Feedback;
+import models.contracts.Task;
 
 import java.util.List;
 
@@ -25,7 +26,8 @@ public class ChangeFeedbackRatingCommand implements Command {
         int newRating = Integer.parseInt(parameters.get(NEW_RATING_INDEX));
 
         // Retrieve the Feedback from the repository
-        Feedback feedback = repository.getFeedbackById(feedbackID);
+        Task task = repository.findTaskById(repository.getTasks(), feedbackID);
+        Feedback feedback = (Feedback) task;
 
         //Update the rating
         feedback.updateRating(newRating);

@@ -3,6 +3,7 @@ package commands;
 import commands.contracts.Command;
 import core.contracts.Repository;
 import models.contracts.Bug;
+import models.contracts.Task;
 import models.enums.TaskStatus;
 import java.util.List;
 
@@ -25,7 +26,8 @@ public class ChangeBugStatusCommand implements Command {
         TaskStatus newStatus = TaskStatus.valueOf(parameters.get(NEW_STATUS_INDEX));
 
         // Retrieve the Bug from the repository
-        Bug bug = repository.getBugById(bugId);
+        Task task = repository.findTaskById(repository.getTasks(), bugId);
+        Bug bug = (Bug) task;
         String result = "";
 
         // Update the status

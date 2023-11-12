@@ -3,6 +3,7 @@ package commands;
 import commands.contracts.Command;
 import core.contracts.Repository;
 import models.contracts.Story;
+import models.contracts.Task;
 import models.enums.TaskStatus;
 
 import java.util.List;
@@ -25,10 +26,10 @@ public class ChangeStoryStatusCommand implements Command {
         TaskStatus newStatus = TaskStatus.valueOf(parameters.get(NEW_STATUS_INDEX));
 
         //Retrieve the Story from the repository
-        Story story = repository.getStoryById(storyId);
+        Task task = repository.findTaskById(repository.getTasks(), storyId);
 
         //Update the status
-        story.updateStatus(newStatus);
+        task.changeStatus(newStatus);
 
         return String.format("Story status for bug with ID '%d' updated successfully. New status: %s", storyId, newStatus);
     }

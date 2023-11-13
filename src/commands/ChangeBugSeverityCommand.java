@@ -8,15 +8,20 @@ import models.enums.Severity;
 import utils.ParsingHelpers;
 import utils.ValidationHelpers;
 
+import java.util.IllformedLocaleException;
 import java.util.List;
 
 public class ChangeBugSeverityCommand implements Command {
 
+    private static final String SEVERITY_SUCCESSFULLY_CHANGED = "Severity for bug with ID '%d' updated successfully. " +
+            "New severity: %s";
+    private static final String SEVERITY_ALREADY_DEFINED = "The severity of bug with ID '%s' is already set to %s!";
+    private static final String MISSING_BUG_ID = "No such Bug with ID '%d'!";
     private final Repository repository;
     private static final int BUG_ID_INDEX = 0;
     private static final int NEW_SEVERITY_INDEX = 1;
     private static final int EXPECTED_ARGUMENTS = 2;
-
+    private final static String NO_SUCH_SEVERITY = "No such severity";
 
     public ChangeBugSeverityCommand(Repository repository) {
         this.repository = repository;
@@ -29,15 +34,30 @@ public class ChangeBugSeverityCommand implements Command {
         //bugId
         int bugId = ParsingHelpers.tryParseInteger(parameters.get(BUG_ID_INDEX), "Bug ID");
         //newSeverity
-        Severity newSeverity = Severity.valueOf(parameters.get(NEW_SEVERITY_INDEX));
+        Severity severity = ParsingHelpers.tryParseEnum(parameters.get(NEW_SEVERITY_INDEX), Severity.class,
+                NO_SUCH_SEVERITY);
 
         // Retrieve the Bug from the repository
         Task task = repository.findTaskById(repository.getTasks(), bugId);
-        Bug bug = (Bug) task;
+        String result;
+        try {
+            Bug bug = (Bug) task;
 
-        // Update the severity
-        bug.updateSeverity(newSeverity);
+            try {
+                if (bug.getSeverity().equals(severity)) {
+                    throw new IllegalArgumentException();
+                }
+                // Update the severity
+                bug.updateSeverity(severity);
+                result = String.format(SEVERITY_SUCCESSFULLY_CHANGED, bugId, severity);
+            } catch (IllegalArgumentException e) {
+                result = String.format(SEVERITY_ALREADY_DEFINED, bugId, severity);
+            }
+        }
+        catch (ClassCastException cce) {
+            result = String.format(MISSING_BUG_ID, bugId);
+        }
 
-        return String.format("Bug severity for bug with ID '%d' updated successfully. New severity: %s", bugId, newSeverity);
+        return result;
     }
 }

@@ -27,7 +27,7 @@ public class RepositoryImpl implements Repository {
         people = new ArrayList<>();
         tasks = new ArrayList<>();
         comments = new ArrayList<>();
-        nextId = 0;
+        nextId = 1;
     }
 
     @Override
@@ -58,7 +58,8 @@ public class RepositoryImpl implements Repository {
     @Override
     public Bug createBug(String title, String description, Priority priority,
                          Severity severity, TaskStatus status, Person assignee, List<String> stepsToReproduce) {
-        Bug bug = new BugImpl(++nextId,title,description,priority,severity,status,assignee,stepsToReproduce);
+        Bug bug = new BugImpl(nextId,title,description,priority,severity,status,assignee,stepsToReproduce);
+        nextId++;
         tasks.add(bug);
         return bug;
     }
@@ -66,14 +67,16 @@ public class RepositoryImpl implements Repository {
     @Override
     public Story createStory(String title, String description, Priority priority,
                              Size size, TaskStatus status, Person assignee) {
-        Story story = new StoryImpl(++nextId,title,description,priority,size,status,assignee);
+        Story story = new StoryImpl(nextId,title,description,priority,size,status,assignee);
+        nextId++;
         tasks.add(story);
         return story;
     }
 
     @Override
     public Feedback createFeedback(String title, String description, TaskStatus status) {
-        Feedback feedback = new FeedbackImpl(++nextId,title,description,status);
+        Feedback feedback = new FeedbackImpl(nextId,title,description,status);
+        nextId++;
         tasks.add(feedback);
         return feedback;
     }

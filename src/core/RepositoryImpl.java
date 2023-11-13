@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RepositoryImpl implements Repository {
-    public static final String NO_SUCH_BOARD_FOUND = "No Such Board Found ";
+    public static final String NO_SUCH_ELEMENT_FOUND = "No Such %s Found ";
     private List<Team> teams = new ArrayList<>();
     private List<Board> boards = new ArrayList<>();
     private List<Person> people = new ArrayList<>();
@@ -22,6 +22,11 @@ public class RepositoryImpl implements Repository {
     private static int nextId;
 
     public RepositoryImpl() {
+        teams  = new ArrayList<>();
+        boards = new ArrayList<>();
+        people = new ArrayList<>();
+        tasks = new ArrayList<>();
+        comments = new ArrayList<>();
         nextId = 0;
     }
 
@@ -95,12 +100,14 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public Board createBoard(String name) {
+    public Board createBoard(String name, Team team) {
         Board board = new BoardImpl(name);
         boards.add(board);
+        team.addBoardToTeam(board);
         return board;
     }
-    private Task findTaskById(List<Task> tasks, int id){
+    @Override
+    public Task findTaskById(List<Task> tasks, int id){
         for (int i = 0; i < tasks.size(); i++) {
             if(tasks.get(i).getId() == id){
                 return tasks.get(i);
@@ -109,13 +116,41 @@ public class RepositoryImpl implements Repository {
         throw new IllegalArgumentException(String.format("No task with ID %d", id));
     }
     @Override
-    public Board findBoardByName(String name){
-        for (Board board:getBoards()) {
-            if (board.getName().equals(name))
-                return board;
+    public <T extends Nameable> T findElementByName(String name,List<T> listToLook,String type){
+        for (T element :listToLook) {
+            if (element.getName().equals(name))
+                return element;
         }
-        throw new NoSuchElementFoundException(NO_SUCH_BOARD_FOUND);
+        throw new NoSuchElementFoundException(String.format(NO_SUCH_ELEMENT_FOUND,type));
     }
 
+    @Override
+    public boolean isNameUniqueInSystem(String name) {
+        for (Team team:getTeams()) {
+            if (team.getName().equals(name))
+                return false;
+        }
+        for (Board board:getBoards()) {
+            if (board.getName().equals(name))
+                return false;
+        }
+        for (Person person:getPeople()) {
+            if (person.getName().equals(name))
+                return false;
+        }
+        return true;
+    }
 
+    @Override
+    public boolean isNameUniqueInTeam(String name, Team team) {
+        for (Person person:team.getMembers()) {
+            if (person.getName().equals(name))
+                return false;
+        }
+        for (Board board:team.getBoards()){
+            if (board.getName().equals(name))
+                return false;
+        }
+        return true;
+    }
 }

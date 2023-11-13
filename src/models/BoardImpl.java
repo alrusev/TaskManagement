@@ -43,11 +43,11 @@ public class BoardImpl implements Board {
         ValidationHelpers.validateIntRange(name.length(), NAME_MIN_LENGTH, NAME_MAX_LENGTH, NAME_ERROR_MESSAGE);
         this.name = name;
     }
-
+@Override
     public void addTaskToBoard(Task task) {
         tasks.add(task);
     }
-
+@Override
     public void removeTaskFromBoard(Task task) {
         if (!tasks.contains(task))
             throw new IllegalArgumentException(NO_SUCH_TASK);

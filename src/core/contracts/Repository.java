@@ -1,5 +1,6 @@
 package core.contracts;
 
+import models.TeamImpl;
 import models.contracts.*;
 import models.enums.Priority;
 import models.enums.Severity;
@@ -19,11 +20,11 @@ public interface Repository {
 
     List<Comment> getComments();
 
-    Bug createBug(int id, String title, String description, Priority priority, Severity severity, TaskStatus status, Person assignee, List<String> stepsToReproduce);
+    Bug createBug(String title, String description, Priority priority, Severity severity, TaskStatus status, Person assignee, List<String> stepsToReproduce);
 
-    Story createStory(int id, String title, String description, Priority priority, Size size, TaskStatus status, Person assignee);
+    Story createStory(String title, String description, Priority priority, Size size, TaskStatus status, Person assignee);
 
-    Feedback createFeedback(int id, String title, String description, TaskStatus status);
+    Feedback createFeedback(String title, String description, TaskStatus status);
 
     Comment createComment(String author, String content);
 
@@ -31,9 +32,13 @@ public interface Repository {
 
     Person createPerson(String name);
 
-    Board createBoard(String name);
+    Board createBoard(String name,Team team);
 
     Task findTaskById (List<Task> tasks, int id);
+    <T extends  Nameable> T findElementByName(String name, List<T> listToLook,String type);
+    boolean isNameUniqueInSystem(String name);
+    boolean isNameUniqueInTeam(String name, Team team);
+
 
 //    Bug getBugById(int bugId);
 //

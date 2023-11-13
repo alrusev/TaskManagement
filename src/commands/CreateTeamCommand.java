@@ -2,16 +2,16 @@ package commands;
 
 import commands.contracts.Command;
 import core.contracts.Repository;
-import models.TeamImpl;
-import models.contracts.Board;
-import models.contracts.Person;
-import models.contracts.Team;
+import exceptions.TheNameIsNotUniqueException;
+import utils.ValidationHelpers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CreateTeamCommand implements Command {
-    private static final int TEAM_NAME_INDEX = 0;
+    public static final String NAME_OF_TEAM_NOT_UNIQUE = "The name of the team is not unique in the system";
+
+    private final static int EXPECTED_PARAMETERS_COUNT = 1;
+    public static final String TEAM_CREATED_MESSAGE = "Team with name '%s' created successfully.";
 
     private final Repository repository;
 
@@ -21,24 +21,14 @@ public class CreateTeamCommand implements Command {
 
     @Override
     public String execute(List<String> parameters) {
-        String teamName = parameters.get(TEAM_NAME_INDEX);
-        List<Person> members = new ArrayList<>();
-        List<Board> boards = new ArrayList<>();
-
-        if (isNameUnique(teamName)) {
-            repository.createTeam(teamName);
-            return String.format("Team with name '%s' created successfully.", teamName);
-        } else {
-            return "Team name is not unique. Please choose a different Team name.";
+        ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
+        String teamName = parameters.get(0);
+        if (!repository.isNameUniqueInSystem(teamName)) {
+            throw new TheNameIsNotUniqueException(NAME_OF_TEAM_NOT_UNIQUE);
         }
-    }
+        repository.createTeam(teamName);
+        return String.format(TEAM_CREATED_MESSAGE, teamName);
 
-    private boolean isNameUnique(String teamName) {
-        for (Team team : repository.getTeams()) {
-            if (team.getName().equals(teamName)) {
-                return false; // Name is not unique
-            }
-        }
-        return true; // Name is unique
     }
 }
+

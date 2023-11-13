@@ -2,10 +2,9 @@ package models.contracts;
 
 import java.util.List;
 
-public interface Board {
+public interface Board extends Nameable{
     List<Task> getTasks();
     List<HistoryEntry> getActivityHistory();
-    String getName();
-
-
+    void addTaskToBoard(Task task);
+    void removeTaskFromBoard(Task task);
 }

@@ -20,8 +20,8 @@ public class TeamImpl implements Team {
 
     public TeamImpl(String name) {
         setName(name);
-        this.members = members;
-        this.boards = boards;
+        this.members = new ArrayList<>();
+        this.boards = new ArrayList<>();
     }
 
     @Override
@@ -42,15 +42,20 @@ public class TeamImpl implements Team {
         ValidationHelpers.validateIntRange(name.length(), NAME_MIN_LENGTH, NAME_MAX_LENGTH, NAME_ERROR_MESSAGE);
         this.name = name;
     }
-
-    public void addPersonToMembers(Person person) {
-        members.add(person);
-    }
-
+@Override
     public void removePersonFromMembers(Person person) {
         if (!members.contains(person))
             throw new IllegalArgumentException(NO_SUCH_MEMBER);
         members.remove(person);
     }
 
+    @Override
+    public void addPersonToTeam(Person person) {
+        this.members.add(person);
+    }
+
+    @Override
+    public void addBoardToTeam(Board board) {
+        this.boards.add(board);
+    }
 }

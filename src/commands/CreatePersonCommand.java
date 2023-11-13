@@ -2,11 +2,16 @@ package commands;
 
 import commands.contracts.Command;
 import core.contracts.Repository;
+import exceptions.TheNameIsNotUniqueException;
 import models.contracts.Person;
+import utils.ValidationHelpers;
 
 import java.util.List;
 
 public class CreatePersonCommand implements Command {
+    private final static int EXPECTED_PARAMETERS_COUNT = 1;
+    public static final String PERSON_CREATED_MESSAGE = "Person with name '%s' created successfully.";
+
 
     private final Repository repository;
 
@@ -16,30 +21,13 @@ public class CreatePersonCommand implements Command {
 
     @Override
     public String execute(List<String> parameters) {
-        if (parameters.size() != 1) {
-            return "Invalid number of parameters. Usage: CreatePersonCommand <personName>";
-        }
-
+        ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
         String personName = parameters.get(0);
-
-        if (isNameUnique(personName)) {
-            // If unique, create a new person and add it to the repository
+        if (!repository.isNameUniqueInSystem(personName)) {
+            throw new TheNameIsNotUniqueException();
+        }
             repository.createPerson(personName);
 
-            return String.format("Person with name '%s' created successfully.", personName);
-        } else {
-            return "Person name is not unique. Please choose a different name.";
-        }
+            return String.format(PERSON_CREATED_MESSAGE, personName);
     }
-
-    private boolean isNameUnique(String name) {
-        for (Person person : repository.getPeople()) {
-            if (person.getName().equals(name)) {
-                return false; // Name is not unique
-            }
-        }
-        return true; // Name is unique
-    }
-
-
 }

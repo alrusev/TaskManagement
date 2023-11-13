@@ -27,4 +27,12 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
             setRating(newRating);
         }
     }
+
+//    @Override
+//    public void updateStatus(TaskStatus newStatus) {
+//        if (newStatus != null && !newStatus.equals(this.getStatus())){
+//            addToHistory(new HistoryEntryImpl("Feedback status changed to " + getStatus()));
+//            changeStatus(getStatus());
+//        }
+//    }
 }

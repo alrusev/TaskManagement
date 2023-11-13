@@ -14,6 +14,7 @@ public interface Task {
     String getTitle();
 
     String getDescription();
+    void changeStatus(TaskStatus newStatus);
 
     TaskStatus getStatus();
 

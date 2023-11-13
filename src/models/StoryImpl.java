@@ -11,6 +11,7 @@ public class StoryImpl extends TaskImpl implements Story {
     private Person assignee;
     Priority priority;
 
+
     public StoryImpl(int id, String title, String description, Priority priority, Size size, TaskStatus status, Person assignee) {
         super(id, title, description, status);
         setPriority(priority);
@@ -52,6 +53,7 @@ public class StoryImpl extends TaskImpl implements Story {
         }
     }
 
+
     public Person getAssignee() {
         return assignee;
     }
@@ -73,4 +75,12 @@ public class StoryImpl extends TaskImpl implements Story {
         addToHistory(new HistoryEntryImpl("Bug unassigned from " + (getAssignee() != null ? getAssignee().getName() : "None")));
         setAssignee(null);
     }
+
+//    @Override
+//    public void updateStatus(TaskStatus newStatus) {
+//        if (newStatus != null && !newStatus.equals(this.getStatus())){
+//            addToHistory(new HistoryEntryImpl("Story status changed to " + getStatus()));
+//            changeStatus(getStatus());
+//        }
+//    }
 }

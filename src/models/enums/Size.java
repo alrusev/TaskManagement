@@ -1,7 +1,23 @@
 package models.enums;
 
 public enum Size {
-    LARGE,
+    SMALL,
     MEDIUM,
-    SMALL;
+    LARGE;
+
+    @Override
+    public String toString() {
+        switch (this) {
+            case SMALL:
+                return "Small";
+            case MEDIUM:
+                return "Medium";
+            case LARGE:
+                return "Large";
+
+
+            default:
+                return "Unknown";
+        }
+    }
 }

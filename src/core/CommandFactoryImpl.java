@@ -17,25 +17,32 @@ public class CommandFactoryImpl implements CommandFactory {
         switch (commandType) {
             case ADDCOMMENTCOMMAND:
                 return new AddCommentCommand();
-                //Aleks
             case ADDPERSONTOTEAMCOMMAND:
                 return new AddPersonToTeamCommand();
-                //Simeon
             case ASSIGNTASKCOMMAND:
                 return new AssignTaskCommand();
-                //Danail
-            case CHANGEBUGCOMMAND:
-                return new ChangeBugCommand();
-            case CHANGEFEEDBACKCOMMAND:
-                return new ChangeFeedbackCommand();
-            case CHANGESTORYCOMMAND:
-                return new ChangeStoryCommand();
+            case CHANGEBUGPRIORITYCOMMAND:
+                return  new ChangeBugPriorityCommand(repository);
+            case CHANGEBUGSEVERITYCOMMAND:
+                return new ChangeBugSeverityCommand(repository);
+            case CHANGEBUGSTATUSCOMMAND:
+                return new ChangeBugStatusCommand(repository);
+            case CHANGEFEEDBACKRATINGCOMMAND:
+                return new ChangeFeedbackRatingCommand(repository);
+            case CHANGEFEEDBACKSTATUSCOMMAND:
+                return new ChangeFeedbackStatusCommand(repository);
+            case CHANGESTORYPRIORITYCOMMAND:
+                return new ChangeStoryPriorityCommand(repository);
+            case CHANGESTORYSIZECOMMAND:
+                return new ChangeStorySizeCommand(repository);
+            case CHANGESTORYSTATUSCOMMAND:
+                return new ChangeStoryStatusCommand(repository);
             case CREATEBOARDCOMMAND:
                 return new CreateBoardCommand(repository);
             case CREATEBUGINBOARDCOMMAND:
                 return new CreateBugInBoardCommand();
             case CREATEFEEDBACKINBOARDCOMMAND:
-                return new CreateFeedbackInBoardCommand(repository);
+                return new CreateFeedbackInBoardCommand();
             case CREATESTORYINBOARDCOMMAND:
                 return new CreateStoryInBoardCommand();
             case CREATEPERSONCOMMAND:

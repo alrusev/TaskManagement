@@ -34,10 +34,10 @@ public class CommandFactoryImpl implements CommandFactory {
             case CREATESTORYINBOARDCOMMAND -> new CreateStoryInBoardCommand(repository);
             case CREATEPERSONCOMMAND -> new CreatePersonCommand(repository);
             case CREATETEAMCOMMAND -> new CreateTeamCommand(repository);
-            case SHOWALLPEOPLECOMMAND -> new ShowAllPeopleCommand();
+            case SHOWALLPEOPLECOMMAND -> new ShowAllPeopleCommand(repository);
             case SHOWALLTEAMBOARDSCOMMAND -> new ShowAllTeamBoardsCommand();
             case SHOWALLTEAMMEMBERSCOMMAND -> new ShowAllTeamMembersCommand();
-            case SHOWALLTEAMSCOMMAND -> new ShowAllTeamsCommand();
+            case SHOWALLTEAMSCOMMAND -> new ShowAllTeamsCommand(repository);
             case SHOWBOARDACTIVITYCOMMAND -> new ShowBoardActivityCommand();
             case SHOWPERSONACTIVITYCOMMAND -> new ShowPersonActivityCommand();
             case SHOWTEAMACTIVITYCOMMAND -> new ShowTeamActivityCommand();

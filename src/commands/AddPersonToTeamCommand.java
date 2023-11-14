@@ -37,7 +37,7 @@ public class AddPersonToTeamCommand implements Command {
         }
 
         team.addPersonToTeam(person);
-        person.addToActivityHistory(String.format("Added to team %s", teamName));
+        person.addToActivityHistory(String.format("%s added to team %s", personName, teamName));
         return String.format("Person %s added to team %s successfully.", personName, teamName);
     }
 }

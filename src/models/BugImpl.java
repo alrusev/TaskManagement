@@ -75,6 +75,7 @@ public class BugImpl extends TaskImpl implements Bug {
     public void assignTo(Person person) {
         if (person != null) {
             setAssignee(person);
+            person.addToActivityHistory(String.format("Bug with ID %d assigned to %s", getId(), person.getName()));
             addToHistory(new HistoryEntryImpl("Bug assigned to " + person.getName()));
         }
     }

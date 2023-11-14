@@ -42,6 +42,7 @@ public class CreateBugInBoardCommand implements Command {
         Board board = repository.findElementByName(parameters.get(7), repository.getBoards(), "Board");
         Bug bug = repository.createBug(title, description, priority, severity, status, assignee, stepsToReproduce);
         board.addTaskToBoard(bug);
+        board.addToActivityHistory(String.format("Bug with title %s added to board %s", title, board.getName()));
         return String.format(BUG_CREATED_MESSAGE, bug.getId());
     }
 }

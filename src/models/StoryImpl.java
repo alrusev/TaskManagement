@@ -66,6 +66,7 @@ public class StoryImpl extends TaskImpl implements Story {
     public void assignTo(Person person) {
         if (person != null) {
             setAssignee(person);
+            person.addToActivityHistory(String.format("Story with ID %d assigned to %s.", getId(), person.getName()));
             addToHistory(new HistoryEntryImpl("Story assigned to " + person.getName()));
         }
     }

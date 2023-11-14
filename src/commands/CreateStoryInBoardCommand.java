@@ -42,6 +42,7 @@ public class CreateStoryInBoardCommand implements Command {
         Board board = repository.findElementByName(parameters.get(6), repository.getBoards(), "board");
         Story story = repository.createStory(title, description, priority, size, status, assignee);
         board.addTaskToBoard(story);
+        board.addToActivityHistory(String.format("Story with title %s added to board %s", title, board.getName()));
         return String.format(STORY_CREATED_MESSAGE, story.getId());
     }
 }

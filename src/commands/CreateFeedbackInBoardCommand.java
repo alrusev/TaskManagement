@@ -31,6 +31,7 @@ public class CreateFeedbackInBoardCommand implements Command {
         Board board = repository.findElementByName(parameters.get(3), repository.getBoards(), "board");
         Feedback feedback = repository.createFeedback(title, description, status);
         board.addTaskToBoard(feedback);
+        board.addToActivityHistory(String.format("Feedback with title %s added to board %s", title, board.getName()));
         return String.format(FEEDBACK_CREATED_MESSAGE, feedback.getId());
     }
 }

@@ -15,7 +15,7 @@ public class BoardImpl implements Board {
             String.format("Name must be between %d and %d symbols", NAME_MIN_LENGTH, NAME_MAX_LENGTH);
     private static final String NO_SUCH_TASK = "There is no such task in this board";
     private List<Task> tasks;
-    private List<HistoryEntry> activityHistory;
+    private List<String> activityHistory;
     private String name;
 
     public BoardImpl(String name) {
@@ -30,7 +30,7 @@ public class BoardImpl implements Board {
     }
 
     @Override
-    public List<HistoryEntry> getActivityHistory() {
+    public List<String> getActivityHistory() {
         return new ArrayList<>(activityHistory);
     }
 
@@ -47,14 +47,18 @@ public class BoardImpl implements Board {
     public void addTaskToBoard(Task task) {
         tasks.add(task);
     }
-@Override
+    @Override
     public void removeTaskFromBoard(Task task) {
         if (!tasks.contains(task))
             throw new IllegalArgumentException(NO_SUCH_TASK);
+        addToActivityHistory(String.format("Task %s removed from board with id %d", task.getTitle(), name));
         tasks.remove(task);
     }
 
-    public void addHistoryEntryToBoard(HistoryEntry historyEntry) {
-        activityHistory.add(historyEntry);
+    @Override
+    public void addToActivityHistory(String activity) {
+        if(activity != null && !activity.isEmpty()) {
+            activityHistory.add(activity);
+        }
     }
 }

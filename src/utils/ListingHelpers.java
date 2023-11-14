@@ -2,6 +2,7 @@ package utils;
 
 import models.contracts.Person;
 import models.contracts.Team;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,4 @@ public class ListingHelpers {
         result.sort(String::compareToIgnoreCase);
         return String.format("Teams: " + String.join(", ", result).trim());
     }
-
-
 }

@@ -29,14 +29,7 @@ public class AssignBugCommand implements Command {
         String personName = parameters.get(PERSON_NAME_INDEX);
 
         Bug bug = (Bug) repository.findTaskById(repository.getTasks(), bugId);
-        if (bug == null) {
-            throw new InvalidUserInputException(String.format("No bug with ID '%d' found.", bugId));
-        }
-
         Person person = repository.findElementByName(personName, repository.getPeople(), "Person");
-        if (person == null) {
-            throw new InvalidUserInputException(String.format("No person named '%s' found.", personName));
-        }
 
         bug.assignTo(person);
 

@@ -24,9 +24,6 @@ public class UnassignStoryCommand implements Command {
 
         int storyId = ParsingHelpers.tryParseInteger(parameters.get(STORY_ID_INDEX), "Story ID");
         Story story = (Story) repository.findTaskById(repository.getTasks(), storyId);
-        if (story == null) {
-            throw new IllegalArgumentException(String.format("No story with ID '%d' found.", storyId));
-        }
 
         story.unassign();
         return String.format(STORY_UNASSIGNED_MESSAGE, storyId);

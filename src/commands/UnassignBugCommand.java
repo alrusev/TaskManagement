@@ -24,9 +24,6 @@ public class UnassignBugCommand implements Command {
 
         int bugId = ParsingHelpers.tryParseInteger(parameters.get(BUG_ID_INDEX), "Bug ID");
         Bug bug = (Bug) repository.findTaskById(repository.getTasks(), bugId);
-        if (bug == null) {
-            throw new IllegalArgumentException(String.format("No bug with ID '%d' found.", bugId));
-        }
 
         bug.unassign();
         return String.format(BUG_UNASSIGNED_MESSAGE, bugId);

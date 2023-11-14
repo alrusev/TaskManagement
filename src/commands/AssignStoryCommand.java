@@ -29,14 +29,7 @@ public class AssignStoryCommand implements Command {
         String personName = parameters.get(PERSON_NAME_INDEX);
 
         Story story = (Story) repository.findTaskById(repository.getTasks(), storyId);
-        if (story == null) {
-            throw new InvalidUserInputException(String.format("No story with ID '%d' found.", storyId));
-        }
-
         Person person = repository.findElementByName(personName, repository.getPeople(), "Person");
-        if (person == null) {
-            throw new InvalidUserInputException(String.format("No person named '%s' found.", personName));
-        }
 
         story.assignTo(person);
 

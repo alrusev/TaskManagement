@@ -22,10 +22,10 @@ public class CreateBoardCommand implements Command {
     public String execute(List<String> parameters) {
         ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
         String boardName = parameters.get(0);
-        Team team = repository.findElementByName(parameters.get(1), repository.getTeams(),"Team");
-      //  if (!repository.isNameUniqueInTeam(boardName, team)){
-        //    throw new TheNameIsNotUniqueException(NAME_OF_BOARD_NOT_UNIQUE);}
-        repository.createBoard(boardName,team);
+        Team team = repository.findElementByName(parameters.get(1), repository.getTeams(), "Team");
+          if (!repository.isNameUniqueInTeam(boardName, team)){
+            throw new TheNameIsNotUniqueException(NAME_OF_BOARD_NOT_UNIQUE);}
+        repository.createBoard(boardName, team);
 
         return String.format(BOARD_CREATED_MESSAGE, boardName);
     }

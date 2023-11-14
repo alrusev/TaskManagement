@@ -22,11 +22,6 @@ public class RepositoryImpl implements Repository {
     private static int nextId;
 
     public RepositoryImpl() {
-        teams  = new ArrayList<>();
-        boards = new ArrayList<>();
-        people = new ArrayList<>();
-        tasks = new ArrayList<>();
-        comments = new ArrayList<>();
         nextId = 1;
     }
 
@@ -58,8 +53,7 @@ public class RepositoryImpl implements Repository {
     @Override
     public Bug createBug(String title, String description, Priority priority,
                          Severity severity, TaskStatus status, Person assignee, List<String> stepsToReproduce) {
-        Bug bug = new BugImpl(nextId,title,description,priority,severity,status,assignee,stepsToReproduce);
-        nextId++;
+        Bug bug = new BugImpl(nextId++,title,description,priority,severity,status,assignee,stepsToReproduce);
         tasks.add(bug);
         return bug;
     }
@@ -67,16 +61,14 @@ public class RepositoryImpl implements Repository {
     @Override
     public Story createStory(String title, String description, Priority priority,
                              Size size, TaskStatus status, Person assignee) {
-        Story story = new StoryImpl(nextId,title,description,priority,size,status,assignee);
-        nextId++;
+        Story story = new StoryImpl(nextId++,title,description,priority,size,status,assignee);
         tasks.add(story);
         return story;
     }
 
     @Override
     public Feedback createFeedback(String title, String description, TaskStatus status) {
-        Feedback feedback = new FeedbackImpl(nextId,title,description,status);
-        nextId++;
+        Feedback feedback = new FeedbackImpl(nextId++,title,description,status);
         tasks.add(feedback);
         return feedback;
     }
@@ -121,7 +113,7 @@ public class RepositoryImpl implements Repository {
     @Override
     public <T extends Nameable> T findElementByName(String name,List<T> listToLook,String type){
         for (T element :listToLook) {
-            if (element.getName().equals(name))
+            if (element.getName().equalsIgnoreCase(name))
                 return element;
         }
         throw new NoSuchElementFoundException(String.format(NO_SUCH_ELEMENT_FOUND,type));
@@ -130,15 +122,15 @@ public class RepositoryImpl implements Repository {
     @Override
     public boolean isNameUniqueInSystem(String name) {
         for (Team team:getTeams()) {
-            if (team.getName().equals(name))
+            if (team.getName().equalsIgnoreCase(name))
                 return false;
         }
         for (Board board:getBoards()) {
-            if (board.getName().equals(name))
+            if (board.getName().equalsIgnoreCase(name))
                 return false;
         }
         for (Person person:getPeople()) {
-            if (person.getName().equals(name))
+            if (person.getName().equalsIgnoreCase(name))
                 return false;
         }
         return true;
@@ -147,13 +139,15 @@ public class RepositoryImpl implements Repository {
     @Override
     public boolean isNameUniqueInTeam(String name, Team team) {
         for (Person person:team.getMembers()) {
-            if (person.getName().equals(name))
+            if (person.getName().equalsIgnoreCase(name))
                 return false;
         }
         for (Board board:team.getBoards()){
-            if (board.getName().equals(name))
+            if (board.getName().equalsIgnoreCase(name))
                 return false;
         }
+        if (team.getName().equalsIgnoreCase(name))
+            return false;
         return true;
     }
 }

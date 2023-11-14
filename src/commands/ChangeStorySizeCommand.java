@@ -51,7 +51,7 @@ public class ChangeStorySizeCommand implements Command {
             } catch (IllegalArgumentException e) {
                 result = String.format(STORY_SIZE_ALREADY_DEFINED, storyId, newSize);
             }
-        }catch (ClassCastException cce) {
+        } catch (ClassCastException cce) {
             result = String.format(MISSING_STORY_ID, storyId);
         }
 

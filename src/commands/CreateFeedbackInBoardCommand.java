@@ -28,7 +28,7 @@ public class CreateFeedbackInBoardCommand implements Command {
         String title = parameters.get(0);
         String description = parameters.get(1);
         TaskStatus status = ParsingHelpers.tryParseEnum(parameters.get(2), TaskStatus.class, NO_SUCH_STATUS);
-        Board board = repository.findElementByName(parameters.get(3), repository.getBoards(),"board");
+        Board board = repository.findElementByName(parameters.get(3), repository.getBoards(), "board");
         Feedback feedback = repository.createFeedback(title, description, status);
         board.addTaskToBoard(feedback);
         return String.format(FEEDBACK_CREATED_MESSAGE, feedback.getId());

@@ -7,6 +7,7 @@ import models.contracts.Task;
 import models.enums.Priority;
 import utils.ParsingHelpers;
 import utils.ValidationHelpers;
+
 import java.util.List;
 
 public class ChangeStoryPriorityCommand implements Command {
@@ -52,8 +53,7 @@ public class ChangeStoryPriorityCommand implements Command {
             } catch (IllegalArgumentException e) {
                 result = String.format(STORY_PRIORITY_ALREADY_SET, storyId, newPriority);
             }
-        }
-        catch (ClassCastException cce) {
+        } catch (ClassCastException cce) {
             result = String.format(MISSING_STORY_ID, storyId);
         }
         return result;

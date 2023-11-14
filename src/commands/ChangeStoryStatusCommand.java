@@ -8,6 +8,7 @@ import models.contracts.Task;
 import models.enums.TaskStatus;
 import utils.ParsingHelpers;
 import utils.ValidationHelpers;
+
 import java.util.List;
 
 public class ChangeStoryStatusCommand implements Command {
@@ -57,8 +58,7 @@ public class ChangeStoryStatusCommand implements Command {
             } catch (InvalidUserInputException e) {
                 result = String.format(STORY_STATUS_ALREADY_SET, storyId, newStatus);
             }
-        }
-        catch (ClassCastException cce) {
+        } catch (ClassCastException cce) {
             result = String.format(MISSING_STORY_ID, storyId);
         }
         return result;

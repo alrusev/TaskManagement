@@ -52,7 +52,7 @@ public class ChangeFeedbackRatingCommand implements Command {
             } catch (IllegalArgumentException e) {
                 result = String.format(RATING_ALREADY_SET, newRating);
             }
-        }catch (ClassCastException cce) {
+        } catch (ClassCastException cce) {
             result = String.format(MISSING_FEEDBACK_ID, feedbackId);
         }
 

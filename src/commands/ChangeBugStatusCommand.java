@@ -8,6 +8,7 @@ import models.contracts.Task;
 import models.enums.TaskStatus;
 import utils.ParsingHelpers;
 import utils.ValidationHelpers;
+
 import java.util.List;
 
 public class ChangeBugStatusCommand implements Command {
@@ -21,7 +22,6 @@ public class ChangeBugStatusCommand implements Command {
     private static final int NEW_STATUS_INDEX = 1;
     private static final int EXPECTED_ARGUMENTS = 2;
     private final static String NO_SUCH_STATUS = "No such status";
-
 
 
     public ChangeBugStatusCommand(Repository repository) {
@@ -64,8 +64,7 @@ public class ChangeBugStatusCommand implements Command {
             } catch (InvalidUserInputException e) {
                 result = String.format(ALREADY_SET_STATUS, bugId, status);
             }
-        }
-        catch (ClassCastException cce) {
+        } catch (ClassCastException cce) {
             result = String.format("No such Bug with ID '%d'!", bugId);
         }
 

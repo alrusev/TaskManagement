@@ -38,8 +38,8 @@ public class CreateStoryInBoardCommand implements Command {
         Priority priority = ParsingHelpers.tryParseEnum(parameters.get(2), Priority.class, NO_SUCH_PRIORITY);
         Size size = ParsingHelpers.tryParseEnum(parameters.get(3), Size.class, NO_SUCH_SIZE);
         TaskStatus status = ParsingHelpers.tryParseEnum(parameters.get(4), TaskStatus.class, NO_SUCH_STATUS);
-        Person assignee = repository.findElementByName(parameters.get(5), repository.getPeople(),"person");
-        Board board = repository.findElementByName(parameters.get(6), repository.getBoards(),"board");
+        Person assignee = repository.findElementByName(parameters.get(5), repository.getPeople(), "person");
+        Board board = repository.findElementByName(parameters.get(6), repository.getBoards(), "board");
         Story story = repository.createStory(title, description, priority, size, status, assignee);
         board.addTaskToBoard(story);
         return String.format(STORY_CREATED_MESSAGE, story.getId());

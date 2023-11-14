@@ -53,8 +53,7 @@ public class ChangeBugSeverityCommand implements Command {
             } catch (IllegalArgumentException e) {
                 result = String.format(SEVERITY_ALREADY_DEFINED, bugId, severity);
             }
-        }
-        catch (ClassCastException cce) {
+        } catch (ClassCastException cce) {
             result = String.format(MISSING_BUG_ID, bugId);
         }
 

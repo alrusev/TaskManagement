@@ -7,6 +7,7 @@ import models.contracts.Task;
 import models.enums.Priority;
 import utils.ParsingHelpers;
 import utils.ValidationHelpers;
+
 import java.util.List;
 
 public class ChangeBugPriorityCommand implements Command {
@@ -53,8 +54,7 @@ public class ChangeBugPriorityCommand implements Command {
             } catch (IllegalArgumentException e) {
                 result = String.format(SAME_PRIORITY_ALREADY_SET, bugId, newPriority);
             }
-        }
-        catch (ClassCastException cce) {
+        } catch (ClassCastException cce) {
             result = String.format(MISSING_BUG_ID, bugId);
         }
         return result;

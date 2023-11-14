@@ -37,9 +37,9 @@ public class CreateBugInBoardCommand implements Command {
         Priority priority = ParsingHelpers.tryParseEnum(parameters.get(2), Priority.class, NO_SUCH_PRIORITY);
         Severity severity = ParsingHelpers.tryParseEnum(parameters.get(3), Severity.class, NO_SUCH_SEVERITY);
         TaskStatus status = ParsingHelpers.tryParseEnum(parameters.get(4), TaskStatus.class, NO_SUCH_STATUS);
-        Person assignee = repository.findElementByName(parameters.get(5), repository.getPeople(),"person");
+        Person assignee = repository.findElementByName(parameters.get(5), repository.getPeople(), "person");
         ArrayList<String> stepsToReproduce = new ArrayList<>(Arrays.asList(parameters.get(6).split(",")));
-        Board board = repository.findElementByName(parameters.get(7), repository.getBoards(),"Board");
+        Board board = repository.findElementByName(parameters.get(7), repository.getBoards(), "Board");
         Bug bug = repository.createBug(title, description, priority, severity, status, assignee, stepsToReproduce);
         board.addTaskToBoard(bug);
         return String.format(BUG_CREATED_MESSAGE, bug.getId());

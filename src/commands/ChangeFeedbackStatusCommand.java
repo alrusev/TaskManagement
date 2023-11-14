@@ -63,7 +63,7 @@ public class ChangeFeedbackStatusCommand implements Command {
             } catch (InvalidUserInputException e) {
                 result = String.format(FEEDBACK_STATUS_ALREADY_SET, feedbackId, newStatus);
             }
-        }catch (ClassCastException cce) {
+        } catch (ClassCastException cce) {
             result = String.format(MISSING_FEEDBACK_ID, feedbackId);
         }
 

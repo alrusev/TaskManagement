@@ -1,6 +1,7 @@
 package core;
 
 import commands.*;
+import commands.AssignBugCommand;
 import commands.contracts.Command;
 import commands.enums.CommandType;
 import core.contracts.CommandFactory;
@@ -14,60 +15,35 @@ public class CommandFactoryImpl implements CommandFactory {
     public Command createCommandFromCommandName(String commandName, Repository repository) {
         CommandType commandType = ParsingHelpers.tryParseEnum(commandName, CommandType.class, String.format(INVALID_COMMAND, commandName));
 
-        switch (commandType) {
-            case ADDCOMMENTCOMMAND:
-                return new AddCommentCommand();
-            case ADDPERSONTOTEAMCOMMAND:
-                return new AddPersonToTeamCommand();
-            case ASSIGNTASKCOMMAND:
-                return new AssignTaskCommand();
-            case CHANGEBUGPRIORITYCOMMAND:
-                return  new ChangeBugPriorityCommand(repository);
-            case CHANGEBUGSEVERITYCOMMAND:
-                return new ChangeBugSeverityCommand(repository);
-            case CHANGEBUGSTATUSCOMMAND:
-                return new ChangeBugStatusCommand(repository);
-            case CHANGEFEEDBACKRATINGCOMMAND:
-                return new ChangeFeedbackRatingCommand(repository);
-            case CHANGEFEEDBACKSTATUSCOMMAND:
-                return new ChangeFeedbackStatusCommand(repository);
-            case CHANGESTORYPRIORITYCOMMAND:
-                return new ChangeStoryPriorityCommand(repository);
-            case CHANGESTORYSIZECOMMAND:
-                return new ChangeStorySizeCommand(repository);
-            case CHANGESTORYSTATUSCOMMAND:
-                return new ChangeStoryStatusCommand(repository);
-            case CREATEBOARDCOMMAND:
-                return new CreateBoardCommand(repository);
-            case CREATEBUGINBOARDCOMMAND:
-                return new CreateBugInBoardCommand(repository);
-            case CREATEFEEDBACKINBOARDCOMMAND:
-                return new CreateFeedbackInBoardCommand(repository);
-            case CREATESTORYINBOARDCOMMAND:
-                return new CreateStoryInBoardCommand(repository);
-            case CREATEPERSONCOMMAND:
-                return new CreatePersonCommand(repository);
-            case CREATETEAMCOMMAND:
-                return new CreateTeamCommand(repository);
-            case SHOWALLPEOPLECOMMAND:
-                return new ShowAllPeopleCommand();
-            case SHOWALLTEAMBOARDSCOMMAND:
-                return new ShowAllTeamBoardsCommand();
-            case SHOWALLTEAMMEMBERSCOMMAND:
-                return new ShowAllTeamMembersCommand();
-            case SHOWALLTEAMSCOMMAND:
-                return new ShowAllTeamsCommand();
-            case SHOWBOARDACTIVITYCOMMAND:
-                return new ShowBoardActivityCommand();
-            case SHOWPERSONACTIVITYCOMMAND:
-                return new ShowPersonActivityCommand();
-            case SHOWTEAMACTIVITYCOMMAND:
-                return new ShowTeamActivityCommand();
-            case UNASSIGNTASKCOMMAND:
-                return new UnassignTaskCommand();
-
-            default:
-                throw new IllegalArgumentException(String.format(INVALID_COMMAND, commandName));
-        }
+        return switch (commandType) {
+            case ADDCOMMENTCOMMAND -> new AddCommentCommand(repository);
+            case ADDPERSONTOTEAMCOMMAND -> new AddPersonToTeamCommand(repository);
+            case ASSIGNBUGCOMMAND -> new AssignBugCommand(repository);
+            case ASSIGNSTORYCOMMAND -> new AssignStoryCommand(repository);
+            case CHANGEBUGPRIORITYCOMMAND -> new ChangeBugPriorityCommand(repository);
+            case CHANGEBUGSEVERITYCOMMAND -> new ChangeBugSeverityCommand(repository);
+            case CHANGEBUGSTATUSCOMMAND -> new ChangeBugStatusCommand(repository);
+            case CHANGEFEEDBACKRATINGCOMMAND -> new ChangeFeedbackRatingCommand(repository);
+            case CHANGEFEEDBACKSTATUSCOMMAND -> new ChangeFeedbackStatusCommand(repository);
+            case CHANGESTORYPRIORITYCOMMAND -> new ChangeStoryPriorityCommand(repository);
+            case CHANGESTORYSIZECOMMAND -> new ChangeStorySizeCommand(repository);
+            case CHANGESTORYSTATUSCOMMAND -> new ChangeStoryStatusCommand(repository);
+            case CREATEBOARDCOMMAND -> new CreateBoardCommand(repository);
+            case CREATEBUGINBOARDCOMMAND -> new CreateBugInBoardCommand(repository);
+            case CREATEFEEDBACKINBOARDCOMMAND -> new CreateFeedbackInBoardCommand(repository);
+            case CREATESTORYINBOARDCOMMAND -> new CreateStoryInBoardCommand(repository);
+            case CREATEPERSONCOMMAND -> new CreatePersonCommand(repository);
+            case CREATETEAMCOMMAND -> new CreateTeamCommand(repository);
+            case SHOWALLPEOPLECOMMAND -> new ShowAllPeopleCommand();
+            case SHOWALLTEAMBOARDSCOMMAND -> new ShowAllTeamBoardsCommand();
+            case SHOWALLTEAMMEMBERSCOMMAND -> new ShowAllTeamMembersCommand();
+            case SHOWALLTEAMSCOMMAND -> new ShowAllTeamsCommand();
+            case SHOWBOARDACTIVITYCOMMAND -> new ShowBoardActivityCommand();
+            case SHOWPERSONACTIVITYCOMMAND -> new ShowPersonActivityCommand();
+            case SHOWTEAMACTIVITYCOMMAND -> new ShowTeamActivityCommand();
+            case UNASSIGNBUGCOMMAND -> new UnassignBugCommand(repository);
+            case UNASSIGNSTORYCOMMAND -> new UnassignStoryCommand(repository);
+            default -> throw new IllegalArgumentException(String.format(INVALID_COMMAND, commandName));
+        };
     }
 }

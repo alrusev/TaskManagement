@@ -66,13 +66,13 @@ public class StoryImpl extends TaskImpl implements Story {
     public void assignTo(Person person) {
         if (person != null) {
             setAssignee(person);
-            addToHistory(new HistoryEntryImpl("Bug assigned to " + person.getName()));
+            addToHistory(new HistoryEntryImpl("Story assigned to " + person.getName()));
         }
     }
 
     @Override
     public void unassign() {
-        addToHistory(new HistoryEntryImpl("Bug unassigned from " + (getAssignee() != null ? getAssignee().getName() : "None")));
+        addToHistory(new HistoryEntryImpl("Story unassigned from " + (getAssignee() != null ? getAssignee().getName() : "None")));
         setAssignee(null);
     }
 

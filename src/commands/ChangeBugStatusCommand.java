@@ -48,7 +48,6 @@ public class ChangeBugStatusCommand implements Command {
                 if (!status.equals(TaskStatus.ACTIVE) && !status.equals(TaskStatus.DONE)) {
                     throw new IllegalArgumentException();
                 }
-
                 // Update the status
                 if (status.equals(TaskStatus.ACTIVE)) {
                     result = String.format(REOPEN_BUG, bugId);
@@ -59,8 +58,6 @@ public class ChangeBugStatusCommand implements Command {
                 }
             } catch (IllegalArgumentException e) {
                 result = BUG_STATUS_ERROR;
-            } catch (InvalidUserInputException e) {
-                result = String.format(ALREADY_SET_STATUS, bugId, status);
             }
         } catch (ClassCastException cce) {
             result = String.format("No such Bug with ID '%d'!", bugId);

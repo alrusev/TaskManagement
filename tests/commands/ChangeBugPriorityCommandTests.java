@@ -48,17 +48,17 @@ public class ChangeBugPriorityCommandTests {
     }
     @Test
     public void execute_Should_ThrowIllegalArgException_When_InvalidParameters() {
-        // Act
+        // Arrange
         int bugId = 1;
         String invalidPriority = "InvalidPriority";
 
-        // Assert
+        // Act & Assert
         assertThrows(IllegalArgumentException.class,
                 () -> changeBugPriorityCommand.execute(Arrays.asList(String.valueOf(bugId), invalidPriority)));
     }
 
     @Test
-    public void execute_Should_ThrowIllegalArgException_When_PriorityAlreadySet() {
+    public void execute_Should_ShowIllegalArgException_When_PriorityAlreadySet() {
         // Arrange
         int bugId = 1;
         Priority setPriority = Priority.LOW;
@@ -71,7 +71,7 @@ public class ChangeBugPriorityCommandTests {
     }
 
     @Test
-    public void execute_Should_ThrowCastClassException_When_AlreadySet() {
+    public void execute_Should_ShowCastClassException_When_AlreadySet() {
         // Arrange
         int bugId = 2;
         Priority newPriority = Priority.MEDIUM;

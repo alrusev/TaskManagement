@@ -60,7 +60,7 @@ public class ChangeFeedbackStatusCommand implements Command {
                 task.changeStatus(newStatus);
             } catch (IllegalArgumentException e) {
                 result = FEEDBACK_STATUS_ERROR_MESSAGE;
-            } catch (InvalidUserInputException e) {
+            } catch (InvalidUserInputException ie) {
                 result = String.format(FEEDBACK_STATUS_ALREADY_SET, feedbackId, newStatus);
             }
         } catch (ClassCastException cce) {

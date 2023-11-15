@@ -4,6 +4,7 @@ import commands.contracts.Command;
 import core.contracts.Repository;
 import models.contracts.Board;
 import models.contracts.Task;
+import models.contracts.Team;
 import utils.ParsingHelpers;
 import utils.ValidationHelpers;
 
@@ -21,6 +22,8 @@ public class ShowBoardActivityCommand implements Command {
     }
     @Override
     public String execute(List<String> parameters) {
+
+
         ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
 
         String boardName = parameters.get(BOARD_INDEX);

@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ChangeBugStatusCommand implements Command {
 
-    private static final String BUS_STATUS_ERROR = "The bug status can be either ACTIVE or DONE!";
+    private static final String BUG_STATUS_ERROR = "The bug status can be either ACTIVE or DONE!";
     private static final String REOPEN_BUG = "Bug with ID '%d' reopened and marked as active.";
     private static final String BUG_DONE_MESSAGE = "Bug with ID '%d' marked as Done";
     private static final String ALREADY_SET_STATUS = "The status of a bug with ID %d is already set to %s!";
@@ -48,9 +48,7 @@ public class ChangeBugStatusCommand implements Command {
                 if (!status.equals(TaskStatus.ACTIVE) && !status.equals(TaskStatus.DONE)) {
                     throw new IllegalArgumentException();
                 }
-                if (bug.getStatus().equals(status)) {
-                    throw new InvalidUserInputException();
-                }
+
                 // Update the status
                 if (status.equals(TaskStatus.ACTIVE)) {
                     result = String.format(REOPEN_BUG, bugId);
@@ -60,7 +58,7 @@ public class ChangeBugStatusCommand implements Command {
                     bug.markAsDone();
                 }
             } catch (IllegalArgumentException e) {
-                result = BUS_STATUS_ERROR;
+                result = BUG_STATUS_ERROR;
             } catch (InvalidUserInputException e) {
                 result = String.format(ALREADY_SET_STATUS, bugId, status);
             }

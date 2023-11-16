@@ -30,7 +30,7 @@ public class AssignBugCommand implements Command {
 
         Bug bug = (Bug) repository.findTaskById(repository.getTasks(), bugId);
         Person person = repository.findElementByName(personName, repository.getPeople(), "Person");
-
+        person.addToActivityHistory(String.format("Bug assigned to %s", personName));
         bug.assignTo(person);
 
         return String.format(BUG_ASSIGNED_MESSAGE, bugId, personName);

@@ -17,8 +17,10 @@ public class TeamImpl implements Team {
     private String name;
     private List<Person> members;
     private List<Board> boards;
+    private List<String> activityHistory;
 
     public TeamImpl(String name) {
+        this.activityHistory = new ArrayList<>();
         setName(name);
         this.members = new ArrayList<>();
         this.boards = new ArrayList<>();
@@ -40,6 +42,7 @@ public class TeamImpl implements Team {
 
     private void setName(String name) {
         ValidationHelpers.validateIntRange(name.length(), NAME_MIN_LENGTH, NAME_MAX_LENGTH, NAME_ERROR_MESSAGE);
+        addToActivityHistory(String.format("Team with name %s created", name));
         this.name = name;
     }
 
@@ -58,5 +61,16 @@ public class TeamImpl implements Team {
     @Override
     public void addBoardToTeam(Board board) {
         this.boards.add(board);
+    }
+    @Override
+    public List<String> getActivityHistory() {
+        return new ArrayList<>(activityHistory);
+    }
+
+    @Override
+    public void addToActivityHistory(String activity) {
+        if(activity != null && !activity.isEmpty()) {
+            activityHistory.add(activity);
+        }
     }
 }

@@ -30,7 +30,7 @@ public class AssignStoryCommand implements Command {
 
         Story story = (Story) repository.findTaskById(repository.getTasks(), storyId);
         Person person = repository.findElementByName(personName, repository.getPeople(), "Person");
-
+        person.addToActivityHistory(String.format("Story assigned to %s", personName));
         story.assignTo(person);
 
         return String.format(STORY_ASSIGNED_MESSAGE, storyId, personName);

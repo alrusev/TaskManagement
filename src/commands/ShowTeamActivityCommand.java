@@ -24,7 +24,6 @@ public class ShowTeamActivityCommand implements Command {
 
         Team team = repository.findElementByName(teamName, repository.getTeams(), "Team");
 
-        return String.format("Team activity for %s - %s", teamName);
-        //Not done!!!
+        return String.format("Team activity for %s - %s", teamName, team.getActivityHistory().toString());
     }
 }

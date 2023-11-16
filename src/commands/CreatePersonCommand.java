@@ -28,7 +28,6 @@ public class CreatePersonCommand implements Command {
             throw new TheNameIsNotUniqueException(NAME_OF_PERSON_NOT_UNIQUE);
         }
         repository.createPerson(personName);
-
         return String.format(PERSON_CREATED_MESSAGE, personName);
     }
 }

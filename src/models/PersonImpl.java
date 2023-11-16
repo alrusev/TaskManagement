@@ -3,7 +3,6 @@ package models;
 import models.contracts.Person;
 import models.contracts.Task;
 import utils.ValidationHelpers;
-
 import java.util.ArrayList;
 import java.util.List;
 

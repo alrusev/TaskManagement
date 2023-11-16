@@ -28,7 +28,6 @@ public class CreateTeamCommand implements Command {
         }
         repository.createTeam(teamName);
         return String.format(TEAM_CREATED_MESSAGE, teamName);
-
     }
 }
 

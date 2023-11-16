@@ -39,7 +39,7 @@ public class CommandFactoryImpl implements CommandFactory {
             case SHOWALLTEAMS -> new ShowAllTeamsCommand(repository);
             case SHOWBOARDACTIVITY -> new ShowBoardActivityCommand(repository);
             case SHOWPERSONACTIVITY -> new ShowPersonActivityCommand(repository);
-            case SHOWTEAMACTIVITY -> new ShowTeamActivityCommand(repository);
+            case SHOWTEAMACTIVITY -> new ShowTeamActivityCommand();
             case UNASSIGNSTORY -> new UnassignStoryCommand(repository);
             case UNASSIGNBUG -> new UnassignBugCommand(repository);
             default -> throw new IllegalArgumentException(String.format(INVALID_COMMAND, commandName));

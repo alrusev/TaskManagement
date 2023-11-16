@@ -42,7 +42,8 @@ public class TeamImpl implements Team {
         ValidationHelpers.validateIntRange(name.length(), NAME_MIN_LENGTH, NAME_MAX_LENGTH, NAME_ERROR_MESSAGE);
         this.name = name;
     }
-@Override
+
+    @Override
     public void removePersonFromMembers(Person person) {
         if (!members.contains(person))
             throw new IllegalArgumentException(NO_SUCH_MEMBER);

@@ -9,16 +9,16 @@ import java.util.List;
 
 public class ShowAllTeamsCommand implements Command {
 
-    private final List<Team>teams;
+    private Repository repository;
 
     public ShowAllTeamsCommand(Repository repository){
-        teams = repository.getTeams();
+        this.repository = repository;
     }
     @Override
     public String execute(List<String> parameters) {
-        if (teams.isEmpty()){
+        if (repository.getTeams().isEmpty()){
             return "There are no registered teams.";
         }
-        return ListingHelpers.teamsToString(teams);
+        return ListingHelpers.teamsToString(repository.getTeams());
     }
 }

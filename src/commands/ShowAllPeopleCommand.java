@@ -13,16 +13,16 @@ import java.util.List;
 
 public class ShowAllPeopleCommand implements Command {
 
-    private final List<Person>people;
+    private Repository repository;
 
     public ShowAllPeopleCommand(Repository repository){
-        people = repository.getPeople();
+        this.repository = repository;
     }
     @Override
     public String execute(List<String> parameters) {
-        if (people.isEmpty()){
+        if (repository.getPeople().isEmpty()){
             return "There are no registered people.";
         }
-        return ListingHelpers.peopleToString(people);
+        return ListingHelpers.peopleToString(repository.getPeople());
     }
 }

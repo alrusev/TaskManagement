@@ -8,4 +8,8 @@ public interface Team extends Nameable{
     void addPersonToTeam(Person person);
     void addBoardToTeam(Board board);
     void removePersonFromMembers(Person person);
+    List<String> getActivityHistory();
+
+    void addToActivityHistory(String activity);
+
 }

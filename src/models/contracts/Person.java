@@ -2,7 +2,7 @@ package models.contracts;
 
 import java.util.List;
 
-public interface Person  extends Nameable{
+public interface Person extends Nameable{
     List<Task> getTasks();
     void addTask(Task task);
     List<String> getActivityHistory();

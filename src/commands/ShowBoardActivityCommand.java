@@ -23,7 +23,6 @@ public class ShowBoardActivityCommand implements Command {
     @Override
     public String execute(List<String> parameters) {
 
-
         ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
 
         String boardName = parameters.get(BOARD_INDEX);

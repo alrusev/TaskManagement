@@ -13,11 +13,9 @@ public class ShowAllTeamBoardsCommand implements Command {
 
     private static final int TEAM_NAME_ID = 0;
     private static final int EXPECTED_ARGUMENTS = 1;
-    private final List<Board>boards;
     private final Repository repository;
 
     public ShowAllTeamBoardsCommand(Repository repository){
-        boards = repository.getBoards();
         this.repository = repository;
     }
     @Override
@@ -26,7 +24,12 @@ public class ShowAllTeamBoardsCommand implements Command {
 
         String teamName = parameters.get(TEAM_NAME_ID);
         Team team = repository.findElementByName(teamName, repository.getTeams(), "Team");
+        List<Board> boards = team.getBoards();
 
-        return String.format("Boards of %s - " + ListingHelpers.teamBoardsToString(boards), teamName);
+        if (boards.isEmpty()) {
+            return String.format("Team %s does not have any boards", teamName);
+        } else {
+            return String.format("Boards of %s - " + ListingHelpers.teamBoardsToString(boards), teamName);
+        }
     }
 }

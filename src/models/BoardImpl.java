@@ -51,7 +51,7 @@ public class BoardImpl implements Board {
     public void removeTaskFromBoard(Task task) {
         if (!tasks.contains(task))
             throw new IllegalArgumentException(NO_SUCH_TASK);
-        addToActivityHistory(String.format("Task %s removed from board with id %d", task.getTitle(), name));
+        addToActivityHistory(String.format("Task %s removed from board with id %d", task.getTitle(), task.getId()));
         tasks.remove(task);
     }
 

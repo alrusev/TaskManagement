@@ -148,8 +148,6 @@ public class RepositoryImpl implements Repository {
             if (board.getName().equalsIgnoreCase(name))
                 return false;
         }
-        if (team.getName().equalsIgnoreCase(name))
-            return false;
         return true;
     }
 }

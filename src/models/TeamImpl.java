@@ -43,7 +43,6 @@ public class TeamImpl implements Team {
 
     private void setName(String name) {
         ValidationHelpers.validateIntRange(name.length(), NAME_MIN_LENGTH, NAME_MAX_LENGTH, NAME_ERROR_MESSAGE);
-        addToActivityHistory(String.format("Team with name %s created", name));
         this.name = name;
     }
 

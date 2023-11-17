@@ -94,7 +94,6 @@ public class RepositoryImpl implements Repository {
     public Person createPerson(String name) {
         Person person = new PersonImpl(name);
         people.add(person);
-        person.addToActivityHistory("New person with name " + person.getName() + " was created");
         return person;
     }
 
@@ -103,7 +102,6 @@ public class RepositoryImpl implements Repository {
         Board board = new BoardImpl(name);
         boards.add(board);
         team.addBoardToTeam(board);
-        board.addToActivityHistory("New board with name " + board.getName() + " was created");
         return board;
     }
     @Override

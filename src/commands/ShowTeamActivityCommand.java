@@ -5,6 +5,7 @@ import core.contracts.Repository;
 import models.contracts.Team;
 import utils.ValidationHelpers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShowTeamActivityCommand implements Command {
@@ -24,6 +25,14 @@ public class ShowTeamActivityCommand implements Command {
 
         Team team = repository.findElementByName(teamName, repository.getTeams(), "Team");
 
-        return String.format("Team activity for %s - %s", teamName, team.getActivityHistory().toString());
+        List<String> result = new ArrayList<>();
+
+        int nextId = 1;
+        for (String history:team.getActivityHistory()) {
+            result.add(nextId + ". " + history);
+            nextId++;
+        }
+
+        return String.format("Team activity for %s - %s", teamName, String.join(", ", result).trim());
     }
 }

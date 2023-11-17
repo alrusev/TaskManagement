@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CreateBugInBoardCommand implements Command {
-    private final static int EXPECTED_PARAMETERS_COUNT = 8;
+    private final static int EXPECTED_PARAMETERS_COUNT = 7;
     private final static String NO_SUCH_STATUS = "No such status";
     private final static String NO_SUCH_PRIORITY = "No such priority";
     private final static String NO_SUCH_SEVERITY = "No such severity";
@@ -35,11 +35,10 @@ public class CreateBugInBoardCommand implements Command {
         String description = parameters.get(1);
         Priority priority = ParsingHelpers.tryParseEnum(parameters.get(2), Priority.class, NO_SUCH_PRIORITY);
         Severity severity = ParsingHelpers.tryParseEnum(parameters.get(3), Severity.class, NO_SUCH_SEVERITY);
-        StoryStatus status = ParsingHelpers.tryParseEnum(parameters.get(4), StoryStatus.class, NO_SUCH_STATUS);
-        Person assignee = repository.findElementByName(parameters.get(5), repository.getPeople(), "person");
-        ArrayList<String> stepsToReproduce = new ArrayList<>(Arrays.asList(parameters.get(6).split(",")));
-        Board board = repository.findElementByName(parameters.get(7), repository.getBoards(), "Board");
-        Bug bug = repository.createBug(title, description, priority, severity, status, assignee, stepsToReproduce);
+        Person assignee = repository.findElementByName(parameters.get(4), repository.getPeople(), "person");
+        ArrayList<String> stepsToReproduce = new ArrayList<>(Arrays.asList(parameters.get(5).split(",")));
+        Board board = repository.findElementByName(parameters.get(6), repository.getBoards(), "Board");
+        Bug bug = repository.createBug(title, description, priority, severity, assignee, stepsToReproduce);
         board.addTaskToBoard(bug);
         board.addToActivityHistory(String.format("Bug with title %s added to board %s", title, board.getName()));
         return String.format(BUG_CREATED_MESSAGE, bug.getId());

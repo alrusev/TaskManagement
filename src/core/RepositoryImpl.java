@@ -52,7 +52,7 @@ public class RepositoryImpl implements Repository {
 
     @Override
     public Bug createBug(String title, String description, Priority priority,
-                         Severity severity, StoryStatus status, Person assignee, List<String> stepsToReproduce) {
+                         Severity severity, Person assignee, List<String> stepsToReproduce) {
         Bug bug = new BugImpl(title,description,priority,severity,assignee,stepsToReproduce, nextId);
         nextId++;
         tasks.add(bug);
@@ -61,16 +61,16 @@ public class RepositoryImpl implements Repository {
 
     @Override
     public Story createStory(String title, String description, Priority priority,
-                             Size size, StoryStatus status, Person assignee) {
-        Story story = new StoryImpl(nextId,title,description,priority,size,status,assignee);
+                             Size size, Person assignee) {
+        Story story = new StoryImpl(nextId,title,description,priority,size,assignee);
         nextId++;
         tasks.add(story);
         return story;
     }
 
     @Override
-    public Feedback createFeedback(String title, String description, StoryStatus status) {
-        Feedback feedback = new FeedbackImpl(nextId,title,description,status);
+    public Feedback createFeedback(String title, String description) {
+        Feedback feedback = new FeedbackImpl(nextId,title,description);
         nextId++;
         tasks.add(feedback);
         return feedback;

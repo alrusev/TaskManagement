@@ -19,11 +19,11 @@ public interface Repository {
 
     List<Comment> getComments();
 
-    Bug createBug(String title, String description, Priority priority, Severity severity, StoryStatus status, Person assignee, List<String> stepsToReproduce);
+    Bug createBug(String title, String description, Priority priority, Severity severity, Person assignee, List<String> stepsToReproduce);
 
-    Story createStory(String title, String description, Priority priority, Size size, StoryStatus status, Person assignee);
+    Story createStory(String title, String description, Priority priority, Size size, Person assignee);
 
-    Feedback createFeedback(String title, String description, StoryStatus status);
+    Feedback createFeedback(String title, String description);
 
     Comment createComment(String author, String content);
 

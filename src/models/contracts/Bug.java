@@ -16,5 +16,6 @@ public interface Bug extends Task {
     void unassign();
     void markAsDone();
     void reopenBug();
+    BugStatus getBugStatus();
 
 }

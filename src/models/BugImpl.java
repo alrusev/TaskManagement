@@ -61,6 +61,9 @@ public class BugImpl extends TaskImpl implements Bug {
     private void setBugStatus(BugStatus bugStatus){
         this.bugStatus = bugStatus;
     }
+    public BugStatus getBugStatus(){
+        return bugStatus;
+    }
 
     public void updateSeverity(Severity newSeverity) {
         if (newSeverity != null && !newSeverity.equals(this.severity)) {

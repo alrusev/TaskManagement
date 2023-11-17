@@ -47,12 +47,12 @@ public class ChangeStoryStatusCommand implements Command {
                         !newStatus.equals(StoryStatus.DONE)) {
                     throw new IllegalArgumentException();
                 }
-                if (story.getStatus().equals(newStatus)) {
+                if (story.getStoryStatus().equals(newStatus)) {
                     throw new InvalidUserInputException();
                 }
                 //Update the status
                 result = String.format(STORY_STATUS_SUCCESSFULLY_CHANGED, storyId, newStatus);
-                task.changeStatus(newStatus);
+                story.setStoryStatus(newStatus);
             } catch (IllegalArgumentException e) {
                 result = STORY_STATUS_ERROR_MESSAGE;
             } catch (InvalidUserInputException e) {

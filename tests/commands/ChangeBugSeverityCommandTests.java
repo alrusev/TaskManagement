@@ -9,7 +9,6 @@ import models.contracts.Story;
 import models.enums.Priority;
 import models.enums.Severity;
 import models.enums.Size;
-import models.enums.StoryStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
@@ -31,7 +30,7 @@ public class ChangeBugSeverityCommandTests {
         List<String> stepsToReproduce = Arrays.asList("Step 1", "Step 2", "Step 3");
         Person person = new PersonImpl("TestName");
         Bug bug = repository.createBug("BugTitleTest", "BugDescription", Priority.LOW,
-                Severity.CRITICAL, StoryStatus.ACTIVE, person, stepsToReproduce);
+                Severity.CRITICAL, person, stepsToReproduce);
     }
 
     @Test
@@ -78,7 +77,7 @@ public class ChangeBugSeverityCommandTests {
         int bugId = 2;
         Severity setSeverity = Severity.CRITICAL;
 
-        Story story = repository.createStory("TitleTests", "DescriptionDesk", Priority.LOW, Size.MEDIUM, StoryStatus. NOTDONE, person);
+        Story story = repository.createStory("TitleTests", "DescriptionDesk", Priority.LOW, Size.MEDIUM, person);
         // Act
         String result = changeBugSeverityCommand.execute(Arrays.asList(String.valueOf(bugId), setSeverity.toString()));
 

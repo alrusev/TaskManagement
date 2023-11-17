@@ -66,7 +66,7 @@ public class CreateFeedbackInBoardCommandTests {
     public void Status_should_BeInitialStatus_When_Created() {
         Feedback feedback = repository.createFeedback(VALID_TITLE, VALID_DESCRIPTION);
 
-        Assertions.assertEquals(INITIAL_STATUS,feedback.getFeedbackStatus);
+        Assertions.assertEquals(INITIAL_STATUS,feedback.getFeedbackStatus());
     }
 
     @Test

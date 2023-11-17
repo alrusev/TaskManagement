@@ -5,6 +5,7 @@ import core.contracts.Repository;
 import models.contracts.Feedback;
 import models.contracts.Person;
 import models.contracts.Story;
+import models.enums.FeedbackStatus;
 import models.enums.Priority;
 import models.enums.Size;
 import models.enums.StoryStatus;
@@ -28,14 +29,14 @@ public class ChangeFeedbackStatusCommandTests {
     public void setUp() {
         repository = new RepositoryImpl();
         changeFeedbackStatusCommand = new ChangeFeedbackStatusCommand(repository);
-        Feedback feedback = repository.createFeedback("FeedbackTest", "DescriptionTest", StoryStatus.NEW);
+        Feedback feedback = repository.createFeedback("FeedbackTest", "DescriptionTest");
     }
 
     @Test
     public void execute_Should_ChangeStatus_When_ValidParameters() {
         // Arrange
         int feedbackId = 1;
-        StoryStatus newStatus = StoryStatus.UNSCHEDULED;
+        FeedbackStatus newStatus = FeedbackStatus.UNSCHEDULED;
 
         // Act
         String result = changeFeedbackStatusCommand.execute(Arrays.asList(String.valueOf(feedbackId), newStatus.toString()));
@@ -60,7 +61,7 @@ public class ChangeFeedbackStatusCommandTests {
     public void execute_Should_ShowException_When_StatusAlreadySet() {
         // Arrange
         int feedbackId = 1;
-        StoryStatus newStatus = StoryStatus.NEW;
+        StoryStatus newStatus = StoryStatus.INPROGRESS;
 
         //Act
         String result = changeFeedbackStatusCommand.execute(Arrays.asList(String.valueOf(feedbackId), newStatus.toString()));
@@ -76,10 +77,10 @@ public class ChangeFeedbackStatusCommandTests {
     public void execute_Should_ShowCastClassException_When_FeedbackIsNonexistent() {
         // Arrange
         int storyId = 2;
-        StoryStatus newStatus = StoryStatus.NEW;
+        FeedbackStatus newStatus = FeedbackStatus.UNSCHEDULED;
 
 
-        Story story = repository.createStory("TitleTests", "DescriptionDesk", Priority.LOW, Size.MEDIUM, StoryStatus.DONE, person);
+        Story story = repository.createStory("TitleTests", "DescriptionDesk", Priority.LOW, Size.MEDIUM, person);
 
         // Act
         String result = changeFeedbackStatusCommand.execute(Arrays.asList(String.valueOf(storyId), newStatus.toString()));

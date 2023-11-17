@@ -79,9 +79,14 @@ public class StoryImpl extends TaskImpl implements Story {
         setAssignee(null);
     }
 
+    @Override
     public void setStoryStatus(StoryStatus storyStatus) {
         this.storyStatus = storyStatus;
         addToHistory(new HistoryEntryImpl("Story status changed to " + storyStatus));
     }
 
+    @Override
+    public StoryStatus getStoryStatus() {
+        return storyStatus;
+    }
 }

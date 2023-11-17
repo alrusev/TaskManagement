@@ -35,4 +35,8 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
         this.feedbackStatus = feedbackStatus;
         addToHistory(new HistoryEntryImpl("Feedback status changed to " + feedbackStatus));
     }
+
+    public FeedbackStatus getFeedbackStatus() {
+        return feedbackStatus;
+    }
 }

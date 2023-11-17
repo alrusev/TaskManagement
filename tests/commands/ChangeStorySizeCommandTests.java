@@ -27,8 +27,8 @@ public class ChangeStorySizeCommandTests {
     public void setUp() {
         repository = new RepositoryImpl();
         changeStorySizeCommand = new ChangeStorySizeCommand(repository);
-        Story story = repository.createStory("TitleATest", "DescriptionTest", Priority.LOW, Size.SMALL,
-                StoryStatus.NOTDONE, person);
+        Story story = repository.createStory("TitleATest", "DescriptionTest", Priority.LOW, Size.SMALL
+                , person);
     }
 
     @Test
@@ -82,7 +82,7 @@ public class ChangeStorySizeCommandTests {
         int storyId = 2;
         Size newSize = Size.SMALL;
 
-        Feedback feedback = repository.createFeedback("FeedbackTest", "DescriptionTest", StoryStatus.NEW);
+        Feedback feedback = repository.createFeedback("FeedbackTest", "DescriptionTest");
 
         // Act
         String result = changeStorySizeCommand.execute(Arrays.asList(String.valueOf(storyId), newSize.toString()));

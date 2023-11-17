@@ -5,6 +5,7 @@ import core.contracts.Repository;
 import models.contracts.Feedback;
 import models.contracts.Person;
 import models.contracts.Story;
+import models.enums.BugStatus;
 import models.enums.Priority;
 import models.enums.Size;
 import models.enums.StoryStatus;
@@ -30,7 +31,7 @@ public class ChangeStoryStatusCommandTests {
         repository = new RepositoryImpl();
         changeStoryStatusCommand = new ChangeStoryStatusCommand(repository);
         Story story = repository.createStory("TitleATest", "DescriptionTest", Priority.LOW, Size.SMALL,
-                StoryStatus.INPROGRESS, person);
+                person);
     }
 
     @Test
@@ -51,7 +52,7 @@ public class ChangeStoryStatusCommandTests {
     public void execute_Should_ThrowException_When_StatusInvalid() {
         // Arrange
         int storyId = 1;
-        StoryStatus newStatus = StoryStatus.NEW;
+        BugStatus newStatus = BugStatus.ACTIVE;
         //Act
         String result = changeStoryStatusCommand
                 .execute(Arrays.asList(String.valueOf(storyId), newStatus.toString()));
@@ -82,10 +83,10 @@ public class ChangeStoryStatusCommandTests {
     public void execute_Should_ShowCastClassException_When_FeedbackIsNonexistent() {
         // Arrange
         int storyId = 2;
-        StoryStatus newStatus = StoryStatus.NEW;
+        StoryStatus newStatus = StoryStatus.INPROGRESS;
 
 
-        Feedback feedback = repository.createFeedback("FeedbackTest", "DescriptionTest", StoryStatus.NEW);
+        Feedback feedback = repository.createFeedback("FeedbackTest", "DescriptionTest");
 
         // Act
         String result = changeStoryStatusCommand.execute(Arrays.asList(String.valueOf(storyId), newStatus.toString()));

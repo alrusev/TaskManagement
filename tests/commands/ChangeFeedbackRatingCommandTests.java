@@ -7,7 +7,6 @@ import models.contracts.Person;
 import models.contracts.Story;
 import models.enums.Priority;
 import models.enums.Size;
-import models.enums.StoryStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +22,7 @@ public class ChangeFeedbackRatingCommandTests {
     public void setUp() {
         repository = new RepositoryImpl();
         changeFeedbackRatingCommand = new ChangeFeedbackRatingCommand(repository);
-        Feedback feedback = repository.createFeedback("FeedbackTest", "DescriptionTest", StoryStatus.NEW);
+        Feedback feedback = repository.createFeedback("FeedbackTest", "DescriptionTest");
     }
 
     @Test
@@ -68,7 +67,7 @@ public class ChangeFeedbackRatingCommandTests {
         int storyId = 2;
         int newRating = 3;
 
-        Story story = repository.createStory("TitleTests", "DescriptionDesk", Priority.LOW, Size.MEDIUM, StoryStatus. NOTDONE, person);
+        Story story = repository.createStory("TitleTests", "DescriptionDesk", Priority.LOW, Size.MEDIUM, person);
 
         // Act
         String result = changeFeedbackRatingCommand.execute(Arrays.asList(String.valueOf(storyId), String.valueOf(newRating)));

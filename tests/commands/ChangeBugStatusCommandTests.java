@@ -6,10 +6,7 @@ import models.PersonImpl;
 import models.contracts.Bug;
 import models.contracts.Person;
 import models.contracts.Story;
-import models.enums.Priority;
-import models.enums.Severity;
-import models.enums.Size;
-import models.enums.StoryStatus;
+import models.enums.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,14 +28,14 @@ public class ChangeBugStatusCommandTests {
         List<String> stepsToReproduce = Arrays.asList("Step 1", "Step 2", "Step 3");
         Person person = new PersonImpl("TestName");
         Bug bug = repository.createBug("BugTitleTest", "BugDescription", Priority.LOW,
-                Severity.CRITICAL, StoryStatus.ACTIVE, person, stepsToReproduce);
+                Severity.CRITICAL, person, stepsToReproduce);
     }
 
     @Test
     public void execute_Should_ChangeStatusToActive_When_ValidParameters() {
         // Arrange
         int bugId = 1;
-        StoryStatus newStatus = StoryStatus.ACTIVE;
+        BugStatus newStatus = BugStatus.ACTIVE;
 
         // Act
         String result = changeBugStatusCommand.execute(Arrays.asList(String.valueOf(bugId), newStatus.toString()));
@@ -67,7 +64,7 @@ public class ChangeBugStatusCommandTests {
     public void execute_Should_ThrowException_When_StatusInvalid() {
         // Arrange
         int bugId = 1;
-        StoryStatus newStatus = StoryStatus.NEW;
+        StoryStatus newStatus = StoryStatus.NOTDONE;
 
         // Act
         String result = changeBugStatusCommand.execute(Arrays.asList(String.valueOf(bugId), newStatus.toString()));
@@ -83,7 +80,7 @@ public class ChangeBugStatusCommandTests {
         int bugId = 2;
         StoryStatus newStatus = StoryStatus.DONE;
 
-        Story story = repository.createStory("TitleTests", "DescriptionDesk", Priority.LOW, Size.MEDIUM, StoryStatus. NOTDONE, person);
+        Story story = repository.createStory("TitleTests", "DescriptionDesk", Priority.LOW, Size.MEDIUM, person);
         // Act
         String result = changeBugStatusCommand.execute(Arrays.asList(String.valueOf(bugId), newStatus.toString()));
 

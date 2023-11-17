@@ -2,6 +2,7 @@ package commands;
 
 import commands.contracts.Command;
 import core.contracts.Repository;
+import exceptions.InvalidUserInputException;
 import models.contracts.Bug;
 import models.contracts.Task;
 import models.enums.BugStatus;
@@ -39,18 +40,22 @@ public class ChangeBugStatusCommand implements Command {
 
         // Retrieve the Bug from the repository
         Task task = repository.findTaskById(repository.getTasks(), bugId);
-        String result;
+        String result = "";
         try {
             Bug bug = (Bug) task;
             try {
                 if (!status.equals(BugStatus.ACTIVE) && !status.equals(BugStatus.DONE)) {
                     throw new IllegalArgumentException();
                 }
+                if (status.equals(bug.getBugStatus())){
+                    throw new InvalidUserInputException(String.format("Bug status already set to %s", bug.getBugStatus()));
+                }
                 // Update the status
                 if (status.equals(BugStatus.DONE)) {
                     result = String.format(BUG_DONE_MESSAGE, bugId);
                     bug.markAsDone();
-                } else {
+                }
+                if (status.equals(BugStatus.ACTIVE)){
                     result = String.format(REOPEN_BUG, bugId);
                     bug.reopenBug();
                 }

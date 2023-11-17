@@ -27,7 +27,7 @@ public class CreateBoardCommand implements Command {
             throw new TheNameIsNotUniqueException(NAME_OF_BOARD_NOT_UNIQUE);
         }
         repository.createBoard(boardName, team);
-        team.addToActivityHistory(String.format("Board with name %s added to team %s", boardName, team));
+        team.addToActivityHistory(String.format("Board with name %s added to team %s", boardName, team.getName()));
         return String.format(BOARD_CREATED_MESSAGE, boardName);
     }
 }

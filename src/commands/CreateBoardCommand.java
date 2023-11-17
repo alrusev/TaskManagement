@@ -11,7 +11,7 @@ import java.util.List;
 public class CreateBoardCommand implements Command {
     private final static int EXPECTED_PARAMETERS_COUNT = 2;
     public static final String NAME_OF_BOARD_NOT_UNIQUE = "The name of the board is not unique in the team";
-    public static final String BOARD_CREATED_MESSAGE = "Board with name %s was created";
+    public static final String BOARD_CREATED_MESSAGE = "Board with name %s was created in team %s";
     private final Repository repository;
 
     public CreateBoardCommand(Repository repository) {
@@ -28,6 +28,6 @@ public class CreateBoardCommand implements Command {
         }
         repository.createBoard(boardName, team);
         team.addToActivityHistory(String.format("Board with name %s added to team %s", boardName, team));
-        return String.format(BOARD_CREATED_MESSAGE, boardName);
+        return String.format(BOARD_CREATED_MESSAGE, boardName, team.getName());
     }
 }

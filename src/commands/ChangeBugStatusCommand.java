@@ -48,11 +48,11 @@ public class ChangeBugStatusCommand implements Command {
                 }
                 // Update the status
                 if (status.equals(BugStatus.DONE)) {
-                    result = String.format(REOPEN_BUG, bugId);
-                    bug.reopenBug();
-                } else {
                     result = String.format(BUG_DONE_MESSAGE, bugId);
                     bug.markAsDone();
+                } else {
+                    result = String.format(REOPEN_BUG, bugId);
+                    bug.reopenBug();
                 }
             } catch (IllegalArgumentException e) {
                 result = BUG_STATUS_ERROR;

@@ -63,14 +63,9 @@ public class ChangeFeedbackStatusCommandTests {
         int feedbackId = 1;
         StoryStatus newStatus = StoryStatus.INPROGRESS;
 
-        //Act
-        String result = changeFeedbackStatusCommand.execute(Arrays.asList(String.valueOf(feedbackId), newStatus.toString()));
 
-        String expected = String.format(FEEDBACK_STATUS_ALREADY_SET, feedbackId, newStatus);
-
-
-        // Assert
-        assertEquals(expected, result);
+        // Act & Assert
+        assertThrows(IllegalArgumentException.class, ()-> changeFeedbackStatusCommand.execute(Arrays.asList(String.valueOf(feedbackId), newStatus.toString())));
     }
 
     @Test

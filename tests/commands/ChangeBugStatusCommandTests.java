@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ChangeBugStatusCommandTests {
 
@@ -66,12 +67,8 @@ public class ChangeBugStatusCommandTests {
         int bugId = 1;
         StoryStatus newStatus = StoryStatus.NOTDONE;
 
-        // Act
-        String result = changeBugStatusCommand.execute(Arrays.asList(String.valueOf(bugId), newStatus.toString()));
-
-        // Assert
-        String expected = "The bug status can be either ACTIVE or DONE!";
-        assertEquals(expected, result);
+        // Act & Assert
+        assertThrows(IllegalArgumentException.class, ()-> changeBugStatusCommand.execute(Arrays.asList(String.valueOf(bugId), newStatus.toString())));
     }
 
     @Test

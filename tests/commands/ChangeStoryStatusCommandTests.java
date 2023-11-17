@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ChangeStoryStatusCommandTests {
 
@@ -53,13 +54,10 @@ public class ChangeStoryStatusCommandTests {
         // Arrange
         int storyId = 1;
         BugStatus newStatus = BugStatus.ACTIVE;
-        //Act
-        String result = changeStoryStatusCommand
-                .execute(Arrays.asList(String.valueOf(storyId), newStatus.toString()));
 
-        //Assert
-        String expected = STORY_STATUS_ERROR_MESSAGE;
-        assertEquals(expected, result);
+        //Act & Assert
+        assertThrows(IllegalArgumentException.class, ()->changeStoryStatusCommand
+                .execute(Arrays.asList(String.valueOf(storyId), newStatus.toString())));
     }
 
     @Test
@@ -88,12 +86,8 @@ public class ChangeStoryStatusCommandTests {
 
         Feedback feedback = repository.createFeedback("FeedbackTest", "DescriptionTest");
 
-        // Act
-        String result = changeStoryStatusCommand.execute(Arrays.asList(String.valueOf(storyId), newStatus.toString()));
-
-        // Assert
-        String expected = String.format("No such story with ID '%d'", storyId);
-        assertEquals(expected, result);
+        //Act & Assert
+        assertThrows(IllegalArgumentException.class, ()->changeStoryStatusCommand.execute(Arrays.asList(String.valueOf(storyId), newStatus.toString())));
     }
 
 }

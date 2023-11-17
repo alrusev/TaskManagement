@@ -2,13 +2,11 @@ package models;
 
 import models.contracts.Comment;
 import models.contracts.HistoryEntry;
-import models.contracts.Person;
 import models.contracts.Task;
-import models.enums.Priority;
-import models.enums.TaskStatus;
+import models.enums.BugStatus;
+import models.enums.StoryStatus;
 import utils.ValidationHelpers;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,16 +21,15 @@ public abstract class TaskImpl implements Task {
     private int id;
     private String title;
     private String description;
-    private TaskStatus status;
+    private StoryStatus status;
     private List<Comment> comments;
     private List<HistoryEntry> historyEntries;
 
 
-    public TaskImpl(int id, String title,String description, TaskStatus status) {
+    public TaskImpl(int id, String title,String description) {
         setId(id);
         setTitle(title);
         setDescription(description);
-        setStatus(status);
         this.comments = new ArrayList<>();
         this.historyEntries = new ArrayList<>();
     }
@@ -66,22 +63,6 @@ public abstract class TaskImpl implements Task {
         this.description = description;
     }
 
-    @Override
-    public TaskStatus getStatus() {
-        return status;
-    }
-
-    private void setStatus(TaskStatus status) {
-        this.status = status;
-    }
-
-    @Override
-    public void changeStatus(TaskStatus newStatus) {
-        if (this.status != newStatus) {
-            addToHistory(new HistoryEntryImpl(String.format("Status changed from %s to %s.", this.status, newStatus)));
-            setStatus(newStatus);
-        }
-    }
 
     @Override
     public List<Comment> getComments() {

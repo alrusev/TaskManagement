@@ -5,7 +5,7 @@ import core.contracts.Repository;
 import exceptions.InvalidUserInputException;
 import models.contracts.Feedback;
 import models.contracts.Task;
-import models.enums.TaskStatus;
+import models.enums.StoryStatus;
 import utils.ParsingHelpers;
 import utils.ValidationHelpers;
 
@@ -38,8 +38,8 @@ public class ChangeFeedbackStatusCommand implements Command {
         int feedbackId = ParsingHelpers.tryParseInteger(parameters.get(FEEDBACK_ID_INDEX), "Feedback ID");
 
         //newStatus
-        TaskStatus newStatus = ParsingHelpers.tryParseEnum(parameters.get(NEW_STATUS_INDEX),
-                TaskStatus.class, NO_SUCH_STATUS);
+        StoryStatus newStatus = ParsingHelpers.tryParseEnum(parameters.get(NEW_STATUS_INDEX),
+                StoryStatus.class, NO_SUCH_STATUS);
 
         //Retrieve the Feedback from the repository
         Task task = repository.findTaskById(repository.getTasks(), feedbackId);
@@ -48,8 +48,8 @@ public class ChangeFeedbackStatusCommand implements Command {
         try {
             Feedback feedback = (Feedback) task;
             try {
-                if (!feedback.getStatus().equals(TaskStatus.NEW) && !feedback.getStatus().equals(TaskStatus.UNSCHEDULED)
-                        && !feedback.getStatus().equals(TaskStatus.SCHEDULED) && !feedback.getStatus().equals(TaskStatus.DONE)) {
+                if (!feedback.getStatus().equals(StoryStatus.NEW) && !feedback.getStatus().equals(StoryStatus.UNSCHEDULED)
+                        && !feedback.getStatus().equals(StoryStatus.SCHEDULED) && !feedback.getStatus().equals(StoryStatus.DONE)) {
                     throw new IllegalArgumentException();
                 }
                 if (task.getStatus().equals(newStatus)) {
@@ -57,7 +57,7 @@ public class ChangeFeedbackStatusCommand implements Command {
                 }
                 //Update the status
                 result = String.format(FEEDBACK_STATUS_SUCCESSFULLY_CHANGED, feedbackId, newStatus);
-                task.changeStatus(newStatus);
+                task.(newStatus);
             } catch (IllegalArgumentException e) {
                 result = FEEDBACK_STATUS_ERROR_MESSAGE;
             } catch (InvalidUserInputException ie) {

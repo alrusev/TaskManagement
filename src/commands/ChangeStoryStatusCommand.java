@@ -5,7 +5,7 @@ import core.contracts.Repository;
 import exceptions.InvalidUserInputException;
 import models.contracts.Story;
 import models.contracts.Task;
-import models.enums.TaskStatus;
+import models.enums.StoryStatus;
 import utils.ParsingHelpers;
 import utils.ValidationHelpers;
 
@@ -35,7 +35,7 @@ public class ChangeStoryStatusCommand implements Command {
         int storyId = ParsingHelpers.tryParseInteger(parameters.get(STORY_ID_INDEX), "Story ID");
 
         //newStatus
-        TaskStatus newStatus = ParsingHelpers.tryParseEnum(parameters.get(NEW_STATUS_INDEX), TaskStatus.class, NO_SUCH_STATUS);
+        StoryStatus newStatus = ParsingHelpers.tryParseEnum(parameters.get(NEW_STATUS_INDEX), StoryStatus.class, NO_SUCH_STATUS);
 
         //Retrieve the Story from the repository
         Task task = repository.findTaskById(repository.getTasks(), storyId);
@@ -43,8 +43,8 @@ public class ChangeStoryStatusCommand implements Command {
         try {
             Story story = (Story) task;
             try {
-                if (!newStatus.equals(TaskStatus.NOTDONE) && !newStatus.equals(TaskStatus.INPROGRESS) &&
-                        !newStatus.equals(TaskStatus.DONE)) {
+                if (!newStatus.equals(StoryStatus.NOTDONE) && !newStatus.equals(StoryStatus.INPROGRESS) &&
+                        !newStatus.equals(StoryStatus.DONE)) {
                     throw new IllegalArgumentException();
                 }
                 if (story.getStatus().equals(newStatus)) {

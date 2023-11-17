@@ -1,5 +1,6 @@
 package models.contracts;
 
+import models.enums.BugStatus;
 import models.enums.Priority;
 import models.enums.Severity;
 

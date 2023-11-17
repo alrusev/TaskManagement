@@ -7,7 +7,7 @@ import models.contracts.*;
 import models.enums.Priority;
 import models.enums.Severity;
 import models.enums.Size;
-import models.enums.TaskStatus;
+import models.enums.StoryStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,23 +52,26 @@ public class RepositoryImpl implements Repository {
 
     @Override
     public Bug createBug(String title, String description, Priority priority,
-                         Severity severity, TaskStatus status, Person assignee, List<String> stepsToReproduce) {
-        Bug bug = new BugImpl(nextId++,title,description,priority,severity,status,assignee,stepsToReproduce);
+                         Severity severity, StoryStatus status, Person assignee, List<String> stepsToReproduce) {
+        Bug bug = new BugImpl(title,description,priority,severity,assignee,stepsToReproduce, nextId);
+        nextId++;
         tasks.add(bug);
         return bug;
     }
 
     @Override
     public Story createStory(String title, String description, Priority priority,
-                             Size size, TaskStatus status, Person assignee) {
-        Story story = new StoryImpl(nextId++,title,description,priority,size,status,assignee);
+                             Size size, StoryStatus status, Person assignee) {
+        Story story = new StoryImpl(nextId,title,description,priority,size,status,assignee);
+        nextId++;
         tasks.add(story);
         return story;
     }
 
     @Override
-    public Feedback createFeedback(String title, String description, TaskStatus status) {
-        Feedback feedback = new FeedbackImpl(nextId++,title,description,status);
+    public Feedback createFeedback(String title, String description, StoryStatus status) {
+        Feedback feedback = new FeedbackImpl(nextId,title,description,status);
+        nextId++;
         tasks.add(feedback);
         return feedback;
     }

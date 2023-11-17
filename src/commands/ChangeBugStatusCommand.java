@@ -4,7 +4,7 @@ import commands.contracts.Command;
 import core.contracts.Repository;
 import models.contracts.Bug;
 import models.contracts.Task;
-import models.enums.TaskStatus;
+import models.enums.StoryStatus;
 import utils.ParsingHelpers;
 import utils.ValidationHelpers;
 
@@ -35,8 +35,8 @@ public class ChangeBugStatusCommand implements Command {
         int bugId = ParsingHelpers.tryParseInteger(parameters.get(BUG_ID_INDEX), "Bug ID");
 
         //newStatus
-        TaskStatus status = ParsingHelpers.tryParseEnum(parameters.get(NEW_STATUS_INDEX),
-                TaskStatus.class, NO_SUCH_STATUS);
+        StoryStatus status = ParsingHelpers.tryParseEnum(parameters.get(NEW_STATUS_INDEX),
+                StoryStatus.class, NO_SUCH_STATUS);
 
         // Retrieve the Bug from the repository
         Task task = repository.findTaskById(repository.getTasks(), bugId);
@@ -44,11 +44,11 @@ public class ChangeBugStatusCommand implements Command {
         try {
             Bug bug = (Bug) task;
             try {
-                if (!status.equals(TaskStatus.ACTIVE) && !status.equals(TaskStatus.DONE)) {
+                if (!status.equals(StoryStatus.ACTIVE) && !status.equals(StoryStatus.DONE)) {
                     throw new IllegalArgumentException();
                 }
                 // Update the status
-                if (status.equals(TaskStatus.ACTIVE)) {
+                if (status.equals(StoryStatus.ACTIVE)) {
                     result = String.format(REOPEN_BUG, bugId);
                     bug.reopenBug();
                 } else {

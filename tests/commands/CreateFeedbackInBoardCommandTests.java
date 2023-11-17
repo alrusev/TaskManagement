@@ -5,10 +5,9 @@ import commands.contracts.Command;
 import core.RepositoryImpl;
 import core.contracts.Repository;
 import exceptions.NoSuchElementFoundException;
-import exceptions.TheNameIsNotUniqueException;
 import models.contracts.Board;
 import models.contracts.Team;
-import models.enums.TaskStatus;
+import models.enums.StoryStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +22,7 @@ public class CreateFeedbackInBoardCommandTests {
     public static final String VALID_TITLE = TestUtilities.getString(11);
     public static final String INVALID_DESCRIPTION = TestUtilities.getString(9);
     public static final String VALID_DESCRIPTION = TestUtilities.getString(11);
-    public static final TaskStatus VALID_STATUS = TaskStatus.NEW;
+    public static final StoryStatus VALID_STATUS = StoryStatus.NEW;
     public static final String VALID_BOARD_NAME = TestUtilities.getString(6);
     public static final String VALID_TEAM_NAME = TestUtilities.getString(6);
 

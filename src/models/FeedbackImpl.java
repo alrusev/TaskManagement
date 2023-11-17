@@ -1,14 +1,17 @@
 package models;
 
 import models.contracts.Feedback;
-import models.enums.TaskStatus;
+import models.enums.FeedbackStatus;
+import models.enums.StoryStatus;
 
 public class FeedbackImpl extends TaskImpl implements Feedback {
     private int rating;
+    private FeedbackStatus feedbackStatus;
 
-    public FeedbackImpl(int id, String title, String description, TaskStatus status) {
-        super(id, title, description, status);
+    public FeedbackImpl(int id, String title, String description) {
+        super(id, title, description);
         setRating(rating);
+        feedbackStatus = FeedbackStatus.NEW;
     }
 
     @Override
@@ -28,4 +31,8 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
         }
     }
 
+    public void setFeedbackStatus(FeedbackStatus feedbackStatus) {
+        this.feedbackStatus = feedbackStatus;
+        addToHistory(new HistoryEntryImpl("Feedback status changed to " + feedbackStatus));
+    }
 }

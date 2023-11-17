@@ -9,7 +9,7 @@ import models.contracts.Story;
 import models.enums.Priority;
 import models.enums.Severity;
 import models.enums.Size;
-import models.enums.TaskStatus;
+import models.enums.StoryStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +30,7 @@ public class ChangeStoryPriorityCommandTests {
         repository = new RepositoryImpl();
         changeStoryPriorityCommand = new ChangeStoryPriorityCommand(repository);
         Story story = repository.createStory("TitleATest", "DescriptionTest", Priority.LOW, Size.SMALL,
-                TaskStatus.NOTDONE, person);
+                StoryStatus.NOTDONE, person);
     }
 
     @Test
@@ -79,7 +79,7 @@ public class ChangeStoryPriorityCommandTests {
         List<String> stepsToReproduce = Arrays.asList("Step 1", "Step 2", "Step 3");
         Person person = new PersonImpl("TestName");
         Bug bug = repository.createBug("BugTitleTest", "BugDescription", Priority.LOW,
-                Severity.CRITICAL, TaskStatus.ACTIVE, person, stepsToReproduce);
+                Severity.CRITICAL, StoryStatus.ACTIVE, person, stepsToReproduce);
         // Act
         String result = changeStoryPriorityCommand.execute(Arrays.asList(String.valueOf(storyId), newPriority.toString()));
 

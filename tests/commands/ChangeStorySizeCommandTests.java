@@ -8,7 +8,7 @@ import models.contracts.Person;
 import models.contracts.Story;
 import models.enums.Priority;
 import models.enums.Size;
-import models.enums.TaskStatus;
+import models.enums.StoryStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +28,7 @@ public class ChangeStorySizeCommandTests {
         repository = new RepositoryImpl();
         changeStorySizeCommand = new ChangeStorySizeCommand(repository);
         Story story = repository.createStory("TitleATest", "DescriptionTest", Priority.LOW, Size.SMALL,
-                TaskStatus.NOTDONE, person);
+                StoryStatus.NOTDONE, person);
     }
 
     @Test
@@ -82,7 +82,7 @@ public class ChangeStorySizeCommandTests {
         int storyId = 2;
         Size newSize = Size.SMALL;
 
-        Feedback feedback = repository.createFeedback("FeedbackTest", "DescriptionTest", TaskStatus.NEW);
+        Feedback feedback = repository.createFeedback("FeedbackTest", "DescriptionTest", StoryStatus.NEW);
 
         // Act
         String result = changeStorySizeCommand.execute(Arrays.asList(String.valueOf(storyId), newSize.toString()));

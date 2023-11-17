@@ -4,11 +4,10 @@ import commands.contracts.Command;
 import core.contracts.Repository;
 import models.contracts.Board;
 import models.contracts.Bug;
-import models.contracts.Feedback;
 import models.contracts.Person;
 import models.enums.Priority;
 import models.enums.Severity;
-import models.enums.TaskStatus;
+import models.enums.StoryStatus;
 import utils.ParsingHelpers;
 import utils.ValidationHelpers;
 
@@ -36,7 +35,7 @@ public class CreateBugInBoardCommand implements Command {
         String description = parameters.get(1);
         Priority priority = ParsingHelpers.tryParseEnum(parameters.get(2), Priority.class, NO_SUCH_PRIORITY);
         Severity severity = ParsingHelpers.tryParseEnum(parameters.get(3), Severity.class, NO_SUCH_SEVERITY);
-        TaskStatus status = ParsingHelpers.tryParseEnum(parameters.get(4), TaskStatus.class, NO_SUCH_STATUS);
+        StoryStatus status = ParsingHelpers.tryParseEnum(parameters.get(4), StoryStatus.class, NO_SUCH_STATUS);
         Person assignee = repository.findElementByName(parameters.get(5), repository.getPeople(), "person");
         ArrayList<String> stepsToReproduce = new ArrayList<>(Arrays.asList(parameters.get(6).split(",")));
         Board board = repository.findElementByName(parameters.get(7), repository.getBoards(), "Board");

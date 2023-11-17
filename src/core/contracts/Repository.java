@@ -1,11 +1,10 @@
 package core.contracts;
 
-import models.TeamImpl;
 import models.contracts.*;
 import models.enums.Priority;
 import models.enums.Severity;
 import models.enums.Size;
-import models.enums.TaskStatus;
+import models.enums.StoryStatus;
 
 import java.util.List;
 
@@ -20,11 +19,11 @@ public interface Repository {
 
     List<Comment> getComments();
 
-    Bug createBug(String title, String description, Priority priority, Severity severity, TaskStatus status, Person assignee, List<String> stepsToReproduce);
+    Bug createBug(String title, String description, Priority priority, Severity severity, StoryStatus status, Person assignee, List<String> stepsToReproduce);
 
-    Story createStory(String title, String description, Priority priority, Size size, TaskStatus status, Person assignee);
+    Story createStory(String title, String description, Priority priority, Size size, StoryStatus status, Person assignee);
 
-    Feedback createFeedback(String title, String description, TaskStatus status);
+    Feedback createFeedback(String title, String description, StoryStatus status);
 
     Comment createComment(String author, String content);
 

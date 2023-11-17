@@ -4,19 +4,21 @@ import models.contracts.Person;
 import models.contracts.Story;
 import models.enums.Priority;
 import models.enums.Size;
-import models.enums.TaskStatus;
+import models.enums.StoryStatus;
 
 public class StoryImpl extends TaskImpl implements Story {
     private Size size;
     private Person assignee;
     Priority priority;
+    StoryStatus storyStatus;
 
 
-    public StoryImpl(int id, String title, String description, Priority priority, Size size, TaskStatus status, Person assignee) {
-        super(id, title, description, status);
+    public StoryImpl(int id, String title, String description, Priority priority, Size size, Person assignee) {
+        super(id, title, description);
         setPriority(priority);
         setSize(size);
         setAssignee(assignee);
+        storyStatus = StoryStatus.NOTDONE;
     }
 
     @Override
@@ -77,11 +79,9 @@ public class StoryImpl extends TaskImpl implements Story {
         setAssignee(null);
     }
 
-//    @Override
-//    public void updateStatus(TaskStatus newStatus) {
-//        if (newStatus != null && !newStatus.equals(this.getStatus())){
-//            addToHistory(new HistoryEntryImpl("Story status changed to " + getStatus()));
-//            changeStatus(getStatus());
-//        }
-//    }
+    public void setStoryStatus(StoryStatus storyStatus) {
+        this.storyStatus = storyStatus;
+        addToHistory(new HistoryEntryImpl("Story status changed to " + storyStatus));
+    }
+
 }

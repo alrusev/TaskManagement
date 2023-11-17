@@ -1,10 +1,9 @@
 package models;
 
 import models.contracts.*;
+import models.enums.BugStatus;
 import models.enums.Priority;
 import models.enums.Severity;
-import models.enums.TaskStatus;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,14 +11,16 @@ public class BugImpl extends TaskImpl implements Bug {
     private List<String> stepsToReproduce;
     private Severity severity;
     private Person assignee;
-    Priority priority;
+    private Priority priority;
+    private BugStatus bugStatus;
 
-    public BugImpl(int id, String title, String description, Priority priority, Severity severity, TaskStatus status, Person assignee, List<String> stepsToReproduce) {
-        super(id, title, description, status);
+    public BugImpl(String title, String description, Priority priority, Severity severity, Person assignee, List<String> stepsToReproduce, int id) {
+        super(id, title, description);
         setPriority(priority);
         setAssignee(assignee);
         setSeverity(severity);
         setStepsToReproduce(stepsToReproduce);
+        bugStatus = BugStatus.ACTIVE;
     }
 
     @Override
@@ -57,6 +58,10 @@ public class BugImpl extends TaskImpl implements Bug {
         this.severity = severity;
     }
 
+    private void setBugStatus(BugStatus bugStatus){
+        this.bugStatus = bugStatus;
+    }
+
     public void updateSeverity(Severity newSeverity) {
         if (newSeverity != null && !newSeverity.equals(this.severity)) {
             addToHistory(new HistoryEntryImpl(String.format("Severity updated from %s to %s", this.severity, newSeverity)));
@@ -86,16 +91,17 @@ public class BugImpl extends TaskImpl implements Bug {
     }
 
     public void markAsDone() {
-        if (getStatus() != TaskStatus.DONE) {
-            changeStatus(TaskStatus.DONE);
+        if (bugStatus != BugStatus.DONE) {
+            setBugStatus(BugStatus.DONE);
             addToHistory(new HistoryEntryImpl("Bug marked as done."));
         }
     }
 
     public void reopenBug() {
-        if (getStatus() == TaskStatus.DONE) {
-            changeStatus(TaskStatus.ACTIVE);
+        if (bugStatus == BugStatus.DONE) {
+            setBugStatus(BugStatus.ACTIVE);
             addToHistory(new HistoryEntryImpl("Bug reopened and marked as active."));
         }
     }
+
 }

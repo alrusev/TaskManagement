@@ -2,7 +2,7 @@ package models.contracts;
 
 import models.enums.Priority;
 import models.enums.Size;
-import models.enums.TaskStatus;
+import models.enums.StoryStatus;
 
 public interface Story extends Task {
     Size getSize();
@@ -11,5 +11,4 @@ public interface Story extends Task {
     Priority getPriority();
     void updatePriority(Priority newPriority);
     void updateSize(Size newSize);
-//    void updateStatus (TaskStatus newStatus);
 }

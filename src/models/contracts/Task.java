@@ -1,10 +1,6 @@
 package models.contracts;
 
-import models.CommentImpl;
-import models.HistoryEntryImpl;
-import models.PersonImpl;
-import models.enums.Priority;
-import models.enums.TaskStatus;
+import models.enums.StoryStatus;
 
 import java.util.List;
 
@@ -14,10 +10,6 @@ public interface Task {
     String getTitle();
 
     String getDescription();
-    void changeStatus(TaskStatus newStatus);
-
-    TaskStatus getStatus();
-
     List<Comment> getComments();
     void addComment(Comment comment);
 

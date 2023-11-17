@@ -7,7 +7,7 @@ import models.contracts.Person;
 import models.contracts.Story;
 import models.enums.Priority;
 import models.enums.Size;
-import models.enums.TaskStatus;
+import models.enums.StoryStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -30,14 +30,14 @@ public class ChangeStoryStatusCommandTests {
         repository = new RepositoryImpl();
         changeStoryStatusCommand = new ChangeStoryStatusCommand(repository);
         Story story = repository.createStory("TitleATest", "DescriptionTest", Priority.LOW, Size.SMALL,
-                TaskStatus.INPROGRESS, person);
+                StoryStatus.INPROGRESS, person);
     }
 
     @Test
     public void execute_Should_ChangeStatus_When_ValidParameters() {
         // Arrange
         int storyId = 1;
-        TaskStatus newStatus = TaskStatus.DONE;
+        StoryStatus newStatus = StoryStatus.DONE;
 
         // Act
         String result = changeStoryStatusCommand.execute(Arrays.asList(String.valueOf(storyId), newStatus.toString()));
@@ -51,7 +51,7 @@ public class ChangeStoryStatusCommandTests {
     public void execute_Should_ThrowException_When_StatusInvalid() {
         // Arrange
         int storyId = 1;
-        TaskStatus newStatus = TaskStatus.NEW;
+        StoryStatus newStatus = StoryStatus.NEW;
         //Act
         String result = changeStoryStatusCommand
                 .execute(Arrays.asList(String.valueOf(storyId), newStatus.toString()));
@@ -65,7 +65,7 @@ public class ChangeStoryStatusCommandTests {
     public void execute_Should_ShowException_When_StatusAlreadySet() {
         // Arrange
         int feedbackId = 1;
-        TaskStatus newStatus = TaskStatus.DONE;
+        StoryStatus newStatus = StoryStatus.DONE;
 
         //Act
         String setNewStatus = changeStoryStatusCommand.execute(Arrays.asList(String.valueOf(feedbackId), newStatus.toString()));
@@ -82,10 +82,10 @@ public class ChangeStoryStatusCommandTests {
     public void execute_Should_ShowCastClassException_When_FeedbackIsNonexistent() {
         // Arrange
         int storyId = 2;
-        TaskStatus newStatus = TaskStatus.NEW;
+        StoryStatus newStatus = StoryStatus.NEW;
 
 
-        Feedback feedback = repository.createFeedback("FeedbackTest", "DescriptionTest", TaskStatus.NEW);
+        Feedback feedback = repository.createFeedback("FeedbackTest", "DescriptionTest", StoryStatus.NEW);
 
         // Act
         String result = changeStoryStatusCommand.execute(Arrays.asList(String.valueOf(storyId), newStatus.toString()));

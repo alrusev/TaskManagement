@@ -7,7 +7,7 @@ import models.contracts.Person;
 import models.contracts.Story;
 import models.enums.Priority;
 import models.enums.Size;
-import models.enums.TaskStatus;
+import models.enums.StoryStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
@@ -28,14 +28,14 @@ public class ChangeFeedbackStatusCommandTests {
     public void setUp() {
         repository = new RepositoryImpl();
         changeFeedbackStatusCommand = new ChangeFeedbackStatusCommand(repository);
-        Feedback feedback = repository.createFeedback("FeedbackTest", "DescriptionTest", TaskStatus.NEW);
+        Feedback feedback = repository.createFeedback("FeedbackTest", "DescriptionTest", StoryStatus.NEW);
     }
 
     @Test
     public void execute_Should_ChangeStatus_When_ValidParameters() {
         // Arrange
         int feedbackId = 1;
-        TaskStatus newStatus = TaskStatus.UNSCHEDULED;
+        StoryStatus newStatus = StoryStatus.UNSCHEDULED;
 
         // Act
         String result = changeFeedbackStatusCommand.execute(Arrays.asList(String.valueOf(feedbackId), newStatus.toString()));
@@ -49,7 +49,7 @@ public class ChangeFeedbackStatusCommandTests {
     public void execute_Should_ThrowException_When_StatusInvalid() {
         // Arrange
         int feedbackId = 1;
-        TaskStatus newStatus = TaskStatus.NOTDONE;
+        StoryStatus newStatus = StoryStatus.NOTDONE;
 
         // Act & Assert
         assertThrows(IllegalArgumentException.class, ()-> changeFeedbackStatusCommand
@@ -60,7 +60,7 @@ public class ChangeFeedbackStatusCommandTests {
     public void execute_Should_ShowException_When_StatusAlreadySet() {
         // Arrange
         int feedbackId = 1;
-        TaskStatus newStatus = TaskStatus.NEW;
+        StoryStatus newStatus = StoryStatus.NEW;
 
         //Act
         String result = changeFeedbackStatusCommand.execute(Arrays.asList(String.valueOf(feedbackId), newStatus.toString()));
@@ -76,10 +76,10 @@ public class ChangeFeedbackStatusCommandTests {
     public void execute_Should_ShowCastClassException_When_FeedbackIsNonexistent() {
         // Arrange
         int storyId = 2;
-        TaskStatus newStatus = TaskStatus.NEW;
+        StoryStatus newStatus = StoryStatus.NEW;
 
 
-        Story story = repository.createStory("TitleTests", "DescriptionDesk", Priority.LOW, Size.MEDIUM, TaskStatus.DONE, person);
+        Story story = repository.createStory("TitleTests", "DescriptionDesk", Priority.LOW, Size.MEDIUM, StoryStatus.DONE, person);
 
         // Act
         String result = changeFeedbackStatusCommand.execute(Arrays.asList(String.valueOf(storyId), newStatus.toString()));

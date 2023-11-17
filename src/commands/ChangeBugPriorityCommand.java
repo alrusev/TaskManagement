@@ -10,7 +10,8 @@ import utils.ValidationHelpers;
 
 import java.util.List;
 
-public class ChangeBugPriorityCommand implements Command {
+public class
+ChangeBugPriorityCommand implements Command {
 
     private static final String PRIORITY_SUCCESSFULLY_CHANGED = "Priority for bug with " +
             "ID '%d' updated successfully. New priority: %s";

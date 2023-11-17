@@ -4,7 +4,7 @@ import commands.contracts.Command;
 import core.contracts.Repository;
 import models.contracts.Board;
 import models.contracts.Feedback;
-import models.enums.TaskStatus;
+import models.enums.StoryStatus;
 import utils.ParsingHelpers;
 import utils.ValidationHelpers;
 
@@ -27,7 +27,7 @@ public class CreateFeedbackInBoardCommand implements Command {
         ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
         String title = parameters.get(0);
         String description = parameters.get(1);
-        TaskStatus status = ParsingHelpers.tryParseEnum(parameters.get(2), TaskStatus.class, NO_SUCH_STATUS);
+        StoryStatus status = ParsingHelpers.tryParseEnum(parameters.get(2), StoryStatus.class, NO_SUCH_STATUS);
         Board board = repository.findElementByName(parameters.get(3), repository.getBoards(), "board");
         Feedback feedback = repository.createFeedback(title, description, status);
         board.addTaskToBoard(feedback);

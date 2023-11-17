@@ -6,11 +6,10 @@ import core.RepositoryImpl;
 import core.contracts.Repository;
 import exceptions.NoSuchElementFoundException;
 import models.contracts.Board;
-import models.contracts.Person;
 import models.contracts.Team;
 import models.enums.Priority;
 import models.enums.Severity;
-import models.enums.TaskStatus;
+import models.enums.StoryStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +24,7 @@ public class CreateBugInBoardCommandTests {
     public static final String VALID_TITLE = TestUtilities.getString(11);
     public static final String INVALID_DESCRIPTION = TestUtilities.getString(9);
     public static final String VALID_DESCRIPTION = TestUtilities.getString(11);
-    public static final TaskStatus VALID_STATUS = TaskStatus.NEW;
+    public static final StoryStatus VALID_STATUS = StoryStatus.NEW;
     public static final Severity VALID_SEVERITY = Severity.MAJOR;
     public static final Priority VALID_PRIORITY = Priority.LOW;
     public static final String VALID_BOARD_NAME = TestUtilities.getString(6);

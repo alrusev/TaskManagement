@@ -9,7 +9,7 @@ import models.contracts.Story;
 import models.enums.Priority;
 import models.enums.Severity;
 import models.enums.Size;
-import models.enums.TaskStatus;
+import models.enums.StoryStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,14 +31,14 @@ public class ChangeBugStatusCommandTests {
         List<String> stepsToReproduce = Arrays.asList("Step 1", "Step 2", "Step 3");
         Person person = new PersonImpl("TestName");
         Bug bug = repository.createBug("BugTitleTest", "BugDescription", Priority.LOW,
-                Severity.CRITICAL, TaskStatus.ACTIVE, person, stepsToReproduce);
+                Severity.CRITICAL, StoryStatus.ACTIVE, person, stepsToReproduce);
     }
 
     @Test
     public void execute_Should_ChangeStatusToActive_When_ValidParameters() {
         // Arrange
         int bugId = 1;
-        TaskStatus newStatus = TaskStatus.ACTIVE;
+        StoryStatus newStatus = StoryStatus.ACTIVE;
 
         // Act
         String result = changeBugStatusCommand.execute(Arrays.asList(String.valueOf(bugId), newStatus.toString()));
@@ -53,7 +53,7 @@ public class ChangeBugStatusCommandTests {
     public void execute_Should_ChangeStatusToDone_When_ValidParameters() {
         // Arrange
         int bugId = 1;
-        TaskStatus newStatus = TaskStatus.DONE;
+        StoryStatus newStatus = StoryStatus.DONE;
 
         // Act
         String result = changeBugStatusCommand.execute(Arrays.asList(String.valueOf(bugId), newStatus.toString()));
@@ -67,7 +67,7 @@ public class ChangeBugStatusCommandTests {
     public void execute_Should_ThrowException_When_StatusInvalid() {
         // Arrange
         int bugId = 1;
-        TaskStatus newStatus = TaskStatus.NEW;
+        StoryStatus newStatus = StoryStatus.NEW;
 
         // Act
         String result = changeBugStatusCommand.execute(Arrays.asList(String.valueOf(bugId), newStatus.toString()));
@@ -81,9 +81,9 @@ public class ChangeBugStatusCommandTests {
     public void execute_Should_ThrowCastClassException_When_BugIsNonexistent() {
         // Arrange
         int bugId = 2;
-        TaskStatus newStatus = TaskStatus.DONE;
+        StoryStatus newStatus = StoryStatus.DONE;
 
-        Story story = repository.createStory("TitleTests", "DescriptionDesk", Priority.LOW, Size.MEDIUM, TaskStatus. NOTDONE, person);
+        Story story = repository.createStory("TitleTests", "DescriptionDesk", Priority.LOW, Size.MEDIUM, StoryStatus. NOTDONE, person);
         // Act
         String result = changeBugStatusCommand.execute(Arrays.asList(String.valueOf(bugId), newStatus.toString()));
 

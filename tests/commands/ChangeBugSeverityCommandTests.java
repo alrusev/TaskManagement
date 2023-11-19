@@ -2,6 +2,7 @@ package commands;
 
 import core.RepositoryImpl;
 import core.contracts.Repository;
+import exceptions.NoSuchElementFoundException;
 import models.PersonImpl;
 import models.contracts.Bug;
 import models.contracts.Person;
@@ -92,7 +93,7 @@ public class ChangeBugSeverityCommandTests {
         int bugId = 2;
 
         // Act and Assert
-        assertThrows(IllegalArgumentException.class,
+        assertThrows(NoSuchElementFoundException.class,
                 () -> repository.findTaskById(bugId));
 
     }

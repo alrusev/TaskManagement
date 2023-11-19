@@ -4,13 +4,11 @@ import Utils.TestUtilities;
 import core.RepositoryImpl;
 import core.contracts.Repository;
 import models.contracts.Board;
-import models.contracts.HistoryEntry;
 import models.contracts.Person;
 import models.contracts.Team;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import utils.ValidationHelpers;
 
 import java.util.List;
 
@@ -91,6 +89,4 @@ public class TeamImplTests {
         team.addToActivityHistory("test");
         Assertions.assertEquals(2,team.getActivityHistory().size());
     }
-
-
 }

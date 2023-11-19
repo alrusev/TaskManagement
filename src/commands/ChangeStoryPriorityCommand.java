@@ -38,7 +38,7 @@ public class ChangeStoryPriorityCommand implements Command {
                 NO_SUCH_PRIORITY);
 
         //Retrieve the Story from the repository
-        Task task = repository.findTaskById(repository.getTasks(), storyId);
+        Task task = repository.findTaskById(storyId);
         String result;
         try {
             Story story = (Story) task;

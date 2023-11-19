@@ -36,7 +36,7 @@ public class ChangeStorySizeCommand implements Command {
         Size newSize = ParsingHelpers.tryParseEnum(parameters.get(NEW_SIZE_INDEX), Size.class, NO_SUCH_SIZE);
 
         //Retrieve the Story from the repository
-        Task task = repository.findTaskById(repository.getTasks(), storyId);
+        Task task = repository.findTaskById(storyId);
         String result;
         try {
             Story story = (Story) task;

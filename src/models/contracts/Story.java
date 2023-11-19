@@ -15,4 +15,5 @@ public interface Story extends Task {
     StoryStatus getStoryStatus();
     void updatePriority(Priority newPriority);
     void updateSize(Size newSize);
+    Person getAssignee();
 }

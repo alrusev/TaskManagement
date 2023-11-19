@@ -22,7 +22,7 @@ public class UnassignStoryCommand implements Command {
         ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
 
         int storyId = ParsingHelpers.tryParseInteger(parameters.get(STORY_ID_INDEX), "Story ID");
-        Story story = (Story) repository.findTaskById(repository.getTasks(), storyId);
+        Story story = (Story) repository.findTaskById(storyId);
 
         story.unassign();
         return String.format(STORY_UNASSIGNED_MESSAGE, storyId);

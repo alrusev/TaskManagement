@@ -39,7 +39,7 @@ public class ChangeBugStatusCommand implements Command {
                 BugStatus.class, NO_SUCH_STATUS);
 
         // Retrieve the Bug from the repository
-        Task task = repository.findTaskById(repository.getTasks(), bugId);
+        Task task = repository.findTaskById(bugId);
         String result = "";
         try {
             Bug bug = (Bug) task;

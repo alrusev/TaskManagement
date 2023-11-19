@@ -42,7 +42,7 @@ public class ChangeFeedbackStatusCommand implements Command {
                 FeedbackStatus.class, NO_SUCH_STATUS);
 
         //Retrieve the Feedback from the repository
-        Task task = repository.findTaskById(repository.getTasks(), feedbackId);
+        Task task = repository.findTaskById(feedbackId);
         String result;
 
         try {

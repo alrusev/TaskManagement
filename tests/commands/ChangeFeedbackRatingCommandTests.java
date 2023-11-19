@@ -31,7 +31,7 @@ public class ChangeFeedbackRatingCommandTests {
         int feedbackId = 1;
         int newRating = 11;
 
-        Feedback feedback = (Feedback) repository.findTaskById(repository.getTasks(), feedbackId);
+        Feedback feedback = (Feedback) repository.findTaskById(feedbackId);
 
         // Act
         String result = changeFeedbackRatingCommand.execute(Arrays.asList(String.valueOf(feedbackId),
@@ -50,7 +50,7 @@ public class ChangeFeedbackRatingCommandTests {
         int feedbackId = 1;
         int newRating = 3;
 
-        Feedback feedback = (Feedback) repository.findTaskById(repository.getTasks(), feedbackId);
+        Feedback feedback = (Feedback) repository.findTaskById(feedbackId);
 
         // Act
         String defineFeedback = changeFeedbackRatingCommand.execute(Arrays.asList(String.valueOf(feedbackId), String.valueOf(newRating)));

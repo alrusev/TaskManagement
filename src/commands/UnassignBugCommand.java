@@ -23,7 +23,7 @@ public class UnassignBugCommand implements Command {
         ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
 
         int bugId = ParsingHelpers.tryParseInteger(parameters.get(BUG_ID_INDEX), "Bug ID");
-        Bug bug = (Bug) repository.findTaskById(repository.getTasks(), bugId);
+        Bug bug = (Bug) repository.findTaskById(bugId);
 
         bug.unassign();
         return String.format(BUG_UNASSIGNED_MESSAGE, bugId);

@@ -29,9 +29,7 @@ public class AddCommentCommand implements Command {
         int taskId = ParsingHelpers.tryParseInteger(parameters.get(TASK_ID_INDEX), "Task ID");
         String author = parameters.get(AUTHOR_INDEX);
         String content = parameters.get(COMMENT_CONTENT_INDEX);
-
-        List<Task> allTasks = repository.getTasks();
-        Task task = repository.findTaskById(allTasks, taskId);
+        Task task = repository.findTaskById(taskId);
         if (task == null) {
             throw new InvalidUserInputException(String.format("No task with ID '%d' found.", taskId));
         }

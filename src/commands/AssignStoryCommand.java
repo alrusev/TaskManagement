@@ -28,7 +28,7 @@ public class AssignStoryCommand implements Command {
         int storyId = ParsingHelpers.tryParseInteger(parameters.get(STORY_ID_INDEX), "Story ID");
         String personName = parameters.get(PERSON_NAME_INDEX);
 
-        Story story = (Story) repository.findTaskById(repository.getTasks(), storyId);
+        Story story = (Story) repository.findTaskById(storyId);
         Person person = repository.findElementByName(personName, repository.getPeople(), "Person");
         person.addToActivityHistory(String.format("Story assigned to %s", personName));
         story.assignTo(person);

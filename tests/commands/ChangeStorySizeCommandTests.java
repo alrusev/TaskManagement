@@ -37,7 +37,7 @@ public class ChangeStorySizeCommandTests {
         int storyId = 1;
         Size newSize = Size.MEDIUM;
 
-        Story story = (Story) repository.findTaskById(repository.getTasks(), storyId);
+        Story story = (Story) repository.findTaskById(storyId);
 
         // Act
         String result = changeStorySizeCommand.execute(Arrays.asList(String.valueOf(storyId), newSize.toString()));
@@ -54,7 +54,7 @@ public class ChangeStorySizeCommandTests {
         int storyId = 1;
         Size newSize = Size.SMALL;
 
-        StoryImpl story = (StoryImpl) repository.findTaskById(repository.getTasks(), storyId);
+        StoryImpl story = (StoryImpl) repository.findTaskById(storyId);
 
         // Act
         String result = changeStorySizeCommand.execute(Arrays.asList(String.valueOf(storyId), newSize.toString()));

@@ -7,8 +7,6 @@ import models.contracts.*;
 import models.enums.Priority;
 import models.enums.Severity;
 import models.enums.Size;
-import models.enums.StoryStatus;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +16,6 @@ public class RepositoryImpl implements Repository {
     private List<Board> boards = new ArrayList<>();
     private List<Person> people = new ArrayList<>();
     private List<Task> tasks = new ArrayList<>();
-    private List<Comment> comments = new ArrayList<>();
     private static int nextId;
 
     public RepositoryImpl() {
@@ -43,11 +40,6 @@ public class RepositoryImpl implements Repository {
     @Override
     public List<Task> getTasks() {
         return new ArrayList<>(tasks);
-    }
-
-    @Override
-    public List<Comment> getComments() {
-        return new ArrayList<>(comments);
     }
 
     @Override
@@ -78,9 +70,7 @@ public class RepositoryImpl implements Repository {
 
     @Override
     public Comment createComment(String author, String content) {
-        Comment comment = new CommentImpl(author,content);
-        comments.add(comment);
-        return comment;
+        return new CommentImpl(author,content);
     }
 
     @Override
@@ -88,6 +78,7 @@ public class RepositoryImpl implements Repository {
         Team team = new TeamImpl(name);
         teams.add(team);
         return team;
+
     }
 
     @Override
@@ -107,13 +98,12 @@ public class RepositoryImpl implements Repository {
         return board;
     }
     @Override
-    public Task findTaskById(List<Task> tasks, int id){
-        for (int i = 0; i < tasks.size(); i++) {
-            if(tasks.get(i).getId() == id){
-                return tasks.get(i);
-            }
+    public  Task findTaskById(int id){
+        for (Task task : tasks) {
+            if (task.getId() == id)
+                return task;
         }
-        throw new IllegalArgumentException(String.format("No task with ID %d", id));
+        throw new NoSuchElementFoundException(String.format("No task with ID %d", id));
     }
     @Override
     public <T extends Nameable> T findElementByName(String name,List<T> listToLook,String type){

@@ -17,5 +17,6 @@ public interface Bug extends Task {
     void markAsDone();
     void reopenBug();
     BugStatus getBugStatus();
+    Person getAssignee();
 
 }

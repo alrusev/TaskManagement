@@ -93,7 +93,7 @@ public class ChangeBugSeverityCommandTests {
 
         // Act and Assert
         assertThrows(IllegalArgumentException.class,
-                () -> repository.findTaskById(repository.getTasks(), bugId));
+                () -> repository.findTaskById(bugId));
 
     }
 

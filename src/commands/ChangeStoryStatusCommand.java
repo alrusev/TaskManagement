@@ -38,7 +38,7 @@ public class ChangeStoryStatusCommand implements Command {
         StoryStatus newStatus = ParsingHelpers.tryParseEnum(parameters.get(NEW_STATUS_INDEX), StoryStatus.class, NO_SUCH_STATUS);
 
         //Retrieve the Story from the repository
-        Task task = repository.findTaskById(repository.getTasks(), storyId);
+        Task task = repository.findTaskById(storyId);
         String result;
         try {
             Story story = (Story) task;

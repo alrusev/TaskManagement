@@ -28,7 +28,7 @@ public class AssignBugCommand implements Command {
         int bugId = ParsingHelpers.tryParseInteger(parameters.get(BUG_ID_INDEX), "Bug ID");
         String personName = parameters.get(PERSON_NAME_INDEX);
 
-        Bug bug = (Bug) repository.findTaskById(repository.getTasks(), bugId);
+        Bug bug = (Bug) repository.findTaskById(bugId);
         Person person = repository.findElementByName(personName, repository.getPeople(), "Person");
         person.addToActivityHistory(String.format("Bug assigned to %s", personName));
         bug.assignTo(person);

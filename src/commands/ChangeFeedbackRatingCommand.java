@@ -36,7 +36,7 @@ public class ChangeFeedbackRatingCommand implements Command {
         int newRating = ParsingHelpers.tryParseInteger(parameters.get(NEW_RATING_INDEX), "New rating");
 
         // Retrieve the Feedback from the repository
-        Task task = repository.findTaskById(repository.getTasks(), feedbackId);
+        Task task = repository.findTaskById(feedbackId);
         String result;
 
         try {

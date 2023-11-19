@@ -2,6 +2,7 @@ package commands;
 
 import core.RepositoryImpl;
 import core.contracts.Repository;
+import exceptions.NoSuchElementFoundException;
 import models.PersonImpl;
 import models.contracts.Bug;
 import models.contracts.Person;
@@ -88,8 +89,8 @@ public class ChangeBugPriorityCommandTests {
         int bugId = 2;
 
         // Act and Assert
-        assertThrows(IllegalArgumentException.class,
-                () -> repository.findTaskById(repository.getTasks(), bugId));
+        assertThrows(NoSuchElementFoundException.class,
+                () -> repository.findTaskById(bugId));
 
     }
 

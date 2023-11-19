@@ -39,6 +39,7 @@ public class ChangeBugStatusCommandTests {
         BugStatus newStatus = BugStatus.ACTIVE;
 
         // Act
+        changeBugStatusCommand.execute(Arrays.asList(String.valueOf(bugId), "done"));
         String result = changeBugStatusCommand.execute(Arrays.asList(String.valueOf(bugId), newStatus.toString()));
 
 

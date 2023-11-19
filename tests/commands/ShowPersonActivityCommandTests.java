@@ -38,7 +38,7 @@ public class ShowPersonActivityCommandTests {
         String result = showPersonActivityCommand.execute(List.of(personName));
 
         //Assert
-        String expectedOutput = "Person activity for Ivancho - [New person with name Ivancho was created, Ivancho added to team TestTeam]";
+        String expectedOutput = "Person activity for Ivancho - 1. Ivancho added to team TestTeam";
         assertEquals(expectedOutput, result);
     }
 

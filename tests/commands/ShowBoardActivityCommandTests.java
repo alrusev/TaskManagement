@@ -36,7 +36,7 @@ public class ShowBoardActivityCommandTests {
         String result = showBoardActivityCommand.execute(List.of(boardName));
 
         //Assert
-        String expectedOutput = "Board activity for BoardTest - [New board with name BoardTest was created, Feedback with title TitleBoardTest added to board BoardTest]";
+        String expectedOutput = "Board activity for BoardTest - 1. Feedback with title TitleBoardTest added to board BoardTest";
         assertEquals(expectedOutput, result);
     }
 

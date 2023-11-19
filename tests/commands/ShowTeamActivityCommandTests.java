@@ -36,7 +36,7 @@ public class ShowTeamActivityCommandTests {
         String result = showTeamActivityCommand.execute(List.of(teamName));
 
         //Assert
-        String expectedOutput = "Team activity for TestTeam - [Team with name TestTeam created, Ivancho added to team TestTeam]";
+        String expectedOutput = "Team activity for TestTeam - 1. Ivancho added to team TestTeam";
         assertEquals(expectedOutput, result);
     }
 

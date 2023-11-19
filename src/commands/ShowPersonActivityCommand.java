@@ -6,6 +6,7 @@ import models.contracts.Board;
 import models.contracts.Person;
 import utils.ValidationHelpers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShowPersonActivityCommand implements Command {
@@ -26,6 +27,14 @@ public class ShowPersonActivityCommand implements Command {
 
         Person person = repository.findElementByName(personName, repository.getPeople(), "Person");
 
-        return String.format("Person activity for %s - %s", personName, person.getActivityHistory().toString());
+        List<String> result = new ArrayList<>();
+
+        int nextId = 1;
+        for (String history:person.getActivityHistory()) {
+            result.add(nextId + ". " + history);
+            nextId++;
+        }
+
+        return String.format("Person activity for %s - %s", personName, String.join(", ", result).trim());
     }
 }

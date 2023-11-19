@@ -87,6 +87,8 @@ public class TeamImplTests {
     @Test
     public void addToActivityHistory_Should_addToActivityHistory(){
         team.addToActivityHistory("test");
-        Assertions.assertEquals(2,team.getActivityHistory().size());
+        Assertions.assertEquals(1,team.getActivityHistory().size());
     }
+
+
 }

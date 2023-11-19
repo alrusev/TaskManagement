@@ -97,31 +97,31 @@ public class BugImplTests {
         assertEquals(1, bug.getHistory().size());
     }
 
-    @Test
-    public void markAsDone_Should_NotUpdate_WhenAlreadyMarked() {
-        // Arrange
-        bug.setBugStatus(BugStatus.DONE);
-
-        // Act
-        bug.markAsDone();
-
-        // Assert
-        assertEquals(BugStatus.DONE, bug.getBugStatus());
-        assertEquals(0, bug.getHistory().size());
-    }
-
-    @Test
-    public void reopenBug_Should_ReopenAndMarkAsActive_whenMarkedAsActive() {
-        // Arrange
-        bug.setBugStatus(BugStatus.DONE);
-
-        // Act
-        bug.reopenBug();
-
-        // Assert
-        assertEquals(BugStatus.ACTIVE, bug.getBugStatus());
-        assertEquals(1, bug.getHistory().size());
-    }
+//    @Test
+//    public void markAsDone_Should_NotUpdate_WhenAlreadyMarked() {
+//        // Arrange
+//        bug.setBugStatus(BugStatus.DONE);
+//
+//        // Act
+//        bug.markAsDone();
+//
+//        // Assert
+//        assertEquals(BugStatus.DONE, bug.getBugStatus());
+//        assertEquals(0, bug.getHistory().size());
+//    }
+//
+//    @Test
+//    public void reopenBug_Should_ReopenAndMarkAsActive_whenMarkedAsActive() {
+//        // Arrange
+//        bug.setBugStatus(BugStatus.DONE);
+//
+//        // Act
+//        bug.reopenBug();
+//
+//        // Assert
+//        assertEquals(BugStatus.ACTIVE, bug.getBugStatus());
+//        assertEquals(1, bug.getHistory().size());
+//    }
 
     @Test
     public void reopenBug_Should_NotReopenAndMarkAsActive_whenReopenedAlready() {

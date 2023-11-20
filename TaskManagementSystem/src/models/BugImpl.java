@@ -14,10 +14,10 @@ public class BugImpl extends TaskImpl implements Bug {
     private Priority priority;
     private BugStatus bugStatus;
 
-    public BugImpl(String title, String description, Priority priority, Severity severity, Person assignee, List<String> stepsToReproduce, int id) {
+
+    public BugImpl(String title, String description, Priority priority, Severity severity, List<String> stepsToReproduce, int id) {
         super(id, title, description);
         setPriority(priority);
-        setAssignee(assignee);
         setSeverity(severity);
         setStepsToReproduce(stepsToReproduce);
         bugStatus = BugStatus.ACTIVE;
@@ -31,7 +31,7 @@ public class BugImpl extends TaskImpl implements Bug {
     @Override
     public void updatePriority(Priority newPriority) {
         if (newPriority != null && !newPriority.equals(this.priority)) {
-            addToHistory(new HistoryEntryImpl(String.format("Priority updated from %s to %s.", this.priority, newPriority)));
+            addToHistory(new HistoryEntryImpl(String.format("Bug priority updated from %s to %s.", this.priority, newPriority)));
             this.priority = newPriority;
         }
     }
@@ -67,7 +67,7 @@ public class BugImpl extends TaskImpl implements Bug {
 
     public void updateSeverity(Severity newSeverity) {
         if (newSeverity != null && !newSeverity.equals(this.severity)) {
-            addToHistory(new HistoryEntryImpl(String.format("Severity updated from %s to %s", this.severity, newSeverity)));
+            addToHistory(new HistoryEntryImpl(String.format("Bug severity updated from %s to %s", this.severity, newSeverity)));
             setSeverity(newSeverity);
         }
     }

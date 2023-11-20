@@ -69,7 +69,7 @@ public class ChangeFeedbackRatingCommandTests {
         int storyId = 2;
         int newRating = 3;
 
-        Story story = repository.createStory("TitleTests", "DescriptionDesk", Priority.LOW, Size.MEDIUM, person);
+        Story story = repository.createStory("TitleTests", "DescriptionDesk", Priority.LOW, Size.MEDIUM);
 
 
         Assertions.assertThrows(NoSuchElementFoundException.class, ()-> changeFeedbackRatingCommand.execute(Arrays.asList(String.valueOf(storyId), String.valueOf(newRating))));

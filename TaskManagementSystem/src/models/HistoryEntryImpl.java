@@ -28,6 +28,6 @@ public class HistoryEntryImpl implements HistoryEntry {
 
     @Override
     public String toString() {
-        return String.format("History Entry: %s", getDescription());
+        return String.format("### %s", getDescription());
     }
 }

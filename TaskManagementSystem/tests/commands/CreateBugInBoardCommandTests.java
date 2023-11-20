@@ -87,30 +87,22 @@ public class CreateBugInBoardCommandTests {
 
     @Test
     public void Status_should_BeInitialStatus_When_Created() {
-        Bug bug = repository.createBug(VALID_TITLE, VALID_DESCRIPTION,VALID_PRIORITY,VALID_SEVERITY,person,List.of("steps to reproduce1,step to reproduce 2"));
+        Bug bug = repository.createBug(VALID_TITLE, VALID_DESCRIPTION,VALID_PRIORITY,VALID_SEVERITY,List.of("steps to reproduce1,step to reproduce 2"));
 
         Assertions.assertEquals(INITIAL_STATUS,bug.getBugStatus());
     }
     @Test
     public void should_ThrowException_When_BoardDoesNotExist(){
         List<String> parameters = List.of(VALID_TITLE,VALID_DESCRIPTION,VALID_PRIORITY.toString(),
-                VALID_SEVERITY.toString(),VALID_PERSON_NAME,
+                VALID_SEVERITY.toString(),
                 "steps to reproduce1,step to reproduce 2","Invalid board name");
-
-        assertThrows(NoSuchElementFoundException.class, () -> command.execute(parameters));
-    }
-    @Test
-    public void should_ThrowException_When_AssigneeDoesNotExist(){
-        List<String> parameters = List.of(VALID_TITLE,VALID_DESCRIPTION,VALID_PRIORITY.toString(),
-                VALID_SEVERITY.toString(),"invalid person name",
-                "steps to reproduce1,step to reproduce 2",VALID_BOARD_NAME);
 
         assertThrows(NoSuchElementFoundException.class, () -> command.execute(parameters));
     }
     @Test
     public void should_AddToBoard_When_ArgumentAreValid(){
         List<String> parameters = List.of(VALID_TITLE,VALID_DESCRIPTION,VALID_PRIORITY.toString(),
-                VALID_SEVERITY.toString(),VALID_PERSON_NAME,
+                VALID_SEVERITY.toString(),
                 "steps to reproduce1,step to reproduce 2",VALID_BOARD_NAME);
         command.execute(parameters);
 

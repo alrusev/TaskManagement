@@ -59,8 +59,8 @@ public class RepositoryImpl implements Repository {
 
     @Override
     public Bug createBug(String title, String description, Priority priority,
-                         Severity severity, Person assignee, List<String> stepsToReproduce) {
-        Bug bug = new BugImpl(title,description,priority,severity,assignee,stepsToReproduce, nextId);
+                         Severity severity, List<String> stepsToReproduce) {
+        Bug bug = new BugImpl(title,description,priority,severity,stepsToReproduce, nextId);
         nextId++;
         tasks.add(bug);
         bugs.add(bug);
@@ -69,8 +69,8 @@ public class RepositoryImpl implements Repository {
 
     @Override
     public Story createStory(String title, String description, Priority priority,
-                             Size size, Person assignee) {
-        Story story = new StoryImpl(nextId,title,description,priority,size,assignee);
+                             Size size) {
+        Story story = new StoryImpl(nextId,title,description,priority,size);
         nextId++;
         tasks.add(story);
         stories.add(story);

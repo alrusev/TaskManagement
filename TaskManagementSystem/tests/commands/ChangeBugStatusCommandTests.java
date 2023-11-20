@@ -29,9 +29,8 @@ public class ChangeBugStatusCommandTests {
         repository = new RepositoryImpl();
         changeBugStatusCommand = new ChangeBugStatusCommand(repository);
         List<String> stepsToReproduce = Arrays.asList("Step 1", "Step 2", "Step 3");
-        Person person = new PersonImpl("TestName");
         Bug bug = repository.createBug("BugTitleTest", "BugDescription", Priority.LOW,
-                Severity.CRITICAL, person, stepsToReproduce);
+                Severity.CRITICAL,  stepsToReproduce);
     }
 
     @Test
@@ -80,7 +79,7 @@ public class ChangeBugStatusCommandTests {
         int bugId = 2;
         StoryStatus newStatus = StoryStatus.DONE;
 
-        Story story = repository.createStory("TitleTests", "DescriptionDesk", Priority.LOW, Size.MEDIUM, person);
+        Story story = repository.createStory("TitleTests", "DescriptionDesk", Priority.LOW, Size.MEDIUM);
 
         Assertions.assertThrows(NoSuchElementFoundException.class, ()-> changeBugStatusCommand.execute(Arrays.asList(String.valueOf(bugId), newStatus.toString())));
 

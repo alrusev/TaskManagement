@@ -30,8 +30,7 @@ public class ChangeStoryPriorityCommandTests {
     public void setUp() {
         repository = new RepositoryImpl();
         changeStoryPriorityCommand = new ChangeStoryPriorityCommand(repository);
-        Story story = repository.createStory("TitleATest", "DescriptionTest", Priority.LOW, Size.SMALL,
-                person);
+        Story story = repository.createStory("TitleATest", "DescriptionTest", Priority.LOW, Size.SMALL);
     }
 
     @Test
@@ -78,9 +77,8 @@ public class ChangeStoryPriorityCommandTests {
         Priority newPriority = Priority.MEDIUM;
 
         List<String> stepsToReproduce = Arrays.asList("Step 1", "Step 2", "Step 3");
-        Person person = new PersonImpl("TestName");
         Bug bug = repository.createBug("BugTitleTest", "BugDescription", Priority.LOW,
-                Severity.CRITICAL, person, stepsToReproduce);
+                Severity.CRITICAL, stepsToReproduce);
         // Act
         Assertions.assertThrows(NoSuchElementFoundException.class, ()-> changeStoryPriorityCommand.execute(Arrays.asList(String.valueOf(storyId), newPriority.toString())));
 

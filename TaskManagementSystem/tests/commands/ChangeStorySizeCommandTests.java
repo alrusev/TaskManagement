@@ -28,8 +28,7 @@ public class ChangeStorySizeCommandTests {
     public void setUp() {
         repository = new RepositoryImpl();
         changeStorySizeCommand = new ChangeStorySizeCommand(repository);
-        Story story = repository.createStory("TitleATest", "DescriptionTest", Priority.LOW, Size.SMALL
-                , person);
+        Story story = repository.createStory("TitleATest", "DescriptionTest", Priority.LOW, Size.SMALL);
     }
 
     @Test

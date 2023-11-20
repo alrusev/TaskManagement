@@ -19,9 +19,8 @@ public class StoryImplTests {
         String description = "StoryDescription";
         Priority priority = Priority.MEDIUM;
         Size size = Size.LARGE;
-        Person assignee = new PersonImpl("TestAssignee");
 
-        story = new StoryImpl(storyId, title, description, priority, size, assignee);
+        story = new StoryImpl(storyId, title, description, priority, size);
     }
 
     @Test

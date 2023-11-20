@@ -75,7 +75,7 @@ public class ChangeFeedbackStatusCommandTests {
         FeedbackStatus newStatus = FeedbackStatus.UNSCHEDULED;
 
 
-        Story story = repository.createStory("TitleTests", "DescriptionDesk", Priority.LOW, Size.MEDIUM, person);
+        Story story = repository.createStory("TitleTests", "DescriptionDesk", Priority.LOW, Size.MEDIUM);
 
 
         Assertions.assertThrows(NoSuchElementFoundException.class, ()-> changeFeedbackStatusCommand.execute(Arrays.asList(String.valueOf(storyId), newStatus.toString())));

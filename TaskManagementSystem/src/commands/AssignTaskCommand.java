@@ -26,15 +26,14 @@ public class AssignTaskCommand implements Command {
 
         int Id = ParsingHelpers.tryParseInteger(parameters.get(BUG_ID_INDEX), "Bug ID");
         String personName = parameters.get(PERSON_NAME_INDEX);
-
         Task task = repository.findTaskById(Id, repository.getTasks());
         if (isFeedback(task))
             throw new IllegalArgumentException("Feedbacks cannot have assignees");
 
         Person person = repository.findElementByName(personName, repository.getPeople(), "Person");
         Team team = getTeamFromTask(task);
-        if (!isPartOfMembers(person,team))
-            throw new IllegalArgumentException(String.format(NOT_PART_OF_TEAM,person.getName()));
+        if (!isPartOfMembers(person, team))
+            throw new IllegalArgumentException(String.format(NOT_PART_OF_TEAM, person.getName()));
         person.addTask(task);
         task.assignTask(person);
 
@@ -48,13 +47,15 @@ public class AssignTaskCommand implements Command {
         }
         return false;
     }
-    private boolean isPartOfMembers(Person person, Team team){
-        return  (team.getMembers().contains(person));
+
+    private boolean isPartOfMembers(Person person, Team team) {
+        return (team.getMembers().contains(person));
     }
-    private Team getTeamFromTask(Task task){
-        for (Board board: repository.getBoards()) {
-            if (board.getTasks().contains(task)){
-                for (Team team :repository.getTeams()) {
+
+    private Team getTeamFromTask(Task task) {
+        for (Board board : repository.getBoards()) {
+            if (board.getTasks().contains(task)) {
+                for (Team team : repository.getTeams()) {
                     if (team.getBoards().contains(board))
                         return team;
                 }

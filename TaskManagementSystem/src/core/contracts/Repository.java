@@ -19,9 +19,9 @@ public interface Repository {
     List<Story> getStories();
     List<Feedback> getFeedbacks();
 
-    Bug createBug(String title, String description, Priority priority, Severity severity, Person assignee, List<String> stepsToReproduce);
+    Bug createBug(String title, String description, Priority priority, Severity severity, List<String> stepsToReproduce);
 
-    Story createStory(String title, String description, Priority priority, Size size, Person assignee);
+    Story createStory(String title, String description, Priority priority, Size size);
 
     Feedback createFeedback(String title, String description, int rating);
 

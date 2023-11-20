@@ -3,7 +3,9 @@ package commands;
 import commands.contracts.Command;
 import core.contracts.Repository;
 import models.contracts.Board;
+import models.contracts.HistoryEntry;
 import models.contracts.Person;
+import models.contracts.Task;
 import utils.ValidationHelpers;
 
 import java.util.ArrayList;
@@ -35,6 +37,11 @@ public class ShowBoardActivityCommand implements Command {
 
         for (String history:board.getActivityHistory()) {
             result.append(nextId++).append(". ").append(history).append(System.lineSeparator());
+        }
+        for (Task task: board.getTasks()) {
+            for (HistoryEntry entry: task.getHistory()) {
+                result.append(entry.toString()).append(System.lineSeparator());
+            }
         }
 
         return result.toString().trim();

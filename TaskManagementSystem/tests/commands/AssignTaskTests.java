@@ -58,7 +58,7 @@ public class AssignTaskTests {
         Person person = repository.createPerson(VALID_NAME);
         Team team = repository.createTeam("Team_Name");
         Board board = repository.createBoard("Valid_Board",team);
-        Story story = repository.createStory(VALID_TITLE, VALID_DESCRIPTION, Priority.LOW, Size.SMALL,person);
+        Story story = repository.createStory(VALID_TITLE, VALID_DESCRIPTION, Priority.LOW, Size.SMALL);
         board.addTaskToBoard(story);
         team.addPersonToTeam(person);
         List<String> parameters = List.of(String.valueOf(story.getId()),VALID_NAME);
@@ -70,7 +70,7 @@ public class AssignTaskTests {
         Person person = repository.createPerson(VALID_NAME);
         Team team = repository.createTeam("Team_Name");
         Board board = repository.createBoard("Valid_Board",team);
-        Story story = repository.createStory(VALID_TITLE, VALID_DESCRIPTION, Priority.LOW, Size.SMALL,person);
+        Story story = repository.createStory(VALID_TITLE, VALID_DESCRIPTION, Priority.LOW, Size.SMALL);
         board.addTaskToBoard(story);
         team.addPersonToTeam(person);
         List<String> parameters = List.of(String.valueOf(story.getId()),VALID_NAME);

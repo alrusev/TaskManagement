@@ -25,9 +25,8 @@ public class BugImplTests {
         String description = "BugDescription";
         Priority priority = Priority.HIGH;
         Severity severity = Severity.MAJOR;
-        Person assignee = new PersonImpl("TestAssignee");
         List<String> stepsToReproduce = Arrays.asList("Step 1", "Step 2", "Step 3");
-        bug = new BugImpl(title, description, priority, severity, assignee, stepsToReproduce, bugId);
+        bug = new BugImpl(title, description, priority, severity, stepsToReproduce, bugId);
     }
 
     @Test

@@ -1,10 +1,12 @@
 package models;
+import Utils.TestUtilities;
 import models.contracts.HistoryEntry;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class HistoryEntryImplTests {
+    private static final String INVALID_DESCRIPTION= TestUtilities.getString(501);
 
     @Test
     public void constructor_ValidDescription_Success() {
@@ -29,16 +31,8 @@ public class HistoryEntryImplTests {
 
     @Test
     public void constructor_DescriptionTooLong_ThrowsIllegalArgumentException() {
-        // Arrange
-        String longDescription = "This is a very long description that exceeds the maximum allowed length of 500 characters. " +
-                "This is done intentionally to test the validation logic of the setDescription method in HistoryEntryImpl." +
-                "This is a very long description that exceeds the maximum allowed length of 500 characters." +
-                "This is done intentionally to test the validation logic of the setDescription method in HistoryEntryImpl." +
-                "This is a very long description that exceeds the maximum allowed length of 500 characters. " +
-                "This is done intentionally to test the validation logic of the setDescription method in HistoryEntryImpl.";
-
         // Act and Assert
-        assertThrows(IllegalArgumentException.class, () -> new HistoryEntryImpl(longDescription));
+        assertThrows(IllegalArgumentException.class, () -> new HistoryEntryImpl(INVALID_DESCRIPTION));
     }
 
     @Test
@@ -51,6 +45,6 @@ public class HistoryEntryImplTests {
         String result = historyEntry.toString();
 
         // Assert
-        assertEquals("History Entry: " + description, result);
+        assertEquals("### " + description, result);
     }
 }

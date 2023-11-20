@@ -31,8 +31,7 @@ public class ChangeStoryStatusCommandTests {
     public void setUp() {
         repository = new RepositoryImpl();
         changeStoryStatusCommand = new ChangeStoryStatusCommand(repository);
-        Story story = repository.createStory("TitleATest", "DescriptionTest", Priority.LOW, Size.SMALL,
-                person);
+        Story story = repository.createStory("TitleATest", "DescriptionTest", Priority.LOW, Size.SMALL);
     }
 
     @Test

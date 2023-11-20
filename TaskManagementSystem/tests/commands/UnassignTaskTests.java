@@ -51,18 +51,20 @@ public class UnassignTaskTests {
     @Test
     public void execute_Should_RemoveTaskFromAssignee_When_ArgumentsAreValid(){
         Person person = repository.createPerson(VALID_NAME);
-        Story story = repository.createStory(VALID_TITLE, VALID_DESCRIPTION, Priority.LOW, Size.SMALL,person);
+        Story story = repository.createStory(VALID_TITLE, VALID_DESCRIPTION, Priority.LOW, Size.SMALL);
         List<String> parameters = List.of(String.valueOf(story.getId()));
         person.addTask(story);
+        story.assignTask(person);
         command.execute(parameters);
         Assertions.assertEquals(0,person.getTasks().size());
     }
     @Test
     public void execute_Should_RemoveAssigneeFromTask_When_ArgumentsAreValid(){
         Person person = repository.createPerson(VALID_NAME);
-        Story story = repository.createStory(VALID_TITLE, VALID_DESCRIPTION, Priority.LOW, Size.SMALL,person);
+        Story story = repository.createStory(VALID_TITLE, VALID_DESCRIPTION, Priority.LOW, Size.SMALL);
         List<String> parameters = List.of(String.valueOf(story.getId()));
         person.addTask(story);
+        story.assignTask(person);
         command.execute(parameters);
         Assertions.assertNotEquals(person,story.getAssignee());
     }

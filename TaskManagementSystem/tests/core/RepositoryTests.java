@@ -111,14 +111,13 @@ public class RepositoryTests {
     @Test
     public void createBug_Should_ReturnBug_WhenArgumentsValid() {
         Person person = repository.createPerson(VALID_PERSON_NAME);
-        Bug bug = repository.createBug(VALID_TASK_TITLE, VALID_TASK_DESCRIPTION, VALID_BUG_PRIORITY, VALID_BUG_SEVERITY, person, TestUtilities.getList(2));
+        Bug bug = repository.createBug(VALID_TASK_TITLE, VALID_TASK_DESCRIPTION, VALID_BUG_PRIORITY, VALID_BUG_SEVERITY, TestUtilities.getList(2));
         Assertions.assertAll(
                 () -> Assertions.assertEquals(bug.getTitle(), VALID_TASK_TITLE),
                 () -> Assertions.assertEquals(bug.getDescription(), VALID_TASK_DESCRIPTION),
                 () -> Assertions.assertEquals(bug.getPriority(), VALID_BUG_PRIORITY),
                 () -> Assertions.assertEquals(bug.getSeverity(), VALID_BUG_SEVERITY),
                 () -> Assertions.assertEquals(bug.getBugStatus(), INITIAL_BUG_STATUS),
-                () -> Assertions.assertEquals(bug.getAssignee(), person),
                 () -> Assertions.assertEquals(bug.getStepsToReproduce(), TestUtilities.getList(2))
         );
 
@@ -127,14 +126,13 @@ public class RepositoryTests {
     @Test
     public void createStory_Should_ReturnStory_WhenArgumentsValid() {
         Person person = repository.createPerson(VALID_PERSON_NAME);
-        Story story = repository.createStory(VALID_TASK_TITLE, VALID_TASK_DESCRIPTION, VALID_STORY_PRIORITY, VALID_STORY_SIZE, person);
+        Story story = repository.createStory(VALID_TASK_TITLE, VALID_TASK_DESCRIPTION, VALID_STORY_PRIORITY, VALID_STORY_SIZE);
         Assertions.assertAll(
                 () -> Assertions.assertEquals(story.getTitle(), VALID_TASK_TITLE),
                 () -> Assertions.assertEquals(story.getDescription(), VALID_TASK_DESCRIPTION),
                 () -> Assertions.assertEquals(story.getPriority(), VALID_STORY_PRIORITY),
                 () -> Assertions.assertEquals(story.getSize(), VALID_STORY_SIZE),
-                () -> Assertions.assertEquals(story.getStoryStatus(), INITIAL_STORY_STATUS),
-                () -> Assertions.assertEquals(story.getAssignee(), person)
+                () -> Assertions.assertEquals(story.getStoryStatus(), INITIAL_STORY_STATUS)
         );
 
     }
@@ -188,7 +186,7 @@ public class RepositoryTests {
     @Test
     public void findTaskById_Should_ReturnTask_WhenTaskExists() {
         Person person = repository.createPerson(VALID_PERSON_NAME);
-        Bug bug = repository.createBug(VALID_TASK_TITLE, VALID_TASK_DESCRIPTION, VALID_BUG_PRIORITY, VALID_BUG_SEVERITY, person, TestUtilities.getList(2));
+        Bug bug = repository.createBug(VALID_TASK_TITLE, VALID_TASK_DESCRIPTION, VALID_BUG_PRIORITY, VALID_BUG_SEVERITY, TestUtilities.getList(2));
         Bug foundBug = repository.findTaskById(bug.getId(),repository.getBugs());
         Assertions.assertAll(
                 () -> Assertions.assertEquals(foundBug.getTitle(), VALID_TASK_TITLE),

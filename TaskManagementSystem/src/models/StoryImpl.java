@@ -13,7 +13,7 @@ public class StoryImpl extends TaskImpl implements Story {
     StoryStatus storyStatus;
 
 
-    public StoryImpl(int id, String title, String description, Priority priority, Size size, Person assignee) {
+    public StoryImpl(int id, String title, String description, Priority priority, Size size) {
         super(id, title, description);
         setPriority(priority);
         setSize(size);
@@ -33,7 +33,7 @@ public class StoryImpl extends TaskImpl implements Story {
     @Override
     public void updatePriority(Priority newPriority) {
         if (newPriority != null && !newPriority.equals(this.priority)) {
-            addToHistory(new HistoryEntryImpl(String.format("Priority updated from %s to %s.", this.priority, newPriority)));
+            addToHistory(new HistoryEntryImpl(String.format("Story priority updated from %s to %s.", this.priority, newPriority)));
             setPriority(newPriority);
         }
     }
@@ -50,7 +50,7 @@ public class StoryImpl extends TaskImpl implements Story {
     @Override
     public void updateSize(Size newSize) {
         if (newSize != null && !newSize.equals(this.size)) {
-            addToHistory(new HistoryEntryImpl("Size changed to " + size));
+            addToHistory(new HistoryEntryImpl("Story size changed to " + size));
             setSize(newSize);
         }
     }

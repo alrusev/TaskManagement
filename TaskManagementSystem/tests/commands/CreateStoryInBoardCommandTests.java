@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CreateStoryInBoardCommandTests {
-    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 6;
+    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 5;
     public static final String INVALID_TITLE = TestUtilities.getString(9);
     public static final String VALID_TITLE = TestUtilities.getString(11);
     public static final String INVALID_DESCRIPTION = TestUtilities.getString(9);
@@ -53,7 +53,7 @@ private Person person;
     @Test
     public void should_ThrowException_When_TitleIsInvalidLength(){
         List<String> parameters = List.of(INVALID_TITLE,VALID_DESCRIPTION,VALID_PRIORITY.toString(),
-                VALID_SIZE.toString(),VALID_PERSON_NAME,VALID_BOARD_NAME);
+                VALID_SIZE.toString(),VALID_BOARD_NAME);
 
         assertThrows(IllegalArgumentException.class, () -> command.execute(parameters));
     }
@@ -67,42 +67,36 @@ private Person person;
     @Test
     public void should_ThrowException_When_PriorityIsInvalid(){
         List<String> parameters = List.of(VALID_TITLE,VALID_DESCRIPTION,"invalid priority",
-                VALID_SIZE.toString(),VALID_PERSON_NAME,VALID_BOARD_NAME);
+                VALID_SIZE.toString(),VALID_BOARD_NAME);
 
         assertThrows(IllegalArgumentException.class, () -> command.execute(parameters));
     }
     @Test
     public void should_ThrowException_When_SizeIsInvalid(){
         List<String> parameters = List.of(VALID_TITLE,VALID_DESCRIPTION,VALID_PRIORITY.toString(),
-                "invalid size",VALID_PERSON_NAME,VALID_BOARD_NAME);
+                "invalid size",VALID_BOARD_NAME);
 
         assertThrows(IllegalArgumentException.class, () -> command.execute(parameters));
     }
 
 
     @Test
-    public void should_ThrowException_When_BoardDoesNotExist(){
-        List<String> parameters = List.of(VALID_TITLE,VALID_DESCRIPTION,VALID_PRIORITY.toString(),
-                VALID_SIZE.toString(),VALID_PERSON_NAME,"invalid board name");
-
-        assertThrows(NoSuchElementFoundException.class, () -> command.execute(parameters));
-    }    @Test
-    public void should_ThrowException_When_AssigneeDoesNotExist(){
-        List<String> parameters = List.of(VALID_TITLE,VALID_DESCRIPTION,VALID_PRIORITY.toString(),
-                VALID_SIZE.toString(),"invalid person name",VALID_BOARD_NAME);
+    public void should_ThrowException_When_BoardDoesNotExist() {
+        List<String> parameters = List.of(VALID_TITLE, VALID_DESCRIPTION, VALID_PRIORITY.toString(),
+                VALID_SIZE.toString(), "invalid board name");
 
         assertThrows(NoSuchElementFoundException.class, () -> command.execute(parameters));
     }
     @Test
     public void Status_should_BeInitialStatus_When_Created() {
-        Story story = repository.createStory(VALID_TITLE, VALID_DESCRIPTION,VALID_PRIORITY,VALID_SIZE,person);
+        Story story = repository.createStory(VALID_TITLE, VALID_DESCRIPTION,VALID_PRIORITY,VALID_SIZE);
 
         Assertions.assertEquals(INITIAL_STATUS,story.getStoryStatus());
     }
     @Test
     public void should_AddToBoard_When_ArgumentAreValid(){
         List<String> parameters = List.of(VALID_TITLE,VALID_DESCRIPTION,VALID_PRIORITY.toString(),
-                VALID_SIZE.toString(),VALID_PERSON_NAME,VALID_BOARD_NAME);
+                VALID_SIZE.toString(),VALID_BOARD_NAME);
         command.execute(parameters);
 
         assertEquals(1,board.getTasks().size());

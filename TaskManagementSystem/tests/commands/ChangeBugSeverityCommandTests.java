@@ -32,7 +32,7 @@ public class ChangeBugSeverityCommandTests {
         List<String> stepsToReproduce = Arrays.asList("Step 1", "Step 2", "Step 3");
         Person person = new PersonImpl("TestName");
         Bug bug = repository.createBug("BugTitleTest", "BugDescription", Priority.LOW,
-                Severity.CRITICAL, person, stepsToReproduce);
+                Severity.CRITICAL, stepsToReproduce);
     }
 
     @Test
@@ -79,7 +79,7 @@ public class ChangeBugSeverityCommandTests {
         int bugId = 2;
         Severity setSeverity = Severity.CRITICAL;
 
-        Story story = repository.createStory("TitleTests", "DescriptionDesk", Priority.LOW, Size.MEDIUM, person);
+        Story story = repository.createStory("TitleTests", "DescriptionDesk", Priority.LOW, Size.MEDIUM);
 
         Assertions.assertThrows(NoSuchElementFoundException.class, ()-> changeBugSeverityCommand.execute(Arrays.asList(String.valueOf(bugId), setSeverity.toString())));
 

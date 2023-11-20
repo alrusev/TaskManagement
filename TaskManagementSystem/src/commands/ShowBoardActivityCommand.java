@@ -4,11 +4,10 @@ import commands.contracts.Command;
 import core.contracts.Repository;
 import models.contracts.Board;
 import models.contracts.HistoryEntry;
-import models.contracts.Person;
 import models.contracts.Task;
 import utils.ValidationHelpers;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class ShowBoardActivityCommand implements Command {
@@ -18,9 +17,10 @@ public class ShowBoardActivityCommand implements Command {
     private static final int BOARD_INDEX = 0;
     private static final int EXPECTED_PARAMETERS_COUNT = 1;
 
-    public ShowBoardActivityCommand(Repository repository){
+    public ShowBoardActivityCommand(Repository repository) {
         this.repository = repository;
     }
+
     @Override
     public String execute(List<String> parameters) {
 
@@ -31,18 +31,16 @@ public class ShowBoardActivityCommand implements Command {
         Board board = repository.findElementByName(boardName, repository.getBoards(), "Board");
 
         StringBuilder result = new StringBuilder();
-        int nextId = 1;
-
         result.append(String.format("Activity for board %s:\n", board.getName()));
 
-        for (String history:board.getActivityHistory()) {
-            result.append(nextId++).append(". ").append(history).append(System.lineSeparator());
-        }
-        for (Task task: board.getTasks()) {
-            for (HistoryEntry entry: task.getHistory()) {
-                result.append(entry.toString()).append(System.lineSeparator());
+        if (board.getActivityHistory().isEmpty())
+            result.append(String.format("No activity from board %s yet", board.getName()));
+        for (Task task : board.getTasks()) {
+            result.append(String.format("Task with ID %d",task.getId())).append(System.lineSeparator());
+                for (HistoryEntry entry : task.getHistory()) {
+                    result.append(entry.toString()).append(System.lineSeparator());
+                }
             }
-        }
 
         return result.toString().trim();
     }

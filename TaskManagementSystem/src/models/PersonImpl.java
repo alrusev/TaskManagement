@@ -40,13 +40,13 @@ public class PersonImpl implements Person {
     @Override
     public void addTask(Task task) {
             tasks.add(task);
-            addToActivityHistory("Added task: " + task.getId());
+            addToActivityHistory("Added task with ID: " + task.getId());
     }
     @Override
     public void removeTask(Task task) {
         if(getTasks().contains(task)) {
             tasks.remove(task);
-            addToActivityHistory("Removed task: " + task.getId());
+            addToActivityHistory("Removed task with ID: " + task.getId());
         }
         else {
             throw new NoSuchElementFoundException(NO_SUCH_TASK);

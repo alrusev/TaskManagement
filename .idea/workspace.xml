@@ -4,41 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="169c9f96-77e4-47d7-bbf2-34743415b6ee" name="Changes" comment="Added Assign and Unassign Tests&#10;Added validation if person is part og the team in AssignTask command">
+    <list default="true" id="169c9f96-77e4-47d7-bbf2-34743415b6ee" name="Changes" comment="Removed assignee from constructor of bug and story">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/AssignTaskCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/AssignTaskCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/CreateBugInBoardCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/CreateBugInBoardCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/CreateStoryInBoardCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/CreateStoryInBoardCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/ShowBoardActivityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/ShowBoardActivityCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/core/RepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/core/RepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/core/contracts/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/core/contracts/Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/models/BugImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/models/BugImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/models/FeedbackImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/models/FeedbackImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/models/HistoryEntryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/models/HistoryEntryImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/models/PersonImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/models/PersonImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/models/StoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/models/StoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/AssignTaskTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/AssignTaskTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/ChangeBugPriorityCommandTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/ChangeBugPriorityCommandTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/ChangeBugSeverityCommandTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/ChangeBugSeverityCommandTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/ChangeBugStatusCommandTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/ChangeBugStatusCommandTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/ChangeFeedbackRatingCommandTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/ChangeFeedbackRatingCommandTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/ChangeFeedbackStatusCommandTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/ChangeFeedbackStatusCommandTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/ChangeStoryPriorityCommandTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/ChangeStoryPriorityCommandTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/ChangeStorySizeCommandTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/ChangeStorySizeCommandTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/ChangeStoryStatusCommandTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/ChangeStoryStatusCommandTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/CreateBugInBoardCommandTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/CreateBugInBoardCommandTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/CreateStoryInBoardCommandTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/CreateStoryInBoardCommandTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/ShowAllPeopleCommandTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/ShowAllTeamBoardsCommandTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/ShowAllTeamMembersCommandTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/ShowAllTeamsCommandTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/ShowBoardActivityCommandTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/ShowPersonActivityCommandTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/ShowTeamActivityCommandTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/UnassignTaskTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/UnassignTaskTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/core/RepositoryTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/tests/core/RepositoryTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/models/BugImplTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/tests/models/BugImplTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/models/StoryImplTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/tests/models/StoryImplTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +37,14 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.HistoryEntryImplTests.constructor_DescriptionTooLong_ThrowsIllegalArgumentException">
+  <component name="RunManager" selected="JUnit.All in TaskManagement">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="TaskManagement" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="All in TaskManagement" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TaskManagement" />
       <option name="PACKAGE_NAME" value="" />
@@ -125,29 +101,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UnassignTaskTests.execute_Should_RemoveTaskFromAssignee_When_ArgumentsAreValid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="TaskManagement" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="commands.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="commands" />
-      <option name="MAIN_CLASS_NAME" value="commands.UnassignTaskTests" />
-      <option name="METHOD_NAME" value="execute_Should_RemoveTaskFromAssignee_When_ArgumentsAreValid" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.HistoryEntryImplTests.constructor_DescriptionTooLong_ThrowsIllegalArgumentException" />
         <item itemvalue="JUnit.All in TaskManagement" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.HistoryEntryImplTests.constructor_DescriptionTooLong_ThrowsIllegalArgumentException" />
         <item itemvalue="JUnit.RepositoryTests.createBug_Should_ReturnBug_WhenArgumentsValid" />
         <item itemvalue="JUnit.UnassignTaskTests.execute_Should_RemoveAssigneeFromTask_When_ArgumentsAreValid" />
-        <item itemvalue="JUnit.UnassignTaskTests.execute_Should_RemoveTaskFromAssignee_When_ArgumentsAreValid" />
       </list>
     </recent_temporary>
   </component>
@@ -176,13 +136,22 @@
       <option name="project" value="LOCAL" />
       <updated>1700477484046</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Removed assignee from constructor of bug and story">
+      <option name="closed" value="true" />
+      <created>1700484783641</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1700484783641</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added Assign and Unassign Tests" />
     <MESSAGE value="Added Assign and Unassign Tests&#10;Added validation if person is part og the team in AssignTask command" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Assign and Unassign Tests&#10;Added validation if person is part og the team in AssignTask command" />
+    <MESSAGE value="Removed assignee from constructor of bug and story" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed assignee from constructor of bug and story" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/TaskManagement$All_in_TaskManagement.ic" NAME="All in TaskManagement Coverage Results" MODIFIED="1700473665794" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

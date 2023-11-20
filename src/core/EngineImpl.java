@@ -13,7 +13,7 @@ public class EngineImpl implements Engine {
     private static final String TERMINATION_COMMAND = "Exit";
     private static final String EMPTY_COMMAND_ERROR = "Command cannot be empty.";
     private final CommandFactory commandFactory;
-    private final Repository repository;
+    public final Repository repository;
 
     public EngineImpl() {
         this.commandFactory = new CommandFactoryImpl();

@@ -2,15 +2,16 @@ package commands;
 
 import commands.contracts.Command;
 import core.contracts.Repository;
+import exceptions.NoSuchElementFoundException;
 import models.contracts.Comment;
 import models.contracts.Task;
 import utils.ValidationHelpers;
 import utils.ParsingHelpers;
-import exceptions.InvalidUserInputException;
 
 import java.util.List;
 
 public class AddCommentCommand implements Command {
+    public static final String AUTHOR_NOT_FOUND = "The author name does not align with the name of an existing person";
     private final Repository repository;
     private static final int TASK_ID_INDEX = 0;
     private static final int AUTHOR_INDEX = 1;
@@ -30,9 +31,8 @@ public class AddCommentCommand implements Command {
         String author = parameters.get(AUTHOR_INDEX);
         String content = parameters.get(COMMENT_CONTENT_INDEX);
         Task task = repository.findTaskById(taskId);
-        if (task == null) {
-            throw new InvalidUserInputException(String.format("No task with ID '%d' found.", taskId));
-        }
+        if (!repository.getPeople().contains(repository.findElementByName(author,repository.getPeople(),"person")))
+            throw new NoSuchElementFoundException(AUTHOR_NOT_FOUND);
 
         Comment comment = repository.createComment(author, content);
         task.addComment(comment);

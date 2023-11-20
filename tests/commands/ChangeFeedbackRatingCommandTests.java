@@ -22,14 +22,14 @@ public class ChangeFeedbackRatingCommandTests {
     public void setUp() {
         repository = new RepositoryImpl();
         changeFeedbackRatingCommand = new ChangeFeedbackRatingCommand(repository);
-        Feedback feedback = repository.createFeedback("FeedbackTest", "DescriptionTest");
+        Feedback feedback = repository.createFeedback("FeedbackTest", "DescriptionTest",2);
     }
 
     @Test
     public void execute_Should_ChangeFeedbackRating_When_ValidParameters() {
         // Arrange
         int feedbackId = 1;
-        int newRating = 11;
+        int newRating = 9;
 
         Feedback feedback = (Feedback) repository.findTaskById(feedbackId);
 

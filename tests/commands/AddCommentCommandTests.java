@@ -19,6 +19,7 @@ public class AddCommentCommandTests {
     public static final String VALID_DESCRIPTION = TestUtilities.getString(11);
     public static final String VALID_CONTENT = TestUtilities.getString(6);
     public static final String VALID_AUTHOR = TestUtilities.getString(6);
+    public static final int VALID_RATING = 2;
     private Repository repository;
     private Command command;
 
@@ -30,7 +31,8 @@ public class AddCommentCommandTests {
 
     @Test
     public void execute_Should_AddCommentToTask_When_ValidParametersProvided() {
-        Feedback feedback = repository.createFeedback(VALID_TITLE, VALID_DESCRIPTION);
+        repository.createPerson(VALID_AUTHOR);
+        Feedback feedback = repository.createFeedback(VALID_TITLE, VALID_DESCRIPTION,VALID_RATING);
         List<String> parameters = List.of(String.valueOf(feedback.getId()), VALID_AUTHOR, VALID_CONTENT);
 
         command.execute(parameters);
@@ -46,7 +48,16 @@ public class AddCommentCommandTests {
 
     @Test
     public void execute_Should_ThrowException_When_NoSuchTaskByIdFound() {
+        repository.createPerson(VALID_AUTHOR);
         List<String> parameters = List.of("1", VALID_AUTHOR, VALID_CONTENT);
+
+
+        assertThrows(NoSuchElementFoundException.class, () -> command.execute(parameters));
+    }
+    @Test
+    public void execute_Should_ThrowException_When_NoSuchAuthor() {
+        Feedback feedback = repository.createFeedback(VALID_TITLE, VALID_DESCRIPTION,VALID_RATING);
+        List<String> parameters = List.of(String.valueOf(feedback.getId()), VALID_AUTHOR, VALID_CONTENT);
 
 
         assertThrows(NoSuchElementFoundException.class, () -> command.execute(parameters));

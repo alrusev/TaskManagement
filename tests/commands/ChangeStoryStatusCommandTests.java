@@ -22,7 +22,6 @@ public class ChangeStoryStatusCommandTests {
     private Repository repository;
     private ChangeStoryStatusCommand changeStoryStatusCommand;
     private Person person;
-    private static final String STORY_STATUS_ERROR_MESSAGE = "The status of a story can be - NOT DONE, IN PROGRESS or DONE!";
     private static final String STORY_STATUS_ALREADY_SET = "The status of story with ID '%d' is already set to %s";
     private static final String STORY_STATUS_SUCCESSFULLY_CHANGED = "Status for story with ID '%d' updated successfully. New status: %s";
 
@@ -84,7 +83,7 @@ public class ChangeStoryStatusCommandTests {
         StoryStatus newStatus = StoryStatus.INPROGRESS;
 
 
-        Feedback feedback = repository.createFeedback("FeedbackTest", "DescriptionTest");
+        Feedback feedback = repository.createFeedback("FeedbackTest", "DescriptionTest",2);
 
         //Act & Assert
         assertThrows(IllegalArgumentException.class, ()->changeStoryStatusCommand.execute(Arrays.asList(String.valueOf(storyId), newStatus.toString())));

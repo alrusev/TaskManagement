@@ -12,10 +12,10 @@ import java.util.List;
 
 public class RepositoryImpl implements Repository {
     public static final String NO_SUCH_ELEMENT_FOUND = "No Such %s Found ";
-    private List<Team> teams = new ArrayList<>();
-    private List<Board> boards = new ArrayList<>();
-    private List<Person> people = new ArrayList<>();
-    private List<Task> tasks = new ArrayList<>();
+    private final List<Team> teams = new ArrayList<>();
+    private final List<Board> boards = new ArrayList<>();
+    private final List<Person> people = new ArrayList<>();
+    private final List<Task> tasks = new ArrayList<>();
     private static int nextId;
 
     public RepositoryImpl() {
@@ -61,8 +61,8 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public Feedback createFeedback(String title, String description) {
-        Feedback feedback = new FeedbackImpl(nextId,title,description);
+    public Feedback createFeedback(String title, String description, int rating) {
+        Feedback feedback = new FeedbackImpl(nextId,title,description,rating);
         nextId++;
         tasks.add(feedback);
         return feedback;

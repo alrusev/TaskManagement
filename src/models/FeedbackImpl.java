@@ -2,13 +2,17 @@ package models;
 
 import models.contracts.Feedback;
 import models.enums.FeedbackStatus;
-import models.enums.StoryStatus;
+import utils.ValidationHelpers;
 
 public class FeedbackImpl extends TaskImpl implements Feedback {
+    private static final int RATING_MIN_VALUE = 1;
+    private static final int RATING_MAX_VALUE = 10;
+    private static final String RATING_ERROR_MESSAGE = String.format("Rating Should be between %d and %d",RATING_MAX_VALUE,RATING_MAX_VALUE);
+    public static final String RATING_UPDATE_ERROR = "Rating is already set at %s";
     private int rating;
     private FeedbackStatus feedbackStatus;
 
-    public FeedbackImpl(int id, String title, String description) {
+    public FeedbackImpl(int id, String title, String description , int rating) {
         super(id, title, description);
         setRating(rating);
         feedbackStatus = FeedbackStatus.NEW;
@@ -20,6 +24,7 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     }
 
     private void setRating(int rating) {
+        ValidationHelpers.validateIntRange(rating,RATING_MIN_VALUE,RATING_MAX_VALUE,RATING_ERROR_MESSAGE);
         this.rating = rating;
     }
 
@@ -28,6 +33,9 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
         if (this.rating != newRating) {
             addToHistory(new HistoryEntryImpl(String.format("Rating updated from %s to %s.", this.rating, newRating)));
             setRating(newRating);
+        }
+        else{
+            throw new IllegalArgumentException(String.format(RATING_UPDATE_ERROR,newRating));
         }
     }
 

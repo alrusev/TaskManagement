@@ -1,5 +1,6 @@
 package models;
 
+import core.contracts.Repository;
 import models.contracts.Comment;
 import utils.ValidationHelpers;
 
@@ -8,7 +9,7 @@ public class CommentImpl implements Comment {
     private static final int AUTHOR_MAX_LENGTH = 15;
     private static final String AUTHOR_ERROR_MESSAGE =
             String.format("Author must be between %d and %d symbols", AUTHOR_MIN_LENGTH, AUTHOR_MAX_LENGTH);
-    private static final int CONTENT_MIN_LENGTH = 2;
+    private static final int CONTENT_MIN_LENGTH = 5;
     private static final int CONTENT_MAX_LENGTH = 50;
     private static final String CONTENT_ERROR_MESSAGE =
             String.format("Content must be between %d and %d symbols", CONTENT_MIN_LENGTH, CONTENT_MAX_LENGTH);
@@ -16,11 +17,13 @@ public class CommentImpl implements Comment {
 
     private String author;
     private String content;
+    Repository repository;
 
     public CommentImpl(String author, String content) {
         setAuthor(author);
         setContent(content);
     }
+
 
     @Override
     public String getAuthor() {

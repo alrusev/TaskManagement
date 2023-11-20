@@ -9,7 +9,6 @@ import models.contracts.Board;
 import models.contracts.Feedback;
 import models.contracts.Team;
 import models.enums.FeedbackStatus;
-import models.enums.StoryStatus;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,12 +19,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CreateFeedbackInBoardCommandTests {
-    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 3;
+    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 4;
     public static final String INVALID_TITLE = TestUtilities.getString(9);
     public static final String VALID_TITLE = TestUtilities.getString(11);
     public static final String INVALID_DESCRIPTION = TestUtilities.getString(9);
     public static final String VALID_DESCRIPTION = TestUtilities.getString(11);
     public static final FeedbackStatus INITIAL_STATUS = FeedbackStatus.NEW;
+    public static final int VALID_RATING = 2;
     public static final String VALID_BOARD_NAME = TestUtilities.getString(6);
     public static final String VALID_TEAM_NAME = TestUtilities.getString(6);
 
@@ -64,21 +64,21 @@ public class CreateFeedbackInBoardCommandTests {
 
     @Test
     public void Status_should_BeInitialStatus_When_Created() {
-        Feedback feedback = repository.createFeedback(VALID_TITLE, VALID_DESCRIPTION);
+        Feedback feedback = repository.createFeedback(VALID_TITLE, VALID_DESCRIPTION,VALID_RATING);
 
         Assertions.assertEquals(INITIAL_STATUS,feedback.getFeedbackStatus());
     }
 
     @Test
     public void should_ThrowException_When_BoardDoesNotExist() {
-        List<String> parameters = List.of(VALID_TITLE, VALID_DESCRIPTION, "Invalid board name");
+        List<String> parameters = List.of(VALID_TITLE, VALID_DESCRIPTION,String.valueOf(2), "Invalid board name");
 
         assertThrows(NoSuchElementFoundException.class, () -> command.execute(parameters));
     }
 
     @Test
     public void should_AddToBoard_When_ArgumentAreValid() {
-        List<String> parameters = List.of(VALID_TITLE, VALID_DESCRIPTION, VALID_BOARD_NAME);
+        List<String> parameters = List.of(VALID_TITLE, VALID_DESCRIPTION,String.valueOf(2), VALID_BOARD_NAME);
         command.execute(parameters);
 
         assertEquals(1, board.getTasks().size());

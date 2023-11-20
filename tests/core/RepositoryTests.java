@@ -28,6 +28,7 @@ public class RepositoryTests {
     public static final Priority VALID_BUG_PRIORITY = Priority.LOW;
     public static final Size VALID_STORY_SIZE = Size.SMALL;
     public static final Priority VALID_STORY_PRIORITY = Priority.LOW;
+    public static final int VALID_RATING = 2;
 
 
     Repository repository;
@@ -124,7 +125,7 @@ public class RepositoryTests {
 
     @Test
     public void createFeedback_Should_ReturnFeedback_WhenArgumentsValid() {
-        Feedback feedback = repository.createFeedback(VALID_TASK_TITLE, VALID_TASK_DESCRIPTION);
+        Feedback feedback = repository.createFeedback(VALID_TASK_TITLE, VALID_TASK_DESCRIPTION,VALID_RATING);
         Assertions.assertAll(
                 () -> Assertions.assertEquals(feedback.getTitle(), VALID_TASK_TITLE),
                 () -> Assertions.assertEquals(feedback.getDescription(), VALID_TASK_DESCRIPTION),

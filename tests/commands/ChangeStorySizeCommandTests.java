@@ -8,7 +8,6 @@ import models.contracts.Person;
 import models.contracts.Story;
 import models.enums.Priority;
 import models.enums.Size;
-import models.enums.StoryStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -82,7 +81,7 @@ public class ChangeStorySizeCommandTests {
         int storyId = 2;
         Size newSize = Size.SMALL;
 
-        Feedback feedback = repository.createFeedback("FeedbackTest", "DescriptionTest");
+        Feedback feedback = repository.createFeedback("FeedbackTest", "DescriptionTest",2);
 
         // Act
         String result = changeStorySizeCommand.execute(Arrays.asList(String.valueOf(storyId), newSize.toString()));

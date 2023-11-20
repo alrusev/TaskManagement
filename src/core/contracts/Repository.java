@@ -4,7 +4,6 @@ import models.contracts.*;
 import models.enums.Priority;
 import models.enums.Severity;
 import models.enums.Size;
-import models.enums.StoryStatus;
 
 import java.util.List;
 
@@ -21,7 +20,7 @@ public interface Repository {
 
     Story createStory(String title, String description, Priority priority, Size size, Person assignee);
 
-    Feedback createFeedback(String title, String description);
+    Feedback createFeedback(String title, String description, int rating);
 
     Comment createComment(String author, String content);
 

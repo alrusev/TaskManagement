@@ -30,7 +30,7 @@ public class ShowBoardActivityCommandTests {
         Team team = repository.createTeam(teamName);
         String boardName = "BoardTest";
         repository.createBoard(boardName, team);
-        createFeedbackInBoardCommand.execute(List.of("TitleBoardTest", "DescriptionTest", boardName));
+        createFeedbackInBoardCommand.execute(List.of("TitleBoardTest", "DescriptionTest","2", boardName));
 
         //Act
         String result = showBoardActivityCommand.execute(List.of(boardName));

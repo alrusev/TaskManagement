@@ -23,13 +23,11 @@ public class ChangeFeedbackStatusCommandTests {
     private ChangeFeedbackStatusCommand changeFeedbackStatusCommand;
     private static final String FEEDBACK_STATUS_SUCCESSFULLY_CHANGED = "Status for feedback with ID '%d' " +
             "updated successfully. New status: %s";
-    private static final String FEEDBACK_STATUS_ALREADY_SET = "The status of a feedback with id '%d' is " +
-            "already set to %s";
     @BeforeEach
     public void setUp() {
         repository = new RepositoryImpl();
         changeFeedbackStatusCommand = new ChangeFeedbackStatusCommand(repository);
-        Feedback feedback = repository.createFeedback("FeedbackTest", "DescriptionTest");
+        Feedback feedback = repository.createFeedback("FeedbackTest", "DescriptionTest",2);
     }
 
     @Test

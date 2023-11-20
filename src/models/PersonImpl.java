@@ -1,5 +1,6 @@
 package models;
 
+import exceptions.NoSuchElementFoundException;
 import models.contracts.Person;
 import models.contracts.Task;
 import utils.ValidationHelpers;
@@ -10,9 +11,10 @@ public class PersonImpl implements Person {
     private static final String NAME_ERROR_MESSAGE = "Name must be between 5 and 15 characters long.";
     private static final int NAME_MIN_LENGTH = 5;
     private static final int NAME_MAX_LENGTH = 15;
+    public static final String NO_SUCH_TASK = "No such task found";
     private String name;
-    private List<Task> tasks;
-    private List<String> activityHistory;
+    private final List<Task> tasks;
+    private final List<String> activityHistory;
 
     public PersonImpl(String name) {
         setName(name);
@@ -37,9 +39,17 @@ public class PersonImpl implements Person {
 
     @Override
     public void addTask(Task task) {
-        if(task != null) {
             tasks.add(task);
             addToActivityHistory("Added task: " + task.getTitle());
+    }
+    @Override
+    public void removeTask(Task task) {
+        if(getTasks().contains(task)) {
+            tasks.remove(task);
+            addToActivityHistory("Added task: " + task.getTitle());
+        }
+        else {
+            throw new NoSuchElementFoundException(NO_SUCH_TASK);
         }
     }
 

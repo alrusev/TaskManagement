@@ -15,6 +15,7 @@ public class BoardImplTests {
     public static final String VALID_NAME = TestUtilities.getString(6);
     public static final String VALID_TITLE = TestUtilities.getString(11);
     public static final String VALID_DESCRIPTION = TestUtilities.getString(11);
+    public static final int VALID_RATING = 2;
     Board board;
     Repository repository;
     @BeforeEach
@@ -54,20 +55,20 @@ public class BoardImplTests {
 
     @org.junit.jupiter.api.Test
     public  void removeTaskFromBoard_Should_ThrowException_When_TaskDoesNotExist(){
-        Feedback feedback = repository.createFeedback(VALID_TITLE,VALID_DESCRIPTION);
+        Feedback feedback = repository.createFeedback(VALID_TITLE,VALID_DESCRIPTION,VALID_RATING);
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> board.removeTaskFromBoard(feedback));
     }
     @org.junit.jupiter.api.Test
     public  void removeTaskFromTasks_Should_RemoveTasks_When_TaskExist(){
-        Feedback feedback = repository.createFeedback(VALID_TITLE,VALID_DESCRIPTION);
+        Feedback feedback = repository.createFeedback(VALID_TITLE,VALID_DESCRIPTION,VALID_RATING);
         board.addTaskToBoard(feedback);
         board.removeTaskFromBoard(feedback);
         Assertions.assertEquals(0, board.getTasks().size());
     }
     @org.junit.jupiter.api.Test
     public void addTaskToBoard_Should_AddTaskToBoard(){
-        Feedback feedback = repository.createFeedback(VALID_TITLE,VALID_DESCRIPTION);
+        Feedback feedback = repository.createFeedback(VALID_TITLE,VALID_DESCRIPTION,VALID_RATING);
         board.addTaskToBoard(feedback);
         Assertions.assertEquals(1, board.getTasks().size());
     }

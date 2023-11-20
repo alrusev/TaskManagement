@@ -27,14 +27,15 @@ public class ShowPersonActivityCommand implements Command {
 
         Person person = repository.findElementByName(personName, repository.getPeople(), "Person");
 
-        List<String> result = new ArrayList<>();
+        StringBuilder result = new StringBuilder();
+
+        result.append(String.format("Activity for %s:\n", person.getName()));
 
         int nextId = 1;
         for (String history:person.getActivityHistory()) {
-            result.add(nextId + ". " + history);
-            nextId++;
+            result.append(nextId++).append(". ").append(history).append(System.lineSeparator());
         }
 
-        return String.format("Person activity for %s - %s", personName, String.join(", ", result).trim());
+        return result.toString().trim();
     }
 }

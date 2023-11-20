@@ -10,38 +10,38 @@ import java.util.List;
 public class ListingHelpers {
 
     public static <T extends Person> String peopleToString(List<T> elements) {
-        List<String> result = new ArrayList<>();
+        StringBuilder result = new StringBuilder();
+        int nextId = 1;
         for (T element : elements) {
-            result.add(element.getName());
+            result.append(nextId++).append(". ").append(element.getName()).append(System.lineSeparator());
         }
-        result.sort(String::compareToIgnoreCase);
-        return String.format("People: " + String.join(", ", result).trim());
+        return "People registered in the system:\n" + String.join(System.lineSeparator(), result).trim();
     }
 
     public static <T extends Team> String teamsToString(List<T> elements) {
-        List<String> result = new ArrayList<>();
+        StringBuilder result = new StringBuilder();
+        int nextId = 1;
         for (T element : elements) {
-            result.add(element.getName());
+            result.append(nextId++).append(". ").append(element.getName()).append(System.lineSeparator());
         }
-        result.sort(String::compareToIgnoreCase);
-        return String.format("Teams: " + String.join(", ", result).trim());
+        return "Teams registered in the system:\n" + String.join(System.lineSeparator(), result).trim();
     }
 
     public static <T extends Person> String teamMembersToString(List<T> elements) {
-        List<String> result = new ArrayList<>();
+        StringBuilder result = new StringBuilder();
+        int nextId = 1;
         for (T element : elements) {
-            result.add(element.getName());
+            result.append(nextId++).append(". ").append(element.getName()).append(System.lineSeparator());
         }
-        result.sort(String::compareToIgnoreCase);
-        return String.join(", ", result).trim();
+        return String.join(System.lineSeparator(), result).trim();
     }
 
     public static <T extends Board> String teamBoardsToString(List<T> elements) {
-        List<String> result = new ArrayList<>();
+        StringBuilder result = new StringBuilder();
+        int nextId = 1;
         for (T element : elements) {
-            result.add(element.getName());
+            result.append(nextId++).append(". ").append(element.getName()).append(System.lineSeparator());
         }
-        result.sort(String::compareToIgnoreCase);
-        return String.join(", ", result).trim();
+        return String.join(System.lineSeparator(), result).trim();
     }
 }

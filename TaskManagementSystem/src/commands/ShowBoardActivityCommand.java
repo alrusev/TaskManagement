@@ -3,6 +3,7 @@ package commands;
 import commands.contracts.Command;
 import core.contracts.Repository;
 import models.contracts.Board;
+import models.contracts.Person;
 import utils.ValidationHelpers;
 
 import java.util.ArrayList;
@@ -26,14 +27,16 @@ public class ShowBoardActivityCommand implements Command {
         String boardName = parameters.get(BOARD_INDEX);
 
         Board board = repository.findElementByName(boardName, repository.getBoards(), "Board");
-        List<String> result = new ArrayList<>();
 
+        StringBuilder result = new StringBuilder();
         int nextId = 1;
+
+        result.append(String.format("Activity for board %s:\n", board.getName()));
+
         for (String history:board.getActivityHistory()) {
-            result.add(nextId + ". " + history);
-            nextId++;
+            result.append(nextId++).append(". ").append(history).append(System.lineSeparator());
         }
 
-        return String.format("Board activity for %s - %s", boardName, String.join(", ", result).trim());
+        return result.toString().trim();
     }
 }

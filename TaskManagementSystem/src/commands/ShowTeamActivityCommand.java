@@ -2,10 +2,10 @@ package commands;
 
 import commands.contracts.Command;
 import core.contracts.Repository;
+import models.contracts.Board;
+import models.contracts.Person;
 import models.contracts.Team;
 import utils.ValidationHelpers;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class ShowTeamActivityCommand implements Command {
@@ -25,14 +25,38 @@ public class ShowTeamActivityCommand implements Command {
 
         Team team = repository.findElementByName(teamName, repository.getTeams(), "Team");
 
-        List<String> result = new ArrayList<>();
+        List<Person> members = team.getMembers();
+        StringBuilder result = new StringBuilder();
 
-        int nextId = 1;
-        for (String history:team.getActivityHistory()) {
-            result.add(nextId + ". " + history);
-            nextId++;
+        result.append("TEAM: ").append(team.getName().toUpperCase()).append(System.lineSeparator());
+        result.append("PEOPLE -->\n");
+        if (members.isEmpty()) {
+            result.append(String.format("There are no people added to team %s\n", team.getName()));
         }
-
-        return String.format("Team activity for %s - %s", teamName, String.join(", ", result).trim());
+        for (Person member : members) {
+            result.append("### ").append(member.getName())
+                    .append(" ###").append(System.lineSeparator())
+                    .append("〜〜〜〜〜〜〜〜〜〜").append(System.lineSeparator());
+            int nextID = 1;
+            for (String element:member.getActivityHistory()) {
+                result.append(nextID++).append(". ").append(element).append(System.lineSeparator());
+            }
+            result.append("〜〜〜〜〜〜〜〜〜〜").append(System.lineSeparator());
+        }
+        result.append("BOARDS --> \n");
+        for (Board board : team.getBoards()) {
+            result.append("### ").append(board.getName())
+                    .append(" ###").append(System.lineSeparator())
+                    .append("〜〜〜〜〜〜〜〜〜〜").append(System.lineSeparator());
+            int nextID = 1;
+            if (board.getActivityHistory().isEmpty()){
+                result.append(String.format("There is no Board activity for %s\n", board.getName()));
+            }
+            for (String element:board.getActivityHistory()) {
+                result.append(nextID++).append(". ").append(element).append(System.lineSeparator());
+            }
+            result.append("〜〜〜〜〜〜〜〜〜〜").append(System.lineSeparator());
+        }
+        return result.toString().trim();
     }
 }

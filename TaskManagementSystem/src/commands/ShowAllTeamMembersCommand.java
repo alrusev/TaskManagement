@@ -29,7 +29,7 @@ public class ShowAllTeamMembersCommand implements Command {
             return String.format("Team %s does not have any members assigned yet.", teamName);
         }
         else {
-            return String.format("Members of %s - " + ListingHelpers.teamMembersToString(people), teamName);
+            return String.format("Members of %s:\n" + ListingHelpers.teamMembersToString(people), teamName);
 
         }
     }

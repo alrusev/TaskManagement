@@ -29,7 +29,7 @@ public class ShowAllTeamBoardsCommand implements Command {
         if (boards.isEmpty()) {
             return String.format("Team %s does not have any boards", teamName);
         } else {
-            return String.format("Boards of %s - " + ListingHelpers.teamBoardsToString(boards), teamName);
+            return String.format("Boards of %s:\n" + ListingHelpers.teamBoardsToString(boards), teamName);
         }
     }
 }

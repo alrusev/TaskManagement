@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="169c9f96-77e4-47d7-bbf2-34743415b6ee" name="Changes" comment="Added Assign and Unassign Tests">
+      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/AssignTaskTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/AssignTaskTests.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2YQAMbnwkK89w22DwqWBuyOBzKr" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  }
+}</component>
+  <component name="RunManager" selected="JUnit.All in TaskManagement">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="TaskManagement" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in TaskManagement" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TaskManagement" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AssignTaskTests.execute_Should_AddAssigneeToTask_When_ArgumentsAreValid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TaskManagement" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="commands.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="commands" />
+      <option name="MAIN_CLASS_NAME" value="commands.AssignTaskTests" />
+      <option name="METHOD_NAME" value="execute_Should_AddAssigneeToTask_When_ArgumentsAreValid" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AssignTaskTests.execute_Should_AddTaskToAssignee_When_ArgumentsAreValid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TaskManagement" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="commands.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="commands" />
+      <option name="MAIN_CLASS_NAME" value="commands.AssignTaskTests" />
+      <option name="METHOD_NAME" value="execute_Should_AddTaskToAssignee_When_ArgumentsAreValid" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UnassignTaskTests.execute_Should_RemoveAssigneeFromTask_When_ArgumentsAreValid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TaskManagement" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="commands.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="commands" />
+      <option name="MAIN_CLASS_NAME" value="commands.UnassignTaskTests" />
+      <option name="METHOD_NAME" value="execute_Should_RemoveAssigneeFromTask_When_ArgumentsAreValid" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.All in TaskManagement" />
+        <item itemvalue="JUnit.AssignTaskTests.execute_Should_AddAssigneeToTask_When_ArgumentsAreValid" />
+        <item itemvalue="JUnit.AssignTaskTests.execute_Should_AddTaskToAssignee_When_ArgumentsAreValid" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.UnassignTaskTests.execute_Should_RemoveAssigneeFromTask_When_ArgumentsAreValid" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="169c9f96-77e4-47d7-bbf2-34743415b6ee" name="Changes" comment="" />
+      <created>1700447383122</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1700447383122</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Added Assign and Unassign Tests">
+      <option name="closed" value="true" />
+      <created>1700473806574</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1700473806574</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added Assign and Unassign Tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Assign and Unassign Tests" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/TaskManagement$All_in_TaskManagement.ic" NAME="All in TaskManagement Coverage Results" MODIFIED="1700473665794" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>

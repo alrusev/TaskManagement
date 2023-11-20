@@ -6,9 +6,7 @@ import core.contracts.Repository;
 import exceptions.NoSuchElementFoundException;
 import models.FeedbackImpl;
 import models.PersonImpl;
-import models.contracts.Feedback;
-import models.contracts.Person;
-import models.contracts.Story;
+import models.contracts.*;
 import models.enums.Priority;
 import models.enums.Size;
 import org.junit.jupiter.api.Assertions;
@@ -58,7 +56,11 @@ public class AssignTaskTests {
     @Test
     public void execute_Should_AddTaskToAssignee_When_ArgumentsAreValid(){
         Person person = repository.createPerson(VALID_NAME);
+        Team team = repository.createTeam("Team_Name");
+        Board board = repository.createBoard("Valid_Board",team);
         Story story = repository.createStory(VALID_TITLE, VALID_DESCRIPTION, Priority.LOW, Size.SMALL,person);
+        board.addTaskToBoard(story);
+        team.addPersonToTeam(person);
         List<String> parameters = List.of(String.valueOf(story.getId()),VALID_NAME);
         command.execute(parameters);
         Assertions.assertEquals(1,person.getTasks().size());
@@ -66,7 +68,11 @@ public class AssignTaskTests {
     @Test
     public void execute_Should_AddAssigneeToTask_When_ArgumentsAreValid(){
         Person person = repository.createPerson(VALID_NAME);
+        Team team = repository.createTeam("Team_Name");
+        Board board = repository.createBoard("Valid_Board",team);
         Story story = repository.createStory(VALID_TITLE, VALID_DESCRIPTION, Priority.LOW, Size.SMALL,person);
+        board.addTaskToBoard(story);
+        team.addPersonToTeam(person);
         List<String> parameters = List.of(String.valueOf(story.getId()),VALID_NAME);
         story.unassign();
         command.execute(parameters);

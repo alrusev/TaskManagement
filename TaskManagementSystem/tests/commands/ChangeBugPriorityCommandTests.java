@@ -61,12 +61,9 @@ public class ChangeBugPriorityCommandTests {
         // Arrange
         int bugId = 1;
         Priority setPriority = Priority.LOW;
-        // Act
-        String result = changeBugPriorityCommand.execute(Arrays.asList(String.valueOf(bugId), setPriority.toString()));
 
-        // Assert
-        String expected = String.format("The priority of bug with ID '%d' is already set to %s!", bugId, setPriority);
-        assertEquals(expected, result);
+        // Act & Assert
+        assertThrows(IllegalArgumentException.class, ()->changeBugPriorityCommand.execute(Arrays.asList(String.valueOf(bugId), setPriority.toString())));
     }
 
     @Test

@@ -3,26 +3,20 @@ package commands;
 import core.RepositoryImpl;
 import core.contracts.Repository;
 import exceptions.NoSuchElementFoundException;
-import models.PersonImpl;
 import models.contracts.Bug;
-import models.contracts.Person;
 import models.contracts.Story;
 import models.enums.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.util.Arrays;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ChangeBugStatusCommandTests {
 
     private Repository repository;
     private ChangeBugStatusCommand changeBugStatusCommand;
-    Person person;
 
     @BeforeEach
     public void setUp() {
@@ -61,16 +55,6 @@ public class ChangeBugStatusCommandTests {
         // Assert
         String expected = String.format("Bug with ID '%d' marked as Done", bugId);
         assertEquals(expected, result);
-    }
-
-    @Test
-    public void execute_Should_ThrowException_When_StatusInvalid() {
-        // Arrange
-        int bugId = 1;
-        StoryStatus newStatus = StoryStatus.NOTDONE;
-
-        // Act & Assert
-        assertThrows(IllegalArgumentException.class, ()-> changeBugStatusCommand.execute(Arrays.asList(String.valueOf(bugId), newStatus.toString())));
     }
 
     @Test

@@ -3,6 +3,9 @@ package core;
 import commands.*;
 import commands.contracts.Command;
 import commands.enums.CommandType;
+import commands.listing.FilterTasksByNameCommand;
+import commands.listing.SortFeedbacksByTitleCommand;
+import commands.listing.SortTasksByNameCommand;
 import core.contracts.CommandFactory;
 import core.contracts.Repository;
 import utils.ParsingHelpers;
@@ -32,6 +35,7 @@ public class CommandFactoryImpl implements CommandFactory {
             case CREATESTORYINBOARD -> new CreateStoryInBoardCommand(repository);
             case CREATEPERSON -> new CreatePersonCommand(repository);
             case CREATETEAM -> new CreateTeamCommand(repository);
+            case FILTERTASKSBYNAME -> new FilterTasksByNameCommand(repository);
             case SHOWALLPEOPLE -> new ShowAllPeopleCommand(repository);
             case SHOWALLTEAMBOARDS -> new ShowAllTeamBoardsCommand(repository);
             case SHOWALLTEAMMEMBERS -> new ShowAllTeamMembersCommand(repository);
@@ -40,7 +44,8 @@ public class CommandFactoryImpl implements CommandFactory {
             case SHOWPERSONACTIVITY -> new ShowPersonActivityCommand(repository);
             case SHOWTEAMACTIVITY -> new ShowTeamActivityCommand(repository);
             case UNASSIGNTASK -> new UnassignTaskCommand(repository);
-            default -> throw new IllegalArgumentException(String.format(INVALID_COMMAND, commandName));
+            case SORTFEEDBACKSBYTITLE -> new SortFeedbacksByTitleCommand(repository);
+            case SORTTASKSBYNAME -> new SortTasksByNameCommand(repository);
         };
     }
 }

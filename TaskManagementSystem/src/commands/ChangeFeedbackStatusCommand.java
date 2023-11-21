@@ -4,7 +4,6 @@ import commands.contracts.Command;
 import core.contracts.Repository;
 import exceptions.InvalidUserInputException;
 import models.contracts.Feedback;
-import models.contracts.Task;
 import models.enums.FeedbackStatus;
 import utils.ParsingHelpers;
 import utils.ValidationHelpers;
@@ -19,7 +18,6 @@ public class ChangeFeedbackStatusCommand implements Command {
             "NEW, UNSCHEDULED, SCHEDULED or DONE!";
     private static final String FEEDBACK_STATUS_ALREADY_SET = "The status of a feedback with id '%d' is " +
             "already set to %s";
-    public static final String MISSING_FEEDBACK_ID = "No such Feedback with ID '%d'";
     private final Repository repository;
     private static final int FEEDBACK_ID_INDEX = 0;
     private static final int NEW_STATUS_INDEX = 1;
@@ -42,31 +40,18 @@ public class ChangeFeedbackStatusCommand implements Command {
                 FeedbackStatus.class, NO_SUCH_STATUS);
 
         //Retrieve the Feedback from the repository
-        Feedback task = repository.findTaskById(feedbackId,repository.getFeedbacks());
-        String result;
+        Feedback feedback = repository.findTaskById(feedbackId, repository.getFeedbacks());
 
-        try {
-            Feedback feedback = (Feedback) task;
-            try {
-                if (!newStatus.equals(FeedbackStatus.NEW) && !newStatus.equals(FeedbackStatus.UNSCHEDULED)
-                        && !newStatus.equals(FeedbackStatus.SCHEDULED) && !newStatus.equals(FeedbackStatus.DONE)) {
-                    throw new IllegalArgumentException();
-                }
-                if (feedback.getFeedbackStatus().equals(newStatus)) {
-                    throw new InvalidUserInputException();
-                }
-                //Update the status
-                result = String.format(FEEDBACK_STATUS_SUCCESSFULLY_CHANGED, feedbackId, newStatus);
-                feedback.setFeedbackStatus(newStatus);
-            } catch (IllegalArgumentException e) {
-                result = FEEDBACK_STATUS_ERROR_MESSAGE;
-            } catch (InvalidUserInputException ie) {
-                result = String.format(FEEDBACK_STATUS_ALREADY_SET, feedbackId, newStatus);
-            }
-        } catch (ClassCastException cce) {
-            result = String.format(MISSING_FEEDBACK_ID, feedbackId);
+        if (!newStatus.equals(FeedbackStatus.NEW) && !newStatus.equals(FeedbackStatus.UNSCHEDULED)
+                && !newStatus.equals(FeedbackStatus.SCHEDULED) && !newStatus.equals(FeedbackStatus.DONE)) {
+            throw new IllegalArgumentException(FEEDBACK_STATUS_ERROR_MESSAGE);
         }
+        if (feedback.getFeedbackStatus().equals(newStatus)) {
+            throw new InvalidUserInputException(String.format(FEEDBACK_STATUS_ALREADY_SET, feedbackId, newStatus));
+        }
+        //Update the status
+        feedback.setFeedbackStatus(newStatus);
 
-        return result;
+        return String.format(FEEDBACK_STATUS_SUCCESSFULLY_CHANGED, feedbackId, newStatus);
     }
 }

@@ -65,12 +65,9 @@ public class ChangeBugSeverityCommandTests {
         // Arrange
         int bugId = 1;
         Severity setSeverity = Severity.CRITICAL;
-        // Act
-        String result = changeBugSeverityCommand.execute(Arrays.asList(String.valueOf(bugId), setSeverity.toString()));
 
-        // Assert
-        String expected = String.format("The severity of bug with ID '%d' is already set to %s!", bugId, setSeverity);
-        assertEquals(expected, result);
+        // Act & Assert
+        assertThrows(IllegalArgumentException.class, ()->changeBugSeverityCommand.execute(Arrays.asList(String.valueOf(bugId), setSeverity.toString())));
     }
 
     @Test

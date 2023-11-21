@@ -93,17 +93,29 @@ public class BugImpl extends TaskImpl implements Bug {
         setAssignee(null);
     }
 
-    public void markAsDone() {
-        if (bugStatus != BugStatus.DONE) {
-            setBugStatus(BugStatus.DONE);
-            addToHistory(new HistoryEntryImpl("Bug marked as done."));
-        }
-    }
+//    public void markAsDone() {
+//        if (bugStatus != BugStatus.DONE) {
+//            setBugStatus(BugStatus.DONE);
+//            addToHistory(new HistoryEntryImpl("Bug marked as done."));
+//        }
+//    }
+//
+//    public void reopenBug() {
+//        if (bugStatus == BugStatus.DONE) {
+//            setBugStatus(BugStatus.ACTIVE);
+//            addToHistory(new HistoryEntryImpl("Bug reopened and marked as active."));
+//        }
+//    }
 
-    public void reopenBug() {
+    @Override
+    public void changeBugStatus() {
         if (bugStatus == BugStatus.DONE) {
             setBugStatus(BugStatus.ACTIVE);
             addToHistory(new HistoryEntryImpl("Bug reopened and marked as active."));
+        }
+        else {
+            setBugStatus(BugStatus.DONE);
+            addToHistory(new HistoryEntryImpl("Bug marked as done."));
         }
     }
 

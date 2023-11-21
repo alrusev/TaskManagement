@@ -2,9 +2,9 @@ package commands;
 
 import core.RepositoryImpl;
 import core.contracts.Repository;
+import exceptions.InvalidUserInputException;
 import exceptions.NoSuchElementFoundException;
 import models.contracts.Feedback;
-import models.contracts.Person;
 import models.contracts.Story;
 import models.enums.FeedbackStatus;
 import models.enums.Priority;
@@ -21,7 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class ChangeFeedbackStatusCommandTests {
 
     private Repository repository;
-    Person person;
     private ChangeFeedbackStatusCommand changeFeedbackStatusCommand;
     private static final String FEEDBACK_STATUS_SUCCESSFULLY_CHANGED = "Status for feedback with ID '%d' " +
             "updated successfully. New status: %s";
@@ -69,10 +68,31 @@ public class ChangeFeedbackStatusCommandTests {
     }
 
     @Test
+    public void execute_Should_ThrowsInvalidUserInputException_When_SameStatus() {
+        // Arrange
+        int feedbackId = 1;
+        FeedbackStatus newStatus = FeedbackStatus.NEW;
+
+        // Act and Assert
+        assertThrows(InvalidUserInputException.class, () ->
+                changeFeedbackStatusCommand.execute(Arrays.asList(String.valueOf(feedbackId), newStatus.toString())));
+    }
+
+    @Test
+    public void execute_Should_ThrowsIllegalArgumentException_When_InvalidStatus() {
+        // Arrange
+        int feedbackId = 1;
+        String newStatus = "InProgress";
+
+        // Act and Assert
+        assertThrows(IllegalArgumentException.class, () ->
+                changeFeedbackStatusCommand.execute(Arrays.asList(String.valueOf(feedbackId), newStatus)));
+    }
+    @Test
     public void execute_Should_ShowCastClassException_When_FeedbackIsNonexistent() {
         // Arrange
         int storyId = 2;
-        FeedbackStatus newStatus = FeedbackStatus.UNSCHEDULED;
+        FeedbackStatus newStatus = FeedbackStatus.NEW;
 
 
         Story story = repository.createStory("TitleTests", "DescriptionDesk", Priority.LOW, Size.MEDIUM);

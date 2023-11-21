@@ -89,7 +89,7 @@ public class BugImplTests {
     @Test
     public void markAsDone_Should_MarkBugAsDone_When_MarkedDone() {
         // Act
-        bug.markAsDone();
+        bug.changeBugStatus();
 
         // Assert
         assertEquals(BugStatus.DONE, bug.getBugStatus());
@@ -102,11 +102,11 @@ public class BugImplTests {
         bug.setBugStatus(BugStatus.DONE);
 
         // Act
-        bug.markAsDone();
+        bug.changeBugStatus();
 
         // Assert
-        assertEquals(BugStatus.DONE, bug.getBugStatus());
-        assertEquals(0, bug.getHistory().size());
+        assertEquals(BugStatus.ACTIVE, bug.getBugStatus());
+        assertEquals(1, bug.getHistory().size());
     }
 
     @Test
@@ -115,7 +115,7 @@ public class BugImplTests {
         bug.setBugStatus(BugStatus.DONE);
 
         // Act
-        bug.reopenBug();
+        bug.changeBugStatus();
 
         // Assert
         assertEquals(BugStatus.ACTIVE, bug.getBugStatus());
@@ -125,11 +125,11 @@ public class BugImplTests {
     @Test
     public void reopenBug_Should_NotReopenAndMarkAsActive_whenReopenedAlready() {
         // Act
-        bug.reopenBug();
+        bug.changeBugStatus();
 
         // Assert
-        assertEquals(BugStatus.ACTIVE, bug.getBugStatus());
-        assertEquals(0, bug.getHistory().size());
+        assertEquals(BugStatus.DONE, bug.getBugStatus());
+        assertEquals(1, bug.getHistory().size());
     }
 
     @Test

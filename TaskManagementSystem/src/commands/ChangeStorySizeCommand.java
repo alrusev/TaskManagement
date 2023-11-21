@@ -3,18 +3,15 @@ package commands;
 import commands.contracts.Command;
 import core.contracts.Repository;
 import models.contracts.Story;
-import models.contracts.Task;
 import models.enums.Size;
 import utils.ParsingHelpers;
 import utils.ValidationHelpers;
-
 import java.util.List;
 
 public class ChangeStorySizeCommand implements Command {
     private static final String STORY_SIZE_ALREADY_DEFINED = "The size for story with ID '%d' is already set to %s!";
     private static final String STORY_SIZE_SUCCESSFULLY_CHANGED = "Size for story with ID" +
             " '%d' updated successfully. New size: %s";
-    private static final String MISSING_STORY_ID = "No such story with ID '%d'!";
     private final Repository repository;
     private static final int STORY_ID_INDEX = 0;
     private static final int NEW_SIZE_INDEX = 1;
@@ -36,25 +33,14 @@ public class ChangeStorySizeCommand implements Command {
         Size newSize = ParsingHelpers.tryParseEnum(parameters.get(NEW_SIZE_INDEX), Size.class, NO_SUCH_SIZE);
 
         //Retrieve the Story from the repository
-        Story story1 = repository.findTaskById(storyId,repository.getStories());
-        String result;
-        try {
-            Story story = (Story) story1;
+        Story story = repository.findTaskById(storyId, repository.getStories());
 
-            try {
-                if (story.getSize().equals(newSize)) {
-                    throw new IllegalArgumentException();
-                }
-                //Update the priority
-                story.updateSize(newSize);
-                result = String.format(STORY_SIZE_SUCCESSFULLY_CHANGED, storyId, newSize);
-            } catch (IllegalArgumentException e) {
-                result = String.format(STORY_SIZE_ALREADY_DEFINED, storyId, newSize);
-            }
-        } catch (ClassCastException cce) {
-            result = String.format(MISSING_STORY_ID, storyId);
+        if (story.getSize().equals(newSize)) {
+            throw new IllegalArgumentException(String.format(STORY_SIZE_ALREADY_DEFINED, storyId, newSize));
         }
+        //Update the priority
+        story.updateSize(newSize);
 
-        return result;
+        return String.format(STORY_SIZE_SUCCESSFULLY_CHANGED, storyId, newSize);
     }
 }

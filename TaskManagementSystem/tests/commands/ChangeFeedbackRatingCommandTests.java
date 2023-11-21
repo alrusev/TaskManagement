@@ -15,6 +15,8 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 public class ChangeFeedbackRatingCommandTests {
     private Repository repository;
     private ChangeFeedbackRatingCommand changeFeedbackRatingCommand;
@@ -56,11 +58,9 @@ public class ChangeFeedbackRatingCommandTests {
 
         // Act
         String defineFeedback = changeFeedbackRatingCommand.execute(Arrays.asList(String.valueOf(feedbackId), String.valueOf(newRating)));
-        String result = changeFeedbackRatingCommand.execute(Arrays.asList(String.valueOf(feedbackId), String.valueOf(newRating)));
 
         // Assert
-        String expected = String.format("The rating is already set to %d!", newRating);
-        assertEquals(expected, result);
+        assertThrows(IllegalArgumentException.class, ()->changeFeedbackRatingCommand.execute(Arrays.asList(String.valueOf(feedbackId), String.valueOf(newRating))));
     }
 
     @Test

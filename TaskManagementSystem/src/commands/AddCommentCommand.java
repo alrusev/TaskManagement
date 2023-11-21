@@ -33,7 +33,6 @@ public class AddCommentCommand implements Command {
         Task task = repository.findTaskById(taskId,repository.getTasks());
         if (!repository.getPeople().contains(repository.findElementByName(author,repository.getPeople(),"person")))
             throw new NoSuchElementFoundException(AUTHOR_NOT_FOUND);
-
         Comment comment = repository.createComment(author, content);
         task.addComment(comment);
 

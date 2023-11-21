@@ -3,18 +3,14 @@ package commands;
 import core.RepositoryImpl;
 import core.contracts.Repository;
 import exceptions.NoSuchElementFoundException;
-import models.StoryImpl;
 import models.contracts.Feedback;
-import models.contracts.Person;
 import models.contracts.Story;
 import models.enums.Priority;
 import models.enums.Size;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -22,7 +18,6 @@ public class ChangeStorySizeCommandTests {
 
     private Repository repository;
     private ChangeStorySizeCommand changeStorySizeCommand;
-    private Person person;
 
     @BeforeEach
     public void setUp() {
@@ -54,14 +49,8 @@ public class ChangeStorySizeCommandTests {
         int storyId = 1;
         Size newSize = Size.SMALL;
 
-        Story story = repository.findTaskById(storyId,repository.getStories());
-
-        // Act
-        String result = changeStorySizeCommand.execute(Arrays.asList(String.valueOf(storyId), newSize.toString()));
-
-        // Assert
-        String expected = String.format("The size for story with ID '%d' is already set to %s!", storyId, newSize);
-        assertEquals(expected, result);
+        // Act & Assert
+        assertThrows(IllegalArgumentException.class,()->changeStorySizeCommand.execute(Arrays.asList(String.valueOf(storyId), newSize.toString())));
     }
 
     @Test

@@ -3,11 +3,9 @@ package commands;
 import commands.contracts.Command;
 import core.contracts.Repository;
 import models.contracts.Story;
-import models.contracts.Task;
 import models.enums.Priority;
 import utils.ParsingHelpers;
 import utils.ValidationHelpers;
-
 import java.util.List;
 
 public class ChangeStoryPriorityCommand implements Command {
@@ -15,7 +13,6 @@ public class ChangeStoryPriorityCommand implements Command {
     private static final String STORY_PRIORITY_ALREADY_SET = "The priority of story with ID '%d' is already set to %s!";
     private static final String STORY_PRIORITY_SUCCESSFULLY_CHANGED = "Priority for story with ID '%d' " +
             "updated successfully. New priority: %s";
-    private static final String MISSING_STORY_ID = "No such story with ID '%d'!";
     private final Repository repository;
     private static final int STORY_ID_INDEX = 0;
     private static final int NEW_PRIORITY_INDEX = 1;
@@ -38,24 +35,14 @@ public class ChangeStoryPriorityCommand implements Command {
                 NO_SUCH_PRIORITY);
 
         //Retrieve the Story from the repository
-        Story task = repository.findTaskById(storyId,repository.getStories());
-        String result;
-        try {
-            Story story = (Story) task;
+        Story story = repository.findTaskById(storyId, repository.getStories());
 
-            try {
-                if (story.getPriority().equals(newPriority)) {
-                    throw new IllegalArgumentException();
-                }
-                //Update the priority
-                story.updatePriority(newPriority);
-                result = String.format(STORY_PRIORITY_SUCCESSFULLY_CHANGED, storyId, newPriority);
-            } catch (IllegalArgumentException e) {
-                result = String.format(STORY_PRIORITY_ALREADY_SET, storyId, newPriority);
-            }
-        } catch (ClassCastException cce) {
-            result = String.format(MISSING_STORY_ID, storyId);
+        if (story.getPriority().equals(newPriority)) {
+            throw new IllegalArgumentException(String.format(STORY_PRIORITY_ALREADY_SET, storyId, newPriority));
         }
-        return result;
+        //Update the priority
+        story.updatePriority(newPriority);
+
+        return String.format(STORY_PRIORITY_SUCCESSFULLY_CHANGED, storyId, newPriority);
     }
 }

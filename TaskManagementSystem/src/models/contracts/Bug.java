@@ -14,8 +14,9 @@ public interface Bug extends Task {
     void updatePriority(Priority newPriority);
     void assignTo(Person person);
     void unassign();
-    void markAsDone();
-    void reopenBug();
+//    void markAsDone();
+//    void reopenBug();
+    void changeBugStatus();
     BugStatus getBugStatus();
     Person getAssignee();
 

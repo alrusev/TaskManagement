@@ -2,9 +2,8 @@ package commands;
 
 import core.RepositoryImpl;
 import core.contracts.Repository;
-import exceptions.NoSuchElementFoundException;
+import exceptions.InvalidUserInputException;
 import models.contracts.Feedback;
-import models.contracts.Person;
 import models.contracts.Story;
 import models.enums.BugStatus;
 import models.enums.Priority;
@@ -12,9 +11,7 @@ import models.enums.Size;
 import models.enums.StoryStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -22,8 +19,6 @@ public class ChangeStoryStatusCommandTests {
 
     private Repository repository;
     private ChangeStoryStatusCommand changeStoryStatusCommand;
-    private Person person;
-    private static final String STORY_STATUS_ALREADY_SET = "The status of story with ID '%d' is already set to %s";
     private static final String STORY_STATUS_SUCCESSFULLY_CHANGED = "Status for story with ID '%d' updated successfully. New status: %s";
 
 
@@ -49,14 +44,14 @@ public class ChangeStoryStatusCommandTests {
     }
 
     @Test
-    public void execute_Should_ThrowException_When_StatusInvalid() {
+    public void execute_Should_ThrowsIllegalArgumentException_When_InvalidStatus() {
         // Arrange
-        int storyId = 1;
-        BugStatus newStatus = BugStatus.ACTIVE;
+        int feedbackId = 1;
+        String newStatus = "Active";
 
-        //Act & Assert
-        assertThrows(IllegalArgumentException.class, ()->changeStoryStatusCommand
-                .execute(Arrays.asList(String.valueOf(storyId), newStatus.toString())));
+        // Act and Assert
+        assertThrows(IllegalArgumentException.class, () ->
+                changeStoryStatusCommand.execute(Arrays.asList(String.valueOf(feedbackId), newStatus)));
     }
 
     @Test
@@ -67,13 +62,9 @@ public class ChangeStoryStatusCommandTests {
 
         //Act
         String setNewStatus = changeStoryStatusCommand.execute(Arrays.asList(String.valueOf(feedbackId), newStatus.toString()));
-        String result = changeStoryStatusCommand.execute(Arrays.asList(String.valueOf(feedbackId), newStatus.toString()));
-
-        String expected = String.format(STORY_STATUS_ALREADY_SET, feedbackId, newStatus);
-
 
         // Assert
-        assertEquals(expected, result);
+        assertThrows(InvalidUserInputException.class, ()->changeStoryStatusCommand.execute(Arrays.asList(String.valueOf(feedbackId), newStatus.toString())));
     }
 
     @Test

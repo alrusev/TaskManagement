@@ -16,7 +16,7 @@ public class SortStoriesByTitleCommand implements Command {
     @Override
     public String execute(List<String> parameters) {
         List<Story> sortStories = stories.stream()
-                .sorted(Comparator.comparing(Story::getTitle))
+                .sorted(Comparator.comparing(task -> task.getTitle().toLowerCase()))
                 .toList();
 
         sortStories.forEach(story -> {

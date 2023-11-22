@@ -16,7 +16,7 @@ public class SortBugsByTitleCommand implements Command {
     @Override
     public String execute(List<String> parameters) {
         List<Bug> sortBugs = bugs.stream()
-                .sorted(Comparator.comparing(Bug::getTitle))
+                .sorted(Comparator.comparing(task -> task.getTitle().toLowerCase()))
                 .toList();
 
         sortBugs.forEach(bug -> {

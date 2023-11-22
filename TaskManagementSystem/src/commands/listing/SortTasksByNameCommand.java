@@ -3,6 +3,8 @@ package commands.listing;
 import commands.contracts.Command;
 import core.contracts.Repository;
 import models.contracts.Task;
+
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class SortTasksByNameCommand implements Command {
     @Override
     public String execute(List<String> parameters) {
         List<Task> sortedTasks = tasks.stream()
-                .sorted(Comparator.comparing(Task::getTitle))
+                .sorted(Comparator.comparing(task -> task.getTitle().toLowerCase()))
                 .toList();
 
         sortedTasks.forEach(task -> {

@@ -17,7 +17,7 @@ public class SortFeedbacksByTitleCommand implements Command {
     @Override
     public String execute(List<String> parameters) {
         List<Feedback> sortFeedbacks = feedbacks.stream()
-                .sorted(Comparator.comparing(Feedback::getTitle))
+                .sorted(Comparator.comparing(task -> task.getTitle().toLowerCase()))
                 .toList();
 
         sortFeedbacks.forEach(feedback -> {

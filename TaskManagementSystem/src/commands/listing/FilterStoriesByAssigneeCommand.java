@@ -2,7 +2,6 @@ package commands.listing;
 
 import commands.contracts.Command;
 import core.contracts.Repository;
-import models.contracts.Bug;
 import models.contracts.Story;
 import utils.ValidationHelpers;
 

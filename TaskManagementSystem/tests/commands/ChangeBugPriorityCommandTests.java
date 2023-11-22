@@ -3,9 +3,7 @@ package commands;
 import core.RepositoryImpl;
 import core.contracts.Repository;
 import exceptions.NoSuchElementFoundException;
-import models.PersonImpl;
 import models.contracts.Bug;
-import models.contracts.Person;
 import models.contracts.Story;
 import models.enums.*;
 import org.junit.jupiter.api.Assertions;
@@ -21,14 +19,12 @@ public class ChangeBugPriorityCommandTests {
 
     private Repository repository;
     private ChangeBugPriorityCommand changeBugPriorityCommand;
-    private Person person;
 
     @BeforeEach
     public void setUp() {
         repository = new RepositoryImpl();
         changeBugPriorityCommand = new ChangeBugPriorityCommand(repository);
         List<String> stepsToReproduce = Arrays.asList("Step 1", "Step 2", "Step 3");
-        Person person = new PersonImpl("TestName");
         Bug bug = repository.createBug("BugTitleTest", "BugDescription", Priority.LOW,
                 Severity.CRITICAL, stepsToReproduce);
     }

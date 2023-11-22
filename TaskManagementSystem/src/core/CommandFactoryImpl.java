@@ -3,9 +3,7 @@ package core;
 import commands.*;
 import commands.contracts.Command;
 import commands.enums.CommandType;
-import commands.listing.FilterTasksByNameCommand;
-import commands.listing.SortFeedbacksByTitleCommand;
-import commands.listing.SortTasksByNameCommand;
+import commands.listing.*;
 import core.contracts.CommandFactory;
 import core.contracts.Repository;
 import utils.ParsingHelpers;
@@ -46,6 +44,13 @@ public class CommandFactoryImpl implements CommandFactory {
             case UNASSIGNTASK -> new UnassignTaskCommand(repository);
             case SORTFEEDBACKSBYTITLE -> new SortFeedbacksByTitleCommand(repository);
             case SORTTASKSBYNAME -> new SortTasksByNameCommand(repository);
+            case SORTSTORIESBYTITLE -> new SortStoriesByTitleCommand(repository);
+            case SORTBUGSBYTITLE -> new SortBugsByTitleCommand(repository);
+            case SORTFEEDBACKSBYRATING -> new SortFeedbacksByRatingCommand(repository);
+            case SORTSTORIESBYSIZE -> new SortStoriesBySizeCommand(repository);
+            case SORTBUGSBYPRIORITY -> new SortBugsByPriorityCommand(repository);
+            case SORTBUGSBYSEVERITY -> new SortBugsBySeverityCommand(repository);
+            case SORTSTORIESBYPRIORITY -> new SortStoriesByPriorityCommand(repository);
         };
     }
 }

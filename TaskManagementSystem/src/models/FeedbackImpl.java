@@ -8,7 +8,7 @@ import utils.ValidationHelpers;
 public class FeedbackImpl extends TaskImpl implements Feedback {
     private static final int RATING_MIN_VALUE = 1;
     private static final int RATING_MAX_VALUE = 10;
-    private static final String RATING_ERROR_MESSAGE = String.format("Rating Should be between %d and %d",RATING_MAX_VALUE,RATING_MAX_VALUE);
+    private static final String RATING_ERROR_MESSAGE = String.format("Rating Should be between %d and %d",RATING_MIN_VALUE,RATING_MAX_VALUE);
     public static final String RATING_UPDATE_ERROR = "Rating is already set at %s";
     private int rating;
     private FeedbackStatus feedbackStatus;

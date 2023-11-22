@@ -3,9 +3,7 @@ package commands;
 import core.RepositoryImpl;
 import core.contracts.Repository;
 import exceptions.NoSuchElementFoundException;
-import models.PersonImpl;
 import models.contracts.Bug;
-import models.contracts.Person;
 import models.contracts.Story;
 import models.enums.Priority;
 import models.enums.Severity;
@@ -23,14 +21,12 @@ public class ChangeBugSeverityCommandTests {
 
     private Repository repository;
     private ChangeBugSeverityCommand changeBugSeverityCommand;
-    private Person person;
 
     @BeforeEach
     public void setUp() {
         repository = new RepositoryImpl();
         changeBugSeverityCommand = new ChangeBugSeverityCommand(repository);
         List<String> stepsToReproduce = Arrays.asList("Step 1", "Step 2", "Step 3");
-        Person person = new PersonImpl("TestName");
         Bug bug = repository.createBug("BugTitleTest", "BugDescription", Priority.LOW,
                 Severity.CRITICAL, stepsToReproduce);
     }
@@ -56,7 +52,7 @@ public class ChangeBugSeverityCommandTests {
 
         // Assert
         assertThrows(IllegalArgumentException.class,
-                () -> changeBugSeverityCommand.execute(Arrays.asList(String.valueOf(bugId), invalidSeverity.toString())));
+                () -> changeBugSeverityCommand.execute(Arrays.asList(String.valueOf(bugId), invalidSeverity)));
 
     }
 

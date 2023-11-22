@@ -4,7 +4,6 @@ import core.RepositoryImpl;
 import core.contracts.Repository;
 import exceptions.NoSuchElementFoundException;
 import models.contracts.Feedback;
-import models.contracts.Person;
 import models.contracts.Story;
 import models.enums.Priority;
 import models.enums.Size;
@@ -20,7 +19,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class ChangeFeedbackRatingCommandTests {
     private Repository repository;
     private ChangeFeedbackRatingCommand changeFeedbackRatingCommand;
-    Person person;
 
     @BeforeEach
     public void setUp() {
@@ -35,7 +33,7 @@ public class ChangeFeedbackRatingCommandTests {
         int feedbackId = 1;
         int newRating = 9;
 
-        Feedback feedback = (Feedback) repository.findTaskById(feedbackId,repository.getFeedbacks());
+        Feedback feedback = repository.findTaskById(feedbackId,repository.getFeedbacks());
 
         // Act
         String result = changeFeedbackRatingCommand.execute(Arrays.asList(String.valueOf(feedbackId),

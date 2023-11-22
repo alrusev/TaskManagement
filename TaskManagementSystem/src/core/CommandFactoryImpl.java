@@ -33,7 +33,12 @@ public class CommandFactoryImpl implements CommandFactory {
             case CREATESTORYINBOARD -> new CreateStoryInBoardCommand(repository);
             case CREATEPERSON -> new CreatePersonCommand(repository);
             case CREATETEAM -> new CreateTeamCommand(repository);
+            case FILTERBUGSBYASSIGNEE -> new FilterBugsByAssigneeCommand(repository);
+            case FILTERBUGSBYSTATUS -> new FilterBugsByStatusCommand(repository);
+            case FILTERFEEDBACKSBYSTATUS -> new FilterFeedbacksByStatus(repository);
             case FILTERTASKSBYNAME -> new FilterTasksByNameCommand(repository);
+            case FILTERSTORIESBYASSIGNEE -> new FilterStoriesByAssigneeCommand(repository);
+            case FILTERSTORIESBYSTATUS -> new FilterStoriesByStatusCommand(repository);
             case SHOWALLPEOPLE -> new ShowAllPeopleCommand(repository);
             case SHOWALLTEAMBOARDS -> new ShowAllTeamBoardsCommand(repository);
             case SHOWALLTEAMMEMBERS -> new ShowAllTeamMembersCommand(repository);

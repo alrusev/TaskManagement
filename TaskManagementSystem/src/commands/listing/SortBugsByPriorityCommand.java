@@ -23,6 +23,7 @@ public class SortBugsByPriorityCommand implements Command {
         sortBugs.forEach(bug -> {
             System.out.printf("%d. Bug: %s%n", nextID++, bug.getTitle());
             System.out.printf("   Priority: %s%n", bug.getPriority());
+            System.out.printf("   Status: %s%n", bug.getBugStatus());
             System.out.printf("   Description: %s%n", bug.getDescription());
             System.out.printf("   Comments: %s%n", bug.getComments());
             System.out.printf("   Severity: %s%n", bug.getSeverity());

@@ -3,8 +3,6 @@ package commands.listing;
 import commands.contracts.Command;
 import core.contracts.Repository;
 import models.contracts.Task;
-
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 

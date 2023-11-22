@@ -4,6 +4,8 @@ import commands.contracts.Command;
 import core.contracts.Repository;
 import models.contracts.Task;
 import utils.ValidationHelpers;
+
+import java.util.Comparator;
 import java.util.List;
 
 public class FilterTasksByNameCommand implements Command {
@@ -20,10 +22,11 @@ public class FilterTasksByNameCommand implements Command {
     public String execute(List<String> parameters) {
         ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_ARGUMENTS);
 
-        String filterName = parameters.get(TASK_ID_INDEX);
+        String filterName = parameters.get(TASK_ID_INDEX).toLowerCase();
 
         tasks.stream()
-                .filter(task -> task.getTitle().contains(filterName))
+                .filter(task -> task.getTitle().toLowerCase().contains(filterName))
+                .sorted(Comparator.comparing(task -> task.getTitle().toLowerCase()))
                 .forEach(task -> {
                     System.out.printf("Task: %s%n", task.getTitle());
                     System.out.printf("   Description: %s%n", task.getDescription());

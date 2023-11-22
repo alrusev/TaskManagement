@@ -1,8 +1,6 @@
 package core;
 
 import Utils.TestUtilities;
-import commands.AddPersonToTeamCommand;
-import commands.contracts.Command;
 import core.contracts.Repository;
 import exceptions.NoSuchElementFoundException;
 import models.contracts.*;
@@ -110,7 +108,6 @@ public class RepositoryTests {
 
     @Test
     public void createBug_Should_ReturnBug_WhenArgumentsValid() {
-        Person person = repository.createPerson(VALID_PERSON_NAME);
         Bug bug = repository.createBug(VALID_TASK_TITLE, VALID_TASK_DESCRIPTION, VALID_BUG_PRIORITY, VALID_BUG_SEVERITY, TestUtilities.getList(2));
         Assertions.assertAll(
                 () -> Assertions.assertEquals(bug.getTitle(), VALID_TASK_TITLE),
@@ -125,7 +122,6 @@ public class RepositoryTests {
 
     @Test
     public void createStory_Should_ReturnStory_WhenArgumentsValid() {
-        Person person = repository.createPerson(VALID_PERSON_NAME);
         Story story = repository.createStory(VALID_TASK_TITLE, VALID_TASK_DESCRIPTION, VALID_STORY_PRIORITY, VALID_STORY_SIZE);
         Assertions.assertAll(
                 () -> Assertions.assertEquals(story.getTitle(), VALID_TASK_TITLE),
@@ -185,7 +181,6 @@ public class RepositoryTests {
 
     @Test
     public void findTaskById_Should_ReturnTask_WhenTaskExists() {
-        Person person = repository.createPerson(VALID_PERSON_NAME);
         Bug bug = repository.createBug(VALID_TASK_TITLE, VALID_TASK_DESCRIPTION, VALID_BUG_PRIORITY, VALID_BUG_SEVERITY, TestUtilities.getList(2));
         Bug foundBug = repository.findTaskById(bug.getId(),repository.getBugs());
         Assertions.assertAll(
@@ -197,41 +192,6 @@ public class RepositoryTests {
     @Test
     public void findTaskById_Should_ThrowException_WhenTaskDoesNotExists() {
         assertThrows(NoSuchElementFoundException.class, () -> repository.findTaskById(1,repository.getBugs()));
-    }
-
-    @Test
-    public void isNameUniqueInSystem_Should_ReturnTrue_When_NameIsUnique() {
-        Assertions.assertTrue(repository.isNameUniqueInSystem("Name"));
-    }
-
-    @Test
-    public void isNameUniqueInSystem_Should_ReturnFalse_When_NameIsNotUnique() {
-        repository.createPerson("NameExample");
-        Assertions.assertFalse(repository.isNameUniqueInSystem("NameExample"));
-    }
-
-    @Test
-    public void isNameUniqueInTeam_Should_ReturnTrue_When_NameIsUnique() {
-        Team team = repository.createTeam(VALID_TEAM_NAME);
-        Assertions.assertTrue(repository.isNameUniqueInTeam("Name", team));
-    }
-
-    @Test
-    public void isNameUniqueInTeam_Should_ReturnTrue_When_NameIsUniqueInTeamButNotInSystem() {
-        Team team = repository.createTeam(VALID_TEAM_NAME);
-        repository.createPerson("NameExample");
-        Assertions.assertTrue(repository.isNameUniqueInTeam("NameExample", team));
-
-    }
-
-    @Test
-    public void isNameUniqueInTeam_Should_ReturnFalse_When_NameIsNotUniqueInTeam() {
-        Team team = repository.createTeam(VALID_TEAM_NAME);
-        repository.createPerson("NameExample");
-        Command command = new AddPersonToTeamCommand(repository);
-        List<String> parameters = List.of("NameExample", VALID_TEAM_NAME);
-        command.execute(parameters);
-        Assertions.assertFalse(repository.isNameUniqueInTeam("NameExample", team));
     }
 
 }

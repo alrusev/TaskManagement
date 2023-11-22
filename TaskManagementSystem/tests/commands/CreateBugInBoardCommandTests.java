@@ -9,7 +9,6 @@ import models.contracts.*;
 import models.enums.BugStatus;
 import models.enums.Priority;
 import models.enums.Severity;
-import models.enums.StoryStatus;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,8 +33,6 @@ public class CreateBugInBoardCommandTests {
 
 
     private Command command;
-    private Person person;
-
     private Repository repository;
     private Board board;
 
@@ -45,7 +42,6 @@ public class CreateBugInBoardCommandTests {
         this.command = new CreateBugInBoardCommand(repository);
         Team team = repository.createTeam(VALID_TEAM_NAME);
         this.board = repository.createBoard(VALID_BOARD_NAME,team);
-        person = repository.createPerson(VALID_PERSON_NAME);
     }
     @Test
     public void should_ThrowException_When_ArgumentCountDifferentThanExpected(){

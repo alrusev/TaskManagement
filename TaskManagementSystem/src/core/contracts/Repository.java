@@ -35,7 +35,5 @@ public interface Repository {
 
     <T extends Task> T findTaskById(int id, List<T> list);
     <T extends  Nameable> T findElementByName(String name, List<T> listToLook,String type);
-     boolean isNameUniqueInSystem(String name);
-    boolean isNameUniqueInTeam(String name, Team team);
 }
 

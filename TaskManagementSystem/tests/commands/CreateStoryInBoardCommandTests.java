@@ -33,7 +33,6 @@ public class CreateStoryInBoardCommandTests {
 
 
     private Command command;
-private Person person;
     private Repository repository;
     private Board board;
 
@@ -43,7 +42,6 @@ private Person person;
         this.command = new CreateStoryInBoardCommand(repository);
         Team team = repository.createTeam(VALID_TEAM_NAME);
         this.board = repository.createBoard(VALID_BOARD_NAME,team);
-       person = repository.createPerson(VALID_PERSON_NAME);
     }
     @Test
     public void should_ThrowException_When_ArgumentCountDifferentThanExpected(){

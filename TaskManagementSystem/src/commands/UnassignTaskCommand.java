@@ -2,8 +2,7 @@ package commands;
 
 import commands.contracts.Command;
 import core.contracts.Repository;
-import models.contracts.Feedback;
-import models.contracts.Task;
+import models.contracts.*;
 import utils.ParsingHelpers;
 import utils.ValidationHelpers;
 
@@ -25,22 +24,44 @@ public class UnassignTaskCommand implements Command {
     public String execute(List<String> parameters) {
         ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
 
-        int Id = ParsingHelpers.tryParseInteger(parameters.get(ID_INDEX), "ID");
-        Task task = repository.findTaskById(Id,repository.getTasks());
+        int id = ParsingHelpers.tryParseInteger(parameters.get(ID_INDEX), "ID");
+        Task task = repository.findTaskById(id, repository.getTasks());
         if (isFeedback(task))
-
             throw new IllegalArgumentException(FEEDBACKS_ASSIGNEE_ERROR);
-        if (task.getAssignee() == null)
-            throw new IllegalArgumentException(NO_ASSIGNEE_ERROR);
-
-        task.getAssignee().removeTask(task);
-        task.unAssignTask();
-
-        return String.format(TASK_UNASSIGNED_MESSAGE, Id);
+        if (isBug(task)){
+            Bug bug = (Bug) task;
+            if (bug.getAssignee() == null)
+                throw new IllegalArgumentException(NO_ASSIGNEE_ERROR);
+            bug.getAssignee().removeTask(task);
+            bug.unAssignTask();
+        }
+        if (isStory(task)){
+            Story story = (Story) task;
+            if (story.getAssignee() == null)
+                throw new IllegalArgumentException(NO_ASSIGNEE_ERROR);
+            story.getAssignee().removeTask(task);
+            story.unAssignTask();
+        }
+        return String.format(TASK_UNASSIGNED_MESSAGE, id);
     }
-    private boolean isFeedback(Task task){
+
+    private boolean isFeedback(Task task) {
         for (Feedback feedback : repository.getFeedbacks()) {
-            if (feedback.getId()== task.getId())
+            if (feedback.getId() == task.getId())
+                return true;
+        }
+        return false;
+    }
+    private boolean isBug(Task task) {
+        for (Bug bug : repository.getBugs()) {
+            if (bug.getId() == task.getId())
+                return true;
+        }
+        return false;
+    }
+    private boolean isStory(Task task) {
+        for (Story story : repository.getStories()) {
+            if (story.getId() == task.getId())
                 return true;
         }
         return false;

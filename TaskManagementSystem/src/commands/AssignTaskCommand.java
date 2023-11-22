@@ -10,6 +10,7 @@ import java.util.List;
 
 public class AssignTaskCommand implements Command {
     public static final String NOT_PART_OF_TEAM = "%s is not a part of the team";
+    public static final String FEEDBACK_ASSIGNEE_ERROR = "Feedbacks cannot have assignees";
     private final Repository repository;
     private static final int BUG_ID_INDEX = 0;
     private static final int PERSON_NAME_INDEX = 1;
@@ -24,20 +25,28 @@ public class AssignTaskCommand implements Command {
     public String execute(List<String> parameters) {
         ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
 
-        int Id = ParsingHelpers.tryParseInteger(parameters.get(BUG_ID_INDEX), "Bug ID");
+        int id = ParsingHelpers.tryParseInteger(parameters.get(BUG_ID_INDEX), "Bug ID");
         String personName = parameters.get(PERSON_NAME_INDEX);
-        Task task = repository.findTaskById(Id, repository.getTasks());
+        Task task = repository.findTaskById(id, repository.getTasks());
         if (isFeedback(task))
-            throw new IllegalArgumentException("Feedbacks cannot have assignees");
+            throw new IllegalArgumentException(FEEDBACK_ASSIGNEE_ERROR);
 
         Person person = repository.findElementByName(personName, repository.getPeople(), "Person");
-        Team team = getTeamFromTask(task);
-        if (!isPartOfMembers(person, team))
+        Team team = getTeamOfTask(task);
+        if (!isPartOfMembers(person, team)) {
             throw new IllegalArgumentException(String.format(NOT_PART_OF_TEAM, person.getName()));
+        }
         person.addTask(task);
-        task.assignTask(person);
 
-        return String.format(TASK_ASSIGNED_MESSAGE, Id, personName);
+        if (isBug(task)) {
+            Bug bug = (Bug) task;
+            bug.assignTask(person);
+        }
+        if (isStory(task)){
+            Story story = (Story) task;
+            story.assignTask(person);
+        }
+        return String.format(TASK_ASSIGNED_MESSAGE, id, personName);
     }
 
     private boolean isFeedback(Task task) {
@@ -47,12 +56,26 @@ public class AssignTaskCommand implements Command {
         }
         return false;
     }
+    private boolean isBug(Task task) {
+        for (Bug bug : repository.getBugs()) {
+            if (bug.getId() == task.getId())
+                return true;
+        }
+        return false;
+    }
+    private boolean isStory(Task task) {
+        for (Story story : repository.getStories()) {
+            if (story.getId() == task.getId())
+                return true;
+        }
+        return false;
+    }
 
     private boolean isPartOfMembers(Person person, Team team) {
         return (team.getMembers().contains(person));
     }
 
-    private Team getTeamFromTask(Task task) {
+    private Team getTeamOfTask(Task task) {
         for (Board board : repository.getBoards()) {
             if (board.getTasks().contains(task)) {
                 for (Team team : repository.getTeams()) {
@@ -64,3 +87,6 @@ public class AssignTaskCommand implements Command {
         throw new IllegalArgumentException("No Tasks in the board?");
     }
 }
+
+
+

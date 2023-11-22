@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="169c9f96-77e4-47d7-bbf2-34743415b6ee" name="Changes" comment="All Sort Classes Done" />
+    <list default="true" id="169c9f96-77e4-47d7-bbf2-34743415b6ee" name="Changes" comment="All Sort Classes Done">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/AssignTaskCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/AssignTaskCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/CreateBoardCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/CreateBoardCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/CreatePersonCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/CreatePersonCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/CreateTeamCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/CreateTeamCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/UnassignTaskCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/UnassignTaskCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/core/RepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/core/RepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/core/contracts/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/core/contracts/Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/CreateBugInBoardCommandTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/CreateBugInBoardCommandTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/CreateStoryInBoardCommandTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/tests/commands/CreateStoryInBoardCommandTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/core/RepositoryTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/tests/core/RepositoryTests.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,21 +36,22 @@
   &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="2YQAMbnwkK89w22DwqWBuyOBzKr" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Application.Main">
+}</component>
+  <component name="RunManager" selected="JUnit.All in TaskManagement">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="TaskManagement" />
@@ -102,8 +115,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.All in TaskManagement" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.ChangeBugSeverityCommandTests" />
         <item itemvalue="JUnit.ChangeBugPriorityCommandTests" />
         <item itemvalue="JUnit.ChangeStoryStatusCommandTests.execute_Should_ThrowsIllegalArgumentException_When_InvalidStatus" />
@@ -186,20 +199,20 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/TaskManagement$ChangeBugStatusCommandTests_execute_InvalidStatus_ThrowsIllegalArgumentException.ic" NAME="ChangeBugStatusCommandTests.execute_InvalidStatus_ThrowsIllegalArgumentException Coverage Results" MODIFIED="1700598400871" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>commands.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/TaskManagement$ChangeFeedbackStatusCommandTests.ic" NAME="ChangeFeedbackStatusCommandTests Coverage Results" MODIFIED="1700599400081" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>commands.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/TaskManagement$ChangeBugStatusCommandTests_execute_SameStatus_ThrowsInvalidUserInputException.ic" NAME="ChangeBugStatusCommandTests.execute_SameStatus_ThrowsInvalidUserInputException Coverage Results" MODIFIED="1700598513113" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>commands.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/TaskManagement$ChangeStoryStatusCommandTests_execute_Should_ThrowsIllegalArgumentException_When_InvalidStatus.ic" NAME="ChangeStoryStatusCommandTests.execute_Should_ThrowsIllegalArgumentException_When_InvalidStatus Coverage Results" MODIFIED="1700599583349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/TaskManagement$ChangeBugStatusCommandTests.ic" NAME="ChangeBugStatusCommandTests Coverage Results" MODIFIED="1700598999589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>commands.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/TaskManagement$All_in_TaskManagement.ic" NAME="All in TaskManagement Coverage Results" MODIFIED="1700599608219" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/TaskManagement$ChangeBugStatusCommandTests.ic" NAME="ChangeBugStatusCommandTests Coverage Results" MODIFIED="1700598999589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/TaskManagement$ChangeStoryStatusCommandTests_execute_Should_ThrowsIllegalArgumentException_When_InvalidStatus.ic" NAME="ChangeStoryStatusCommandTests.execute_Should_ThrowsIllegalArgumentException_When_InvalidStatus Coverage Results" MODIFIED="1700599583349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>commands.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/TaskManagement$ChangeBugStatusCommandTests_execute_InvalidStatus_ThrowsIllegalArgumentException.ic" NAME="ChangeBugStatusCommandTests.execute_InvalidStatus_ThrowsIllegalArgumentException Coverage Results" MODIFIED="1700598400871" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>commands.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/TaskManagement$ChangeBugStatusCommandTests_execute_SameStatus_ThrowsInvalidUserInputException.ic" NAME="ChangeBugStatusCommandTests.execute_SameStatus_ThrowsInvalidUserInputException Coverage Results" MODIFIED="1700598513113" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>commands.*</FILTER>
     </SUITE>
   </component>

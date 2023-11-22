@@ -2,6 +2,7 @@ package core;
 
 import core.contracts.Repository;
 import exceptions.NoSuchElementFoundException;
+import exceptions.TheNameIsNotUniqueException;
 import models.*;
 import models.contracts.*;
 import models.enums.Priority;
@@ -12,6 +13,10 @@ import java.util.List;
 
 public class RepositoryImpl implements Repository {
     public static final String NO_SUCH_ELEMENT_FOUND = "No Such %s Found ";
+    public static final String NAME_NOT_UNIQUE = "The name of the %s is not unique in the system";
+    public static final String NAME_OF_BOARD_NOT_UNIQUE = "The name of the board is not unique in the team";
+
+
     private final List<Team> teams = new ArrayList<>();
     private final List<Board> boards = new ArrayList<>();
     private final List<Person> people = new ArrayList<>();
@@ -93,14 +98,15 @@ public class RepositoryImpl implements Repository {
 
     @Override
     public Team createTeam(String name) {
+        isNameUniqueInSystem(name,"team");
         Team team = new TeamImpl(name);
         teams.add(team);
         return team;
-
     }
 
     @Override
     public Person createPerson(String name) {
+        isNameUniqueInSystem(name,"person");
         Person person = new PersonImpl(name);
         people.add(person);
         return person;
@@ -108,6 +114,7 @@ public class RepositoryImpl implements Repository {
 
     @Override
     public Board createBoard(String name, Team team) {
+        isNameUniqueInTeam(name,team);
         Board board = new BoardImpl(name);
         boards.add(board);
         team.addBoardToTeam(board);
@@ -130,33 +137,29 @@ public class RepositoryImpl implements Repository {
         throw new NoSuchElementFoundException(String.format(NO_SUCH_ELEMENT_FOUND,type));
     }
 
-    @Override
-    public boolean isNameUniqueInSystem(String name) {
+    private void isNameUniqueInSystem(String name, String type) {
         for (Team team:getTeams()) {
             if (team.getName().equalsIgnoreCase(name))
-                return false;
+                throw new TheNameIsNotUniqueException(String.format(NAME_NOT_UNIQUE,type));
         }
         for (Board board:getBoards()) {
             if (board.getName().equalsIgnoreCase(name))
-                return false;
+                throw new TheNameIsNotUniqueException(String.format(NAME_NOT_UNIQUE,type));
         }
         for (Person person:getPeople()) {
             if (person.getName().equalsIgnoreCase(name))
-                return false;
+                throw new TheNameIsNotUniqueException(String.format(NAME_NOT_UNIQUE,type));
         }
-        return true;
     }
 
-    @Override
-    public boolean isNameUniqueInTeam(String name, Team team) {
+    private void isNameUniqueInTeam(String name, Team team) {
         for (Person person:team.getMembers()) {
             if (person.getName().equalsIgnoreCase(name))
-                return false;
+                throw new TheNameIsNotUniqueException(NAME_OF_BOARD_NOT_UNIQUE);
         }
         for (Board board:team.getBoards()){
             if (board.getName().equalsIgnoreCase(name))
-                return false;
+                throw new TheNameIsNotUniqueException(NAME_OF_BOARD_NOT_UNIQUE);
         }
-        return true;
     }
 }

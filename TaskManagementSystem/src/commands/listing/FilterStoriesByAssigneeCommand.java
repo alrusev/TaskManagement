@@ -2,14 +2,11 @@ package commands.listing;
 
 import commands.contracts.Command;
 import core.contracts.Repository;
-import models.contracts.Bug;
 import models.contracts.Person;
 import models.contracts.Story;
 import utils.ValidationHelpers;
-
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 
 public class FilterStoriesByAssigneeCommand implements Command {
     private static final int ASSIGNEE_INDEX = 0;

@@ -2,10 +2,8 @@ package commands.listing;
 
 import commands.contracts.Command;
 import core.contracts.Repository;
-import models.contracts.Bug;
 import models.contracts.Person;
 import models.contracts.Story;
-import models.enums.BugStatus;
 import models.enums.StoryStatus;
 import utils.ParsingHelpers;
 import utils.ValidationHelpers;

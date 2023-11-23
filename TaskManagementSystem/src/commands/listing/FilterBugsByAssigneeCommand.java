@@ -8,7 +8,6 @@ import utils.ValidationHelpers;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 
 public class FilterBugsByAssigneeCommand implements Command {
     private static final int ASSIGNEE_INDEX = 0;

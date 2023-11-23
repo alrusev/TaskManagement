@@ -1,5 +1,6 @@
 package commands;
 
+import commands.changecommands.ChangeStoryPriorityCommand;
 import core.RepositoryImpl;
 import core.contracts.Repository;
 import exceptions.NoSuchElementFoundException;

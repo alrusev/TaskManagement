@@ -1,5 +1,6 @@
 package commands;
 
+import commands.addassigncommands.AddPersonToTeamCommand;
 import core.RepositoryImpl;
 import core.contracts.Repository;
 import exceptions.NoSuchElementFoundException;

@@ -1,5 +1,6 @@
 package commands;
 
+import commands.changecommands.ChangeFeedbackStatusCommand;
 import core.RepositoryImpl;
 import core.contracts.Repository;
 import exceptions.InvalidUserInputException;

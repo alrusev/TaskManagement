@@ -1,9 +1,16 @@
 package core;
 
-import commands.*;
+import commands.addassigncommands.AddCommentCommand;
+import commands.addassigncommands.AddPersonToTeamCommand;
+import commands.addassigncommands.AssignTaskCommand;
+import commands.addassigncommands.UnassignTaskCommand;
+import commands.changecommands.*;
 import commands.contracts.Command;
+import commands.createcommands.*;
 import commands.enums.CommandType;
-import commands.listing.*;
+import commands.listing.filtercommands.*;
+import commands.listing.sortcommands.*;
+import commands.showcommands.*;
 import core.contracts.CommandFactory;
 import core.contracts.Repository;
 import utils.ParsingHelpers;
@@ -33,7 +40,14 @@ public class CommandFactoryImpl implements CommandFactory {
             case CREATESTORYINBOARD -> new CreateStoryInBoardCommand(repository);
             case CREATEPERSON -> new CreatePersonCommand(repository);
             case CREATETEAM -> new CreateTeamCommand(repository);
+            case FILTERBUGSBYASSIGNEE -> new FilterBugsByAssigneeCommand(repository);
+            case FILTERBUGSBYSTATUSANDASSIGNEE -> new FilterBugsByStatusAndAssigneeCommand(repository);
+            case FILTERBUGSBYSTATUS -> new FilterBugsByStatusCommand(repository);
+            case FILTERFEEDBACKSBYSTATUS -> new FilterFeedbacksByStatus(repository);
+            case FILTERSTORIESBYASSIGNEE -> new FilterStoriesByAssigneeCommand(repository);
             case FILTERTASKSBYNAME -> new FilterTasksByNameCommand(repository);
+            case FILTERSTORIESBYSTATUS -> new FilterStoriesByStatusCommand(repository);
+            case FILTERSTORIESBYSTATUSANDASSIGNEE -> new FilterStoriesByStatusAndAssigneeCommand(repository);
             case SHOWALLPEOPLE -> new ShowAllPeopleCommand(repository);
             case SHOWALLTEAMBOARDS -> new ShowAllTeamBoardsCommand(repository);
             case SHOWALLTEAMMEMBERS -> new ShowAllTeamMembersCommand(repository);

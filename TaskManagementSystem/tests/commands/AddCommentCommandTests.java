@@ -1,6 +1,7 @@
 package commands;
 
 import Utils.TestUtilities;
+import commands.addassigncommands.AddCommentCommand;
 import commands.contracts.Command;
 import core.RepositoryImpl;
 import core.contracts.Repository;

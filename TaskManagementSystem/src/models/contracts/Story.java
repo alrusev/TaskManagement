@@ -7,8 +7,8 @@ import models.enums.StoryStatus;
 
 public interface Story extends Task {
     Size getSize();
-    void assignTo(Person person);
-    void unassign();
+    void assignTask(Person person);
+    void unAssignTask();
     Priority getPriority();
     void setStoryStatus(StoryStatus storyStatus);
 

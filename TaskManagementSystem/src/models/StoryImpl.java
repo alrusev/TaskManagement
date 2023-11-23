@@ -65,7 +65,7 @@ public class StoryImpl extends TaskImpl implements Story {
     }
 
     @Override
-    public void assignTo(Person person) {
+    public void assignTask(Person person) {
         if (person != null) {
             setAssignee(person);
             person.addToActivityHistory(String.format("Story with ID %d assigned to %s.", getId(), person.getName()));
@@ -74,7 +74,7 @@ public class StoryImpl extends TaskImpl implements Story {
     }
 
     @Override
-    public void unassign() {
+    public void unAssignTask() {
         addToHistory(new HistoryEntryImpl("Story unassigned from " + (getAssignee() != null ? getAssignee().getName() : "None")));
         setAssignee(null);
     }
@@ -89,13 +89,5 @@ public class StoryImpl extends TaskImpl implements Story {
     public StoryStatus getStoryStatus() {
         return storyStatus;
     }
-    @Override
-    public void assignTask(Person person) {
-        assignee = person;
-    }
 
-    @Override
-    public void unAssignTask() {
-        assignee = null;
-    }
 }

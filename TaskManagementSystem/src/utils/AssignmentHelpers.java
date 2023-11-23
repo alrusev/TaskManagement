@@ -18,7 +18,7 @@ public class AssignmentHelpers {
 
         public void assignStoryToPerson(Story story, Person person, Team team) {
             if (team.getMembers().contains(person)) {
-                story.assignTo(person);
+                story.assignTask(person);
             } else {
                 throw new IllegalArgumentException("Person must be a member of the team.");
             }

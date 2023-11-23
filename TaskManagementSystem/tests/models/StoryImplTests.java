@@ -69,7 +69,7 @@ public class StoryImplTests {
         Person newAssignee = new PersonImpl("NewAssignee");
 
         // Act
-        story.assignTo(newAssignee);
+        story.assignTask(newAssignee);
 
         // Assert
         assertEquals(newAssignee, story.getAssignee());
@@ -79,10 +79,10 @@ public class StoryImplTests {
     @Test
     public void unassign_Should_NonUnassign_When_NoAssigneProvided() {
         // Arrange
-        story.assignTo(new PersonImpl("Assignee"));
+        story.assignTask(new PersonImpl("Assignee"));
 
         // Act
-        story.unassign();
+        story.unAssignTask();
 
         // Assert
         assertNull(story.getAssignee());
@@ -92,7 +92,7 @@ public class StoryImplTests {
     @Test
     public void unassign_Should_NonUnassign_When_UnassignedProvided() {
         // Act
-        story.unassign();
+        story.unAssignTask();
 
         // Assert
         assertNull(story.getAssignee());

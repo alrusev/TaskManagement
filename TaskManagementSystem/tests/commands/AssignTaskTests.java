@@ -75,7 +75,7 @@ public class AssignTaskTests {
         board.addTaskToBoard(story);
         team.addPersonToTeam(person);
         List<String> parameters = List.of(String.valueOf(story.getId()),VALID_NAME);
-        story.unassign();
+        story.unAssignTask();
         command.execute(parameters);
         Assertions.assertEquals(person.getName(),story.getAssignee().getName());
     }

@@ -79,7 +79,7 @@ public class BugImplTests {
     @Test
     public void unassign_Should_NonUnassign_When_UnassignedProvided() {
         // Act
-        bug.unassign();
+        bug.unAssign();
 
         // Assert
         assertNull(bug.getAssignee());

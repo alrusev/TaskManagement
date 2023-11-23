@@ -88,7 +88,7 @@ public class BugImpl extends TaskImpl implements Bug {
         }
     }
 
-    public void unassign() {
+    public void unAssign() {
         addToHistory(new HistoryEntryImpl("Bug unassigned from " + (getAssignee() != null ? getAssignee().getName() : "None")));
         setAssignee(null);
     }

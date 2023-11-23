@@ -4,18 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="169c9f96-77e4-47d7-bbf2-34743415b6ee" name="Changes" comment="Fine touches in the sorting commands">
-      <change afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/FilterBugsByAssigneeCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/FilterBugsByStatusCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/FilterFeedbacksByStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/FilterStoriesByAssigneeCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/FilterStoriesByStatusCommand.java" afterDir="false" />
+    <list default="true" id="169c9f96-77e4-47d7-bbf2-34743415b6ee" name="Changes" comment="Filter commands for Bug, Story and Feedback done">
+      <change afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/FilterBugsByStatusAndAssigneeCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/FilterStoriesByStatusAndAssigneeCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/ShowBoardActivityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/ShowBoardActivityCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/enums/CommandType.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/enums/CommandType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/FilterTasksByNameCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/FilterTasksByNameCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/SortBugsByPriorityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/SortBugsByPriorityCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/SortBugsBySeverityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/SortBugsBySeverityCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/SortTasksByNameCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/SortTasksByNameCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/FilterBugsByAssigneeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/FilterBugsByAssigneeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/FilterStoriesByAssigneeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/FilterStoriesByAssigneeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/ListFeedbackCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/ListStoriesCoomand.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/core/CommandFactoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/core/CommandFactoryImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,6 +44,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/user1510/IdeaProjects/TaskManagement/TaskManagementSystem",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0"
@@ -61,8 +60,41 @@
     </configuration>
     <configuration name="All in TaskManagement" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TaskManagement" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="commands.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="core.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="exceptions.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="models.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="Utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
+      <dir value="$PROJECT_DIR$/TaskManagementSystem" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -188,7 +220,23 @@
       <option name="project" value="LOCAL" />
       <updated>1700684066894</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Filter commands for Bug, Story and Feedback done">
+      <option name="closed" value="true" />
+      <created>1700693858480</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1700693858480</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Filter commands for Bug, Story and Feedback done">
+      <option name="closed" value="true" />
+      <created>1700693909196</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1700693909196</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -210,7 +258,8 @@
     <MESSAGE value="All Sort Classes Done" />
     <MESSAGE value="Missing files" />
     <MESSAGE value="Fine touches in the sorting commands" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fine touches in the sorting commands" />
+    <MESSAGE value="Filter commands for Bug, Story and Feedback done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Filter commands for Bug, Story and Feedback done" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -245,7 +294,24 @@
     <SUITE FILE_PATH="coverage/TaskManagement$ChangeStoryStatusCommandTests_execute_Should_ThrowsIllegalArgumentException_When_InvalidStatus.ic" NAME="ChangeStoryStatusCommandTests.execute_Should_ThrowsIllegalArgumentException_When_InvalidStatus Coverage Results" MODIFIED="1700599583349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>commands.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/TaskManagement$All_in_TaskManagement.ic" NAME="All in TaskManagement Coverage Results" MODIFIED="1700685239097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/TaskManagement$TaskManagementSystem_in_TaskManagement.ic" NAME="TaskManagementSystem in TaskManagement Coverage Results" MODIFIED="1700734719865" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>*</FILTER>
+      <FILTER>commands.*</FILTER>
+      <FILTER>core.*</FILTER>
+      <FILTER>exceptions.*</FILTER>
+      <FILTER>models.*</FILTER>
+      <FILTER>utils.*</FILTER>
+      <FILTER>Utils.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/TaskManagement$All_in_TaskManagement.ic" NAME="All in TaskManagement Coverage Results" MODIFIED="1700734744648" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>*</FILTER>
+      <FILTER>commands.*</FILTER>
+      <FILTER>core.*</FILTER>
+      <FILTER>exceptions.*</FILTER>
+      <FILTER>models.*</FILTER>
+      <FILTER>utils.*</FILTER>
+      <FILTER>Utils.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/TaskManagement$ChangeBugStatusCommandTests.ic" NAME="ChangeBugStatusCommandTests Coverage Results" MODIFIED="1700598999589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>commands.*</FILTER>
     </SUITE>

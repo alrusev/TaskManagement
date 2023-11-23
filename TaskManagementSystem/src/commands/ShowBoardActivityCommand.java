@@ -6,8 +6,6 @@ import models.contracts.Board;
 import models.contracts.HistoryEntry;
 import models.contracts.Task;
 import utils.ValidationHelpers;
-
-
 import java.util.List;
 
 public class ShowBoardActivityCommand implements Command {

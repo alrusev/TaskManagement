@@ -2,11 +2,11 @@ package commands;
 
 import Utils.TestUtilities;
 import commands.contracts.Command;
+import commands.createcommands.CreateBoardCommand;
 import core.RepositoryImpl;
 import core.contracts.Repository;
 import exceptions.NoSuchElementFoundException;
 import exceptions.TheNameIsNotUniqueException;
-import models.contracts.Team;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

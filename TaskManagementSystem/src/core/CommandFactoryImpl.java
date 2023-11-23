@@ -1,9 +1,16 @@
 package core;
 
-import commands.*;
+import commands.addassigncommands.AddCommentCommand;
+import commands.addassigncommands.AddPersonToTeamCommand;
+import commands.addassigncommands.AssignTaskCommand;
+import commands.addassigncommands.UnassignTaskCommand;
+import commands.changecommands.*;
 import commands.contracts.Command;
+import commands.createcommands.*;
 import commands.enums.CommandType;
-import commands.listing.*;
+import commands.listing.filtercommands.*;
+import commands.listing.sortcommands.*;
+import commands.showcommands.*;
 import core.contracts.CommandFactory;
 import core.contracts.Repository;
 import utils.ParsingHelpers;

@@ -1,5 +1,6 @@
 package commands;
 
+import commands.changecommands.ChangeBugSeverityCommand;
 import core.RepositoryImpl;
 import core.contracts.Repository;
 import exceptions.NoSuchElementFoundException;

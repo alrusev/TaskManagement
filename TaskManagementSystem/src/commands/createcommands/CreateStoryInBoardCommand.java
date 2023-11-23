@@ -3,11 +3,9 @@ package commands.createcommands;
 import commands.contracts.Command;
 import core.contracts.Repository;
 import models.contracts.Board;
-import models.contracts.Person;
 import models.contracts.Story;
 import models.enums.Priority;
 import models.enums.Size;
-import models.enums.StoryStatus;
 import utils.ParsingHelpers;
 import utils.ValidationHelpers;
 

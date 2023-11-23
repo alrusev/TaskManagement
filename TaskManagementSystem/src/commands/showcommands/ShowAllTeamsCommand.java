@@ -2,7 +2,6 @@ package commands.showcommands;
 
 import commands.contracts.Command;
 import core.contracts.Repository;
-import models.contracts.Team;
 import utils.ListingHelpers;
 
 import java.util.List;

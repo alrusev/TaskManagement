@@ -2,11 +2,8 @@ package commands.showcommands;
 
 import commands.contracts.Command;
 import core.contracts.Repository;
-import models.contracts.Board;
 import models.contracts.Person;
 import utils.ValidationHelpers;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class ShowPersonActivityCommand implements Command {

@@ -4,13 +4,10 @@ import commands.contracts.Command;
 import core.contracts.Repository;
 import models.contracts.Board;
 import models.contracts.Bug;
-import models.contracts.Person;
 import models.enums.Priority;
 import models.enums.Severity;
-import models.enums.StoryStatus;
 import utils.ParsingHelpers;
 import utils.ValidationHelpers;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

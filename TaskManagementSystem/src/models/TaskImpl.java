@@ -89,11 +89,4 @@ public abstract class TaskImpl implements Task {
             historyEntries.add(historyEntry);
         }
     }
-    @Override
-    public abstract void assignTask(Person person);
-    @Override
-    public abstract void unAssignTask();
-
-    @Override
-    public abstract Person getAssignee();
 }

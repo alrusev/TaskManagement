@@ -49,17 +49,4 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
         return feedbackStatus;
     }
 
-    @Override
-    public void assignTask(Person person) {
-        throw new IllegalArgumentException("Feedbacks cannot have assignees");
-    }
-    @Override
-    public void unAssignTask() {
-        throw new IllegalArgumentException("Feedbacks cannot have assignees");
-    }
-
-    @Override
-    public Person getAssignee() {
-        throw new IllegalArgumentException("Feedbacks do not have assigned");
-    }
 }

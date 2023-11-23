@@ -15,8 +15,6 @@ public interface Task {
 
     List<HistoryEntry> getHistory();
     void addToHistory(HistoryEntry historyEntry);
-     void assignTask(Person person);
-     void unAssignTask();
-     Person getAssignee();
+
 
 }

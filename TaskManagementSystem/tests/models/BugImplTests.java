@@ -82,7 +82,7 @@ public class BugImplTests {
         bug.unAssign();
 
         // Assert
-        assertNull(bug.getAssignee());
+        assertEquals(bug.getAssignee().getName(),"No assignee");
         assertEquals(1, bug.getHistory().size());
     }
 

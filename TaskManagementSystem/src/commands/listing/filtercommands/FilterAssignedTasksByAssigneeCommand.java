@@ -29,11 +29,9 @@ public class FilterAssignedTasksByAssigneeCommand implements Command {
         String searchedAssigneeName = parameters.get(ASSIGNEE_INDEX).toLowerCase();
 
         Stream<Bug> streamBug = bugs.stream()
-                .filter(bug -> bug.getBugStatus().toString().toLowerCase().contains(searchedAssigneeName))
                 .filter(bug -> isBugMatchingAssignee(bug,searchedAssigneeName));
 
         Stream<Story> streamStory = stories.stream()
-                .filter(story -> story.getStoryStatus().toString().toLowerCase().contains(searchedAssigneeName))
                 .filter(story -> isStoryMatchingAssignee(story,searchedAssigneeName));
 
         if (streamBug.findAny().isEmpty() && streamStory.findAny().isEmpty())

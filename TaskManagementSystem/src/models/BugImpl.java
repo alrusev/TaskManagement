@@ -13,6 +13,7 @@ public class BugImpl extends TaskImpl implements Bug {
     private Person assignee;
     private Priority priority;
     private BugStatus bugStatus;
+    private Person defaultPerson;
 
 
     public BugImpl(String title, String description, Priority priority, Severity severity, List<String> stepsToReproduce, int id) {
@@ -21,6 +22,8 @@ public class BugImpl extends TaskImpl implements Bug {
         setSeverity(severity);
         setStepsToReproduce(stepsToReproduce);
         bugStatus = BugStatus.ACTIVE;
+        defaultPerson = new PersonImpl("No assignee");
+        this.assignee = defaultPerson;
     }
 
     @Override
@@ -94,7 +97,7 @@ public class BugImpl extends TaskImpl implements Bug {
 
     public void unAssign() {
         addToHistory(new HistoryEntryImpl("Bug unassigned from " + (getAssignee() != null ? getAssignee().getName() : "None")));
-        setAssignee(null);
+        setAssignee(defaultPerson);
     }
 
     @Override
@@ -111,12 +114,17 @@ public class BugImpl extends TaskImpl implements Bug {
 
     @Override
     public void assignTask(Person person) {
-        assignee = person;
+        if (person != null) {
+            setAssignee(person);
+            person.addToActivityHistory(String.format("Bug with ID %d assigned to %s", getId(), person.getName()));
+            addToHistory(new HistoryEntryImpl("Bug assigned to " + person.getName()));
+        }
     }
 
     @Override
     public void unAssignTask() {
-        assignee = null;
+        addToHistory(new HistoryEntryImpl("Bug unassigned from " + (getAssignee() != null ? getAssignee().getName() : "None")));
+        setAssignee(defaultPerson);
     }
     @Override
     public String toString(){

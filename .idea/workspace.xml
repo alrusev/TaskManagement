@@ -4,40 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="169c9f96-77e4-47d7-bbf2-34743415b6ee" name="Changes" comment="improved assign/unAssign methods">
-      <change afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/filtercommands/FilterAssignedTasksByAssigneeCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/filtercommands/FilterAssignedTasksByStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/filtercommands/FilterAssignedTasksByStatusAndAssigneeCommand.java" afterDir="false" />
+    <list default="true" id="169c9f96-77e4-47d7-bbf2-34743415b6ee" name="Changes" comment="FilterAssignedTasks commands added&#10;improve print parts of all list commands&#10;added case in list commands if no elements found">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/enums/CommandType.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/enums/CommandType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/ListTasksWithAssigneeCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/filtercommands/FilterAssignedTasksByAssigneeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/filtercommands/FilterAssignedTasksByAssigneeCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/filtercommands/FilterBugsByAssigneeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/filtercommands/FilterBugsByAssigneeCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/filtercommands/FilterBugsByStatusAndAssigneeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/filtercommands/FilterBugsByStatusAndAssigneeCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/filtercommands/FilterBugsByStatusCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/filtercommands/FilterBugsByStatusCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/filtercommands/FilterFeedbacksByStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/filtercommands/FilterFeedbacksByStatus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/filtercommands/FilterStoriesByAssigneeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/filtercommands/FilterStoriesByAssigneeCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/filtercommands/FilterStoriesByStatusCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/filtercommands/FilterStoriesByStatusCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/filtercommands/FilterTasksByNameCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/filtercommands/FilterTasksByNameCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/sortcommands/SortBugsByPriorityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/sortcommands/SortBugsByPriorityCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/sortcommands/SortBugsBySeverityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/sortcommands/SortBugsBySeverityCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/sortcommands/SortBugsByTitleCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/sortcommands/SortBugsByTitleCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/sortcommands/SortFeedbacksByRatingCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/sortcommands/SortFeedbacksByRatingCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/sortcommands/SortFeedbacksByTitleCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/sortcommands/SortFeedbacksByTitleCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/sortcommands/SortStoriesByPriorityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/sortcommands/SortStoriesByPriorityCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/sortcommands/SortStoriesBySizeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/sortcommands/SortStoriesBySizeCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/sortcommands/SortStoriesByTitleCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/sortcommands/SortStoriesByTitleCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/sortcommands/SortTasksByNameCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/commands/listing/sortcommands/SortTasksByNameCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/core/CommandFactoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/core/CommandFactoryImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/models/BugImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/models/BugImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/models/FeedbackImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/models/FeedbackImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/models/StoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/models/StoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/models/TaskImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/models/TaskImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/models/contracts/Bug.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/models/contracts/Bug.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/models/contracts/Feedback.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/models/contracts/Feedback.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/models/contracts/Story.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/models/contracts/Story.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/models/contracts/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/models/contracts/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/utils/ParsingHelpers.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/utils/ParsingHelpers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/models/BugImplTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/tests/models/BugImplTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/tests/models/StoryImplTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/tests/models/StoryImplTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +31,7 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
@@ -171,8 +151,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.All in TaskManagement" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.ChangeBugSeverityCommandTests" />
         <item itemvalue="JUnit.ChangeBugPriorityCommandTests" />
         <item itemvalue="JUnit.ChangeStoryStatusCommandTests.execute_Should_ThrowsIllegalArgumentException_When_InvalidStatus" />
@@ -284,7 +264,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700749452516</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="FilterAssignedTasks commands added&#10;improve print parts of all list commands&#10;added case in list commands if no elements found">
+      <option name="closed" value="true" />
+      <created>1700830569746</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1700830569746</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -309,7 +297,8 @@
     <MESSAGE value="Filter commands for Bug, Story and Feedback done" />
     <MESSAGE value="FILTERSTORIESBYSTATUS, FilterBugsByAssigneeCommand, FilterStoriesByAssigneeCommand, FilterStoriesByStatusAndAssigneeCommand, FilterBugsByStatusAndAssigneeCommand" />
     <MESSAGE value="improved assign/unAssign methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="improved assign/unAssign methods" />
+    <MESSAGE value="FilterAssignedTasks commands added&#10;improve print parts of all list commands&#10;added case in list commands if no elements found" />
+    <option name="LAST_COMMIT_MESSAGE" value="FilterAssignedTasks commands added&#10;improve print parts of all list commands&#10;added case in list commands if no elements found" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -328,6 +317,15 @@
     <SUITE FILE_PATH="coverage/TaskManagement$TaskManagementSystem_in_TaskManagement.ic" NAME="TaskManagementSystem in TaskManagement Coverage Results" MODIFIED="1700734719865" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>*</FILTER>
       <FILTER>commands.*</FILTER>
+      <FILTER>core.*</FILTER>
+      <FILTER>exceptions.*</FILTER>
+      <FILTER>models.*</FILTER>
+      <FILTER>utils.*</FILTER>
+      <FILTER>Utils.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/TaskManagementSystemLastVersion$All_in_TaskManagement.ic" NAME="All in TaskManagement Coverage Results" MODIFIED="1700836351678" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>*</FILTER>
+      <FILTER>commands.changecommands.*</FILTER>
       <FILTER>core.*</FILTER>
       <FILTER>exceptions.*</FILTER>
       <FILTER>models.*</FILTER>

@@ -85,7 +85,7 @@ public class StoryImplTests {
         story.unAssignTask();
 
         // Assert
-        assertNull(story.getAssignee());
+        assertEquals(story.getAssignee().getName(),"No assignee");
         assertEquals(2, story.getHistory().size());
     }
 
@@ -95,7 +95,7 @@ public class StoryImplTests {
         story.unAssignTask();
 
         // Assert
-        assertNull(story.getAssignee());
+        assertEquals(story.getAssignee().getName(),"No assignee");
         assertEquals(1, story.getHistory().size());
     }
 

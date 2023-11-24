@@ -31,7 +31,7 @@ public class FilterFeedbacksByStatus implements Command {
         FeedbackStatus filterStatus = ParsingHelpers.tryParseEnum(parameters.get(STATUS_INDEX),
                 FeedbackStatus.class, NO_SUCH_STATUS);
         Stream<Feedback> streamFeedback = feedbacks.stream()
-                .filter(bug -> bug.getFeedbackStatus().toString().toUpperCase().equals(filterStatus.toString()));
+                .filter(feedback -> feedback.getFeedbackStatus().toString().equalsIgnoreCase(filterStatus.toString()));
         if (streamFeedback.findAny().isEmpty())
             return NO_RESULTS_MESSAGE;
 

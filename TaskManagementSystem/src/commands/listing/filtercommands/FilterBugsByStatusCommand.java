@@ -30,7 +30,7 @@ public class FilterBugsByStatusCommand implements Command {
         BugStatus filterStatus = ParsingHelpers.tryParseEnum(parameters.get(STATUS_INDEX),
                 BugStatus.class, NO_SUCH_STATUS);
         Stream<Bug> streamBug = bugs.stream()
-                .filter(bug -> bug.getBugStatus().toString().toUpperCase().equals(filterStatus.toString()));
+                .filter(bug -> bug.getBugStatus().toString().equalsIgnoreCase(filterStatus.toString()));
         if (streamBug.findAny().isEmpty())
             return NO_RESULTS_MESSAGE;
         bugs.stream()

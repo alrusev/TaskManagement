@@ -11,6 +11,8 @@ public class StoryImpl extends TaskImpl implements Story {
     private Person assignee;
     Priority priority;
     StoryStatus storyStatus;
+    private final Person defaultPerson;
+
 
 
     public StoryImpl(int id, String title, String description, Priority priority, Size size) {
@@ -19,6 +21,8 @@ public class StoryImpl extends TaskImpl implements Story {
         setSize(size);
         setAssignee(assignee);
         storyStatus = StoryStatus.NOTDONE;
+        defaultPerson = new PersonImpl("No assignee");
+        this.assignee = defaultPerson;
     }
 
     @Override
@@ -57,6 +61,7 @@ public class StoryImpl extends TaskImpl implements Story {
 
 
     public Person getAssignee() {
+
         return assignee;
     }
 
@@ -76,7 +81,7 @@ public class StoryImpl extends TaskImpl implements Story {
     @Override
     public void unAssignTask() {
         addToHistory(new HistoryEntryImpl("Story unassigned from " + (getAssignee() != null ? getAssignee().getName() : "None")));
-        setAssignee(null);
+        setAssignee(defaultPerson);
     }
 
     @Override

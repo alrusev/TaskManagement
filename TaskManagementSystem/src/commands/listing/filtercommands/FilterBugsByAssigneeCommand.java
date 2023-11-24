@@ -34,7 +34,6 @@ public class FilterBugsByAssigneeCommand implements Command {
 
         String assigneeName = parameters.get(ASSIGNEE_INDEX);
         Stream<Bug> streamBug = bugs.stream()
-                .filter(bug -> bug.getBugStatus().toString().toLowerCase().contains(assigneeName))
                 .filter(bug -> isBugMatchingAssignee(bug,assigneeName));
 
         if (streamBug.findAny().isEmpty())

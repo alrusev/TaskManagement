@@ -30,7 +30,6 @@ public class FilterStoriesByAssigneeCommand implements Command {
 
         String assigneeName = parameters.get(ASSIGNEE_INDEX);
         Stream<Story> streamStory = stories.stream()
-                .filter(story -> story.getStoryStatus().toString().toLowerCase().contains(assigneeName))
                 .filter(story -> isStoryMatchingAssignee(story,assigneeName));
 
         if (streamStory.findAny().isEmpty())

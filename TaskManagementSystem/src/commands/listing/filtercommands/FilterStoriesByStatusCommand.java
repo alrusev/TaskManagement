@@ -31,7 +31,7 @@ public class FilterStoriesByStatusCommand implements Command {
                 StoryStatus.class, NO_SUCH_STATUS);
 
         Stream<Story> streamStory = stories.stream()
-                .filter(story -> story.getStoryStatus().toString().toUpperCase().equals(filterStatus.toString()));
+                .filter(story -> story.getStoryStatus().toString().equalsIgnoreCase(filterStatus.toString()));
         if (streamStory.findAny().isEmpty())
             return NO_RESULTS_MESSAGE;
         stories.stream()

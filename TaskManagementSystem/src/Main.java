@@ -10,9 +10,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-    //    EngineImpl engine = new EngineImpl();
-  //      engine.run();
-        String str = "gosho";
-        System.out.println(str.contains("h"));
+        EngineImpl engine = new EngineImpl();
+        engine.run();
     }
 }

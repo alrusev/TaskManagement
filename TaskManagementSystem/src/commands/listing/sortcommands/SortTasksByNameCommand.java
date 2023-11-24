@@ -9,7 +9,7 @@ import java.util.List;
 public class SortTasksByNameCommand implements Command {
 
     private final List<Task> tasks;
-    private int nextID = 1;
+    private final static String NO_TASKS_MESSAGE = "No tasks found";
 
 
     public SortTasksByNameCommand(Repository repository) {
@@ -18,15 +18,13 @@ public class SortTasksByNameCommand implements Command {
 
     @Override
     public String execute(List<String> parameters) {
+        if (tasks.isEmpty())
+            return NO_TASKS_MESSAGE;
         List<Task> sortedTasks = tasks.stream()
                 .sorted(Comparator.comparing(task -> task.getTitle().toLowerCase()))
                 .toList();
 
-        sortedTasks.forEach(task -> {
-            System.out.printf("%d. Task: %s%n", nextID++, task.getTitle());
-            System.out.printf("   Description: %s%n", task.getDescription());
-            System.out.printf("   Comments: %s%n", task.getComments());
-        });
+        sortedTasks.forEach(System.out::println);
         return "----- END -----";
     }
 }

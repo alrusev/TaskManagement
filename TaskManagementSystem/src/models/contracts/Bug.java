@@ -14,12 +14,11 @@ public interface Bug extends Task {
     void updatePriority(Priority newPriority);
     void assignTo(Person person);
     void unAssign();
-//    void markAsDone();
-//    void reopenBug();
     void changeBugStatus();
     BugStatus getBugStatus();
     Person getAssignee();
     void unAssignTask();
     void assignTask(Person person);
+    String toString();
 
 }

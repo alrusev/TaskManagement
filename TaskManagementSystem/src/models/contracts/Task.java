@@ -1,7 +1,4 @@
 package models.contracts;
-
-import models.enums.StoryStatus;
-
 import java.util.List;
 
 public interface Task {
@@ -15,6 +12,8 @@ public interface Task {
 
     List<HistoryEntry> getHistory();
     void addToHistory(HistoryEntry historyEntry);
+    String getTaskType();
+    String toString();
 
 
 }

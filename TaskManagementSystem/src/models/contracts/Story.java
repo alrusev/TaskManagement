@@ -1,6 +1,5 @@
 package models.contracts;
 
-import models.enums.FeedbackStatus;
 import models.enums.Priority;
 import models.enums.Size;
 import models.enums.StoryStatus;
@@ -16,4 +15,6 @@ public interface Story extends Task {
     void updatePriority(Priority newPriority);
     void updateSize(Size newSize);
     Person getAssignee();
+    String toString();
+
 }

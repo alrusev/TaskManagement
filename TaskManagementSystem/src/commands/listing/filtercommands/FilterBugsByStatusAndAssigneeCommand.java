@@ -10,13 +10,17 @@ import utils.ValidationHelpers;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class FilterBugsByStatusAndAssigneeCommand implements Command {
     private static final int STATUS_INDEX = 0;
     private static final int ASSIGNEE_INDEX = 1;
     private static final int EXPECTED_ARGUMENTS = 2;
-    private final List<Bug> bugs;
     private final static String NO_SUCH_STATUS = "No such status";
+    public static final String NO_RESULTS_MESSAGE = "No task with matching status and assignee!";
+    private final List<Bug> bugs;
+
+
 
 
     public FilterBugsByStatusAndAssigneeCommand(Repository repository){
@@ -37,17 +41,17 @@ public class FilterBugsByStatusAndAssigneeCommand implements Command {
 
         String assigneeName = parameters.get(ASSIGNEE_INDEX);
 
+        Stream<Bug> streamBug = bugs.stream()
+                .filter(bug -> bug.getBugStatus().toString().toUpperCase().equals(filterStatus.toString()))
+                .filter(bug -> isBugMatchingAssignee(bug,assigneeName));
+
+        if (streamBug.findAny().isEmpty())
+            return NO_RESULTS_MESSAGE;
         bugs.stream()
                 .filter(bug -> bug.getBugStatus().equals(filterStatus))
                 .filter(bug -> isBugMatchingAssignee(bug, assigneeName))
                 .sorted(Comparator.comparing(bug -> bug.getTitle().toLowerCase()))
-                .forEach(bug -> {
-                    System.out.printf("Bug: %s%n", bug.getTitle());
-                    System.out.printf("   Status: %s%n", bug.getBugStatus());
-                    System.out.printf("   Assignee: %s%n", bug.getAssignee());
-                    System.out.printf("   Description: %s%n", bug.getDescription());
-                    System.out.printf("   Comments: %s%n", bug.getComments());
-                });
+                .forEach(System.out::println);
         return "----- END -----";
     }
 }

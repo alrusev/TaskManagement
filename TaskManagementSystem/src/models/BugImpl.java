@@ -64,6 +64,10 @@ public class BugImpl extends TaskImpl implements Bug {
     public BugStatus getBugStatus(){
         return bugStatus;
     }
+    @Override
+    public String getTaskType(){
+        return "Bug";
+    }
 
     public void updateSeverity(Severity newSeverity) {
         if (newSeverity != null && !newSeverity.equals(this.severity)) {
@@ -93,20 +97,6 @@ public class BugImpl extends TaskImpl implements Bug {
         setAssignee(null);
     }
 
-//    public void markAsDone() {
-//        if (bugStatus != BugStatus.DONE) {
-//            setBugStatus(BugStatus.DONE);
-//            addToHistory(new HistoryEntryImpl("Bug marked as done."));
-//        }
-//    }
-//
-//    public void reopenBug() {
-//        if (bugStatus == BugStatus.DONE) {
-//            setBugStatus(BugStatus.ACTIVE);
-//            addToHistory(new HistoryEntryImpl("Bug reopened and marked as active."));
-//        }
-//    }
-
     @Override
     public void changeBugStatus() {
         if (bugStatus == BugStatus.DONE) {
@@ -128,6 +118,17 @@ public class BugImpl extends TaskImpl implements Bug {
     public void unAssignTask() {
         assignee = null;
     }
-
+    @Override
+    public String toString(){
+        StringBuilder result = new StringBuilder();
+        result.append(super.toString());
+        result.append(String.format("   Assignee: %s%n",getAssignee().getName()));
+        result.append(String.format("   Status: %s%n", getBugStatus()));
+        result.append(String.format("   Severity: %s%n", getSeverity()));
+        result.append(String.format("   Priority: %s%n", getPriority()));
+        result.append(String.format("   Steps to reproduce: %s%n", getStepsToReproduce()));
+        getComments().forEach(comment ->  result.append(String.format("   Comments: %s%n",comment.toString())));
+        return result.toString();
+    }
 
 }

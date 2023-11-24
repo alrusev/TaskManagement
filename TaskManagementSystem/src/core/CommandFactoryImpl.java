@@ -65,6 +65,9 @@ public class CommandFactoryImpl implements CommandFactory {
             case SORTBUGSBYPRIORITY -> new SortBugsByPriorityCommand(repository);
             case SORTBUGSBYSEVERITY -> new SortBugsBySeverityCommand(repository);
             case SORTSTORIESBYPRIORITY -> new SortStoriesByPriorityCommand(repository);
+            case FILETRASSIGNEDTASKSBYASSIGNEE -> new FilterAssignedTasksByAssigneeCommand(repository);
+            case FILTERASSIGNEDTASKSBYSTATUS -> new FilterAssignedTasksByStatus(repository);
+            case FILTERASSIGNEDTASKSBYSTATUSANDASSIGNEE -> new FilterAssignedTasksByStatusAndAssigneeCommand(repository);
         };
     }
 }

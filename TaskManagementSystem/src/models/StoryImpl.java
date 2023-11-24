@@ -90,4 +90,20 @@ public class StoryImpl extends TaskImpl implements Story {
         return storyStatus;
     }
 
+    @Override
+    public String getTaskType(){
+        return "Story";
+    }
+    @Override
+    public String toString(){
+        StringBuilder result = new StringBuilder();
+        result.append(super.toString());
+        result.append(String.format("   Assignee: %s%n",getAssignee().getName()));
+        result.append(String.format("   Status: %s%n", getStoryStatus()));
+        result.append(String.format("   Priority: %s%n", getPriority()));
+        result.append(String.format("   Size: %s%n", getSize()));
+        getComments().forEach(comment ->  result.append(String.format("   Comments: %s%n",comment.toString())));
+        return result.toString();
+    }
+
 }

@@ -9,24 +9,20 @@ import java.util.List;
 
 public class SortStoriesBySizeCommand implements Command {
     private final List<Story> stories;
-    private int nextID = 1;
+    private final static String NO_TASKS_MESSAGE = "No stories found";
 
     public SortStoriesBySizeCommand(Repository repository){
         stories = repository.getStories();
     }
     @Override
     public String execute(List<String> parameters) {
+        if (stories.isEmpty())
+            return NO_TASKS_MESSAGE;
         List<Story> sortStories = stories.stream()
                 .sorted(Comparator.comparing(Story::getSize))
                 .toList();
 
-        sortStories.forEach(story -> {
-            System.out.printf("%d. Story: %s%n", nextID++, story.getTitle());
-            System.out.printf("   Size: %s%n", story.getSize());
-            System.out.printf("   Description: %s%n", story.getDescription());
-            System.out.printf("   Priority: %s%n", story.getPriority());
-            System.out.printf("   Comments: %s%n", story.getComments());
-        });
+        sortStories.forEach(System.out::println);
         return "----- END -----";
     }
 }

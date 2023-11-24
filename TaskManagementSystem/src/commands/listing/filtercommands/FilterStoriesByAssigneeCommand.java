@@ -7,10 +7,13 @@ import models.contracts.Story;
 import utils.ValidationHelpers;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class FilterStoriesByAssigneeCommand implements Command {
     private static final int ASSIGNEE_INDEX = 0;
     private static final int EXPECTED_ARGUMENTS = 1;
+    public static final String NO_RESULTS_MESSAGE = "No task with matching assignee!";
+
     private final List<Story> stories;
 
     public FilterStoriesByAssigneeCommand(Repository repository){
@@ -26,17 +29,17 @@ public class FilterStoriesByAssigneeCommand implements Command {
         ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_ARGUMENTS);
 
         String assigneeName = parameters.get(ASSIGNEE_INDEX);
+        Stream<Story> streamStory = stories.stream()
+                .filter(story -> story.getStoryStatus().toString().toLowerCase().contains(assigneeName))
+                .filter(story -> isStoryMatchingAssignee(story,assigneeName));
+
+        if (streamStory.findAny().isEmpty())
+            return NO_RESULTS_MESSAGE;
 
         stories.stream()
                 .filter(story -> isStoryMatchingAssignee(story, assigneeName))
                 .sorted(Comparator.comparing(story -> story.getTitle().toLowerCase()))
-                .forEach(story -> {
-                    System.out.printf("Story: %s%n", story.getTitle());
-                    System.out.printf("   Assignee: %s%n", story.getAssignee().getName());
-                    System.out.printf("   Status: %s%n", story.getStoryStatus());
-                    System.out.printf("   Description: %s%n", story.getDescription());
-                    System.out.printf("   Comments: %s%n", story.getComments());
-                });
+                .forEach(System.out::print);
         return "----- END -----";
     }
 }

@@ -2,10 +2,7 @@ package models;
 
 import models.contracts.Comment;
 import models.contracts.HistoryEntry;
-import models.contracts.Person;
 import models.contracts.Task;
-import models.enums.BugStatus;
-import models.enums.StoryStatus;
 import utils.ValidationHelpers;
 
 import java.util.ArrayList;
@@ -22,9 +19,8 @@ public abstract class TaskImpl implements Task {
     private int id;
     private String title;
     private String description;
-    private StoryStatus status;
-    private List<Comment> comments;
-    private List<HistoryEntry> historyEntries;
+    private final List<Comment> comments;
+    private final List<HistoryEntry> historyEntries;
 
 
     public TaskImpl(int id, String title,String description) {
@@ -47,6 +43,11 @@ public abstract class TaskImpl implements Task {
     @Override
     public String getTitle() {
         return title;
+    }
+
+    @Override
+    public String getTaskType() {
+        return "Task";
     }
 
     private void setTitle(String title) {
@@ -88,5 +89,11 @@ public abstract class TaskImpl implements Task {
         if (historyEntry != null) {
             historyEntries.add(historyEntry);
         }
+    }
+    @Override
+    public String toString(){
+        return String.format
+                ("%s: %s%n" +
+                        "   Description: %s%n",getTaskType(),getTitle(),getDescription());
     }
 }

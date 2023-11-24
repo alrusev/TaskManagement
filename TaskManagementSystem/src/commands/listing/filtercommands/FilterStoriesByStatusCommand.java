@@ -9,15 +9,17 @@ import utils.ValidationHelpers;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class FilterStoriesByStatusCommand implements Command {
     private static final int STATUS_INDEX = 0;
     private static final int EXPECTED_ARGUMENTS = 1;
     private final List<Story> stories;
     private final static String NO_SUCH_STATUS = "No such status";
+    public static final String NO_RESULTS_MESSAGE = "No task with matching status!";
 
 
-    public FilterStoriesByStatusCommand(Repository repository){
+    public FilterStoriesByStatusCommand(Repository repository) {
         stories = repository.getStories();
     }
 
@@ -28,15 +30,15 @@ public class FilterStoriesByStatusCommand implements Command {
         StoryStatus filterStatus = ParsingHelpers.tryParseEnum(parameters.get(STATUS_INDEX),
                 StoryStatus.class, NO_SUCH_STATUS);
 
+        Stream<Story> streamStory = stories.stream()
+                .filter(story -> story.getStoryStatus().toString().toUpperCase().equals(filterStatus.toString()));
+        if (streamStory.findAny().isEmpty())
+            return NO_RESULTS_MESSAGE;
         stories.stream()
-                .filter(story -> story.getStoryStatus().equals(filterStatus))
-                .sorted(Comparator.comparing(story -> story.getTitle().toLowerCase()))
-                .forEach(story -> {
-                    System.out.printf("Story: %s%n", story.getTitle());
-                    System.out.printf("   Status: %s%n", story.getStoryStatus());
-                    System.out.printf("   Description: %s%n", story.getDescription());
-                    System.out.printf("   Comments: %s%n", story.getComments());
-                });
-        return "----- END -----";
+                    .filter(story -> story.getStoryStatus().equals(filterStatus))
+                    .sorted(Comparator.comparing(story -> story.getTitle().toLowerCase()))
+                    .forEach(System.out::println);
+            return "----- END -----";
+
     }
 }

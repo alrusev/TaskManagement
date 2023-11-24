@@ -1,7 +1,6 @@
 package models;
 
 import models.contracts.Feedback;
-import models.contracts.Person;
 import models.enums.FeedbackStatus;
 import utils.ValidationHelpers;
 
@@ -47,6 +46,19 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
 
     public FeedbackStatus getFeedbackStatus() {
         return feedbackStatus;
+    }
+    @Override
+    public String getTaskType(){
+        return "Feedback";
+    }
+    @Override
+    public String toString(){
+        StringBuilder result = new StringBuilder();
+        result.append(super.toString());
+        result.append(String.format("   Status: %s%n", getFeedbackStatus()));
+        result.append(String.format("   Rating: %d%n", getRating()));
+        getComments().forEach(comment ->  result.append(String.format("   Comments: %s%n",comment.toString())));
+        return result.toString();
     }
 
 }

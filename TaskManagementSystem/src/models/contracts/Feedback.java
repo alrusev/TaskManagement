@@ -10,4 +10,6 @@ public interface Feedback extends Task {
     void setFeedbackStatus(FeedbackStatus feedbackStatus);
 
     FeedbackStatus getFeedbackStatus();
+    String toString();
+
 }

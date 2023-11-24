@@ -8,12 +8,15 @@ import utils.ParsingHelpers;
 import utils.ValidationHelpers;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class FilterBugsByStatusCommand implements Command {
     private static final int STATUS_INDEX = 0;
     private static final int EXPECTED_ARGUMENTS = 1;
     private final List<Bug> bugs;
     private final static String NO_SUCH_STATUS = "No such status";
+    public static final String NO_RESULTS_MESSAGE = "No task with matching status!";
+
 
 
     public FilterBugsByStatusCommand(Repository repository){
@@ -26,16 +29,14 @@ public class FilterBugsByStatusCommand implements Command {
 
         BugStatus filterStatus = ParsingHelpers.tryParseEnum(parameters.get(STATUS_INDEX),
                 BugStatus.class, NO_SUCH_STATUS);
-
+        Stream<Bug> streamBug = bugs.stream()
+                .filter(bug -> bug.getBugStatus().toString().toUpperCase().equals(filterStatus.toString()));
+        if (streamBug.findAny().isEmpty())
+            return NO_RESULTS_MESSAGE;
         bugs.stream()
                 .filter(bug -> bug.getBugStatus().equals(filterStatus))
                 .sorted(Comparator.comparing(bug -> bug.getTitle().toLowerCase()))
-                .forEach(bug -> {
-                    System.out.printf("Bug: %s%n", bug.getTitle());
-                    System.out.printf("   Status: %s%n", bug.getBugStatus());
-                    System.out.printf("   Description: %s%n", bug.getDescription());
-                    System.out.printf("   Comments: %s%n", bug.getComments());
-                });
+                .forEach(System.out::println);
         return "----- END -----";
     }
 }

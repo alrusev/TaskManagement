@@ -9,25 +9,21 @@ import java.util.List;
 
 public class SortBugsBySeverityCommand implements Command {
     private final List<Bug> bugs;
-    private int nextID = 1;
+    private final static String NO_TASKS_MESSAGE = "No bugs found";
+
 
     public SortBugsBySeverityCommand(Repository repository){
         bugs = repository.getBugs();
     }
     @Override
     public String execute(List<String> parameters) {
+        if (bugs.isEmpty())
+            return NO_TASKS_MESSAGE;
         List<Bug> sortBugs = bugs.stream()
                 .sorted(Comparator.comparing(Bug::getSeverity))
                 .toList();
 
-        sortBugs.forEach(bug -> {
-            System.out.printf("%d. Bug: %s%n", nextID++, bug.getTitle());
-            System.out.printf("   Severity: %s%n", bug.getSeverity());
-            System.out.printf("   Status: %s%n", bug.getBugStatus());
-            System.out.printf("   Description: %s%n", bug.getDescription());
-            System.out.printf("   Comments: %s%n", bug.getComments());
-            System.out.printf("   Priority: %s%n", bug.getPriority());
-        });
+        sortBugs.forEach(System.out::println);
         return "----- END -----";
     }
 }
